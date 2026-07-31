@@ -1,0 +1,34 @@
+# Сборка PDF через XeLaTeX.
+# Движок именно XeLaTeX, а не pdfLaTeX: содержимое на русском, а pdfLaTeX
+# требует ручной настройки кодировок и плохо переносит смешение кириллицы
+# с математикой (ENF-PUB-020).
+
+from: markdown+tex_math_dollars+raw_tex+pipe_tables+yaml_metadata_block+fenced_divs+bracketed_spans
+to: latex
+pdf-engine: xelatex
+
+metadata-files:
+  - Build/metadata.yaml
+
+filters:
+  - Build/filters/enf-callouts.lua
+  - Build/filters/enf-color.lua
+  # SVG обрабатывается последним: к этому моменту остальные фильтры
+  # уже не меняют изображения.
+  - Build/filters/enf-svg.lua
+
+include-in-header:
+  # Порядок существен: цвета и макросы ролей объявляются до преамбулы,
+  # которая на них ссылается.
+  - Build/templates/enf-colors.tex
+  - Build/templates/enf-preamble.tex
+
+resource-path:
+  - .
+  - Build/templates
+  - SVG
+  - Figures
+
+standalone: true
+toc: true
+toc-depth: 3

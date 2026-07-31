@@ -1,0 +1,9 @@
+{
+  "theme": "system",
+  "baseFontSize": 16,
+  "enabledCssSnippets": [
+    "enf-tokens",
+    "enf-math",
+    "enf-callouts"
+  ]
+}

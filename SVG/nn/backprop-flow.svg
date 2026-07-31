@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300"
+     role="img" aria-labelledby="t d">
+  <title id="t">Прямой проход и обратное распространение ошибки</title>
+  <desc id="d">Горизонтальная цепочка из четырёх блоков: вход, скрытый слой, выход
+    и функция потерь. Верхние сплошные стрелки идут слева направо и показывают
+    прямой проход — вычисление предсказания. Нижние штриховые стрелки идут справа
+    налево и показывают обратный проход — распространение градиента функции потерь
+    к весам каждого слоя.</desc>
+
+  <style>
+    .b-in  { fill: var(--enf-fill-variable, #E3EDF4);
+             stroke: var(--enf-color-variable, #1D5B85); stroke-width: 2.4; }
+    .b-hid { fill: var(--enf-fill-function, #F6EBDC);
+             stroke: var(--enf-color-function, #8A5214); stroke-width: 2.4; }
+    .b-loss{ fill: var(--enf-fill-target, #F7E2E8);
+             stroke: var(--enf-color-target, #7A0A2C); stroke-width: 2.6; }
+    .fwd   { stroke: var(--enf-color-function, #8A5214); stroke-width: 2.4; fill: none; }
+    .bwd   { stroke: var(--enf-color-operator, #A32EAD); stroke-width: 2.4; fill: none;
+             stroke-dasharray: 8 5; }
+    .name  { font: 600 16px 'Inter', system-ui, sans-serif; fill: var(--enf-fg, #1A1D21); }
+    .lbl   { font: 14px 'Inter', system-ui, sans-serif; }
+    .mlbl  { font: italic 14px 'Charter', Georgia, serif; }
+  </style>
+
+  <defs>
+    <marker id="f-ar" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--enf-color-function, #8A5214)"/>
+    </marker>
+    <marker id="b-ar" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--enf-color-operator, #A32EAD)"/>
+    </marker>
+  </defs>
+
+  <rect class="b-in"   x="40"  y="110" width="130" height="72" rx="8"/>
+  <text class="name" x="105" y="153" text-anchor="middle">вход x</text>
+
+  <rect class="b-hid"  x="230" y="110" width="130" height="72" rx="8"/>
+  <text class="name" x="295" y="146" text-anchor="middle">слой</text>
+  <text class="lbl mlbl" x="295" y="166" text-anchor="middle">w, b</text>
+
+  <rect class="b-hid"  x="420" y="110" width="130" height="72" rx="8"/>
+  <text class="name" x="485" y="146" text-anchor="middle">выход</text>
+  <text class="lbl mlbl" x="485" y="166" text-anchor="middle">ŷ</text>
+
+  <rect class="b-loss" x="610" y="110" width="150" height="72" rx="8"/>
+  <text class="name" x="685" y="146" text-anchor="middle">потери</text>
+  <text class="lbl mlbl" x="685" y="166" text-anchor="middle">L(ŷ, y)</text>
+
+  <path class="fwd" marker-end="url(#f-ar)" d="M 170 132 H 226"/>
+  <path class="fwd" marker-end="url(#f-ar)" d="M 360 132 H 416"/>
+  <path class="fwd" marker-end="url(#f-ar)" d="M 550 132 H 606"/>
+
+  <path class="bwd" marker-end="url(#b-ar)" d="M 610 210 H 486 V 186"/>
+  <path class="bwd" marker-end="url(#b-ar)" d="M 460 210 H 296 V 186"/>
+
+  <text class="lbl" x="400" y="64" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">прямой проход: считаем предсказание</text>
+  <text class="lbl" x="400" y="256" text-anchor="middle"
+        fill="var(--enf-color-operator, #A32EAD)">обратный проход: считаем ∂L/∂w по цепному правилу</text>
+
+  <text class="lbl" x="770" y="230" text-anchor="end"
+        fill="var(--enf-color-neutral, #414A54)">сплошные — данные, штриховые — градиент</text>
+</svg>

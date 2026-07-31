@@ -1,0 +1,29 @@
+% =============================================================
+% ПОРОЖДЁННЫЙ ФАЙЛ — НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ.
+%
+% Источник:  Build/css/enf-tokens.css
+% Генератор: Scripts/gen-latex-colors.mjs
+% Пересоздать: node Scripts/gen-latex-colors.mjs
+%
+% Берётся светлая тема: печать идёт по белой бумаге.
+% =============================================================
+
+\usepackage{xcolor}
+
+\definecolor{enfvariable}{HTML}{1D5B85}  % объект, над которым действуем
+\definecolor{enffunction}{HTML}{8A5214}  % действие, преобразование
+\definecolor{enfparameter}{HTML}{3E7D3A}  % то, что настраивается
+\definecolor{enfoperator}{HTML}{A32EAD}  % агрегат, свёртка
+\definecolor{enftarget}{HTML}{7A0A2C}  % цель: награда, потери, оптимум
+\definecolor{enfneutral}{HTML}{414A54}  % служебное обозначение
+
+% Макросы ролей. Имена совпадают с макросами MathJax из хранилища,
+% поэтому один и тот же исходник собирается и там, и здесь.
+
+\newcommand{\enfVar}[1]{\textcolor{enfvariable}{#1}}
+\newcommand{\enfFun}[1]{\textcolor{enffunction}{#1}}
+\newcommand{\enfPar}[1]{\textcolor{enfparameter}{#1}}
+\newcommand{\enfOp}[1]{\textcolor{enfoperator}{#1}}
+\newcommand{\enfTgt}[1]{\textcolor{enftarget}{#1}}
+\newcommand{\enfNeu}[1]{\textcolor{enfneutral}{#1}}
+

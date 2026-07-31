@@ -1,0 +1,37 @@
+{
+  "nodes": [
+    {"id":"n-title","type":"text","x":-620,"y":-420,"width":420,"height":90,"text":"# Карта курса\nШаблон: замените узлы на темы своего курса.\nСтрелка = «нужно знать прежде»."},
+
+    {"id":"n-base","type":"text","x":-620,"y":-260,"width":260,"height":80,"color":"1","text":"## Предпосылки\nФункция, график, предел последовательности"},
+
+    {"id":"n-limit","type":"text","x":-620,"y":-120,"width":260,"height":80,"color":"1","text":"## Предел функции\n`50 Доказательства/Единственность предела`"},
+    {"id":"n-deriv","type":"text","x":-620,"y":20,"width":260,"height":80,"color":"1","text":"## Производная\nСкорость изменения, цепное правило"},
+    {"id":"n-integ","type":"text","x":-620,"y":160,"width":260,"height":80,"color":"1","text":"## Интеграл\nПлощадь, первообразная"},
+
+    {"id":"n-linalg","type":"text","x":-280,"y":20,"width":260,"height":80,"color":"4","text":"## Линейная алгебра\nВекторы, матрицы, собственные значения"},
+
+    {"id":"n-prob","type":"text","x":60,"y":-120,"width":260,"height":80,"color":"5","text":"## Вероятность\nСлучайная величина, ожидание"},
+    {"id":"n-stat","type":"text","x":60,"y":20,"width":260,"height":80,"color":"5","text":"## Статистика\nОценивание, доверительные интервалы"},
+
+    {"id":"n-opt","type":"text","x":60,"y":160,"width":260,"height":80,"color":"2","text":"## Оптимизация\nГрадиентный спуск, выпуклость"},
+
+    {"id":"n-ml","type":"text","x":400,"y":20,"width":260,"height":80,"color":"3","text":"## Машинное обучение\nЛинейная регрессия, нейронные сети"},
+    {"id":"n-rl","type":"text","x":400,"y":180,"width":260,"height":100,"color":"6","text":"## Reinforcement Learning\nМППР, уравнение Беллмана, Q-Learning"},
+
+    {"id":"n-note","type":"text","x":400,"y":-160,"width":260,"height":110,"text":"**Как пользоваться**\n\nЗамените текст узлов на ссылки вида `[[Лекция 01]]` — Canvas откроет их по клику."}
+  ],
+  "edges": [
+    {"id":"e1","fromNode":"n-base","fromSide":"bottom","toNode":"n-limit","toSide":"top"},
+    {"id":"e2","fromNode":"n-limit","fromSide":"bottom","toNode":"n-deriv","toSide":"top"},
+    {"id":"e3","fromNode":"n-deriv","fromSide":"bottom","toNode":"n-integ","toSide":"top"},
+    {"id":"e4","fromNode":"n-deriv","fromSide":"right","toNode":"n-linalg","toSide":"left"},
+    {"id":"e5","fromNode":"n-integ","fromSide":"right","toNode":"n-prob","toSide":"left","label":"плотность"},
+    {"id":"e6","fromNode":"n-prob","fromSide":"bottom","toNode":"n-stat","toSide":"top"},
+    {"id":"e7","fromNode":"n-linalg","fromSide":"right","toNode":"n-opt","toSide":"left"},
+    {"id":"e8","fromNode":"n-deriv","fromSide":"right","toNode":"n-opt","toSide":"left","label":"градиент"},
+    {"id":"e9","fromNode":"n-stat","fromSide":"right","toNode":"n-ml","toSide":"left"},
+    {"id":"e10","fromNode":"n-opt","fromSide":"right","toNode":"n-ml","toSide":"left"},
+    {"id":"e11","fromNode":"n-ml","fromSide":"bottom","toNode":"n-rl","toSide":"top"},
+    {"id":"e12","fromNode":"n-prob","fromSide":"right","toNode":"n-rl","toSide":"top","label":"МППР"}
+  ]
+}

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500"
+     role="img" aria-labelledby="t d">
+  <title id="t">Вероятностное дерево для двух испытаний</title>
+  <desc id="d">Дерево из корня с двумя ветвями первого испытания: успех с вероятностью
+    0,6 и неудача с вероятностью 0,4. Каждая ветвь снова разветвляется на успех и
+    неудачу второго испытания. На концах указаны вероятности четырёх исходов,
+    полученные перемножением вероятностей вдоль пути: 0,36, 0,24, 0,20 и 0,20.
+    Сумма вероятностей всех исходов равна единице.</desc>
+
+  <style>
+    .edge  { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.8; fill: none; }
+    .edge-s{ stroke: var(--enf-color-parameter, #3E7D3A); stroke-width: 2.2; fill: none; }
+    .edge-f{ stroke: var(--enf-color-function, #8A5214); stroke-width: 2.2; fill: none;
+             stroke-dasharray: 7 4; }
+    .node  { fill: var(--enf-fill-neutral, #ECEFF2);
+             stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.6; }
+    .leaf  { fill: var(--enf-fill-target, #F7E2E8);
+             stroke: var(--enf-color-target, #7A0A2C); stroke-width: 1.8; }
+    .lbl   { font: 14px 'Inter', system-ui, sans-serif; fill: var(--enf-fg, #1A1D21); }
+    .plbl  { font: 13px 'Inter', system-ui, sans-serif; }
+    .out   { font: 600 14px 'Inter', system-ui, sans-serif; fill: var(--enf-fg, #1A1D21); }
+  </style>
+
+  <circle class="node" cx="80" cy="250" r="22"/>
+  <text class="lbl" x="80" y="255" text-anchor="middle">старт</text>
+
+  <path class="edge-s" d="M 102 240 L 278 150"/>
+  <path class="edge-f" d="M 102 260 L 278 350"/>
+
+  <text class="plbl" x="180" y="180" text-anchor="middle"
+        fill="var(--enf-color-parameter, #3E7D3A)">успех · 0,6</text>
+  <text class="plbl" x="180" y="330" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">неудача · 0,4</text>
+
+  <circle class="node" cx="300" cy="140" r="22"/>
+  <text class="lbl" x="300" y="145" text-anchor="middle">У</text>
+  <circle class="node" cx="300" cy="360" r="22"/>
+  <text class="lbl" x="300" y="365" text-anchor="middle">Н</text>
+
+  <path class="edge-s" d="M 322 130 L 518  70"/>
+  <path class="edge-f" d="M 322 150 L 518 210"/>
+  <path class="edge-s" d="M 322 350 L 518 290"/>
+  <path class="edge-f" d="M 322 370 L 518 430"/>
+
+  <text class="plbl" x="420" y="86" text-anchor="middle"
+        fill="var(--enf-color-parameter, #3E7D3A)">0,6</text>
+  <text class="plbl" x="420" y="196" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">0,4</text>
+  <text class="plbl" x="420" y="306" text-anchor="middle"
+        fill="var(--enf-color-parameter, #3E7D3A)">0,5</text>
+  <text class="plbl" x="420" y="416" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">0,5</text>
+
+  <g>
+    <rect class="leaf" x="540" y="46"  width="150" height="46" rx="6"/>
+    <text class="out" x="615" y="76" text-anchor="middle">УУ · 0,36</text>
+
+    <rect class="leaf" x="540" y="186" width="150" height="46" rx="6"/>
+    <text class="out" x="615" y="216" text-anchor="middle">УН · 0,24</text>
+
+    <rect class="leaf" x="540" y="266" width="150" height="46" rx="6"/>
+    <text class="out" x="615" y="296" text-anchor="middle">НУ · 0,20</text>
+
+    <rect class="leaf" x="540" y="406" width="150" height="46" rx="6"/>
+    <text class="out" x="615" y="436" text-anchor="middle">НН · 0,20</text>
+  </g>
+
+  <text class="lbl" x="710" y="250" fill="var(--enf-color-neutral, #414A54)">сумма</text>
+  <text class="out" x="710" y="272">1,00</text>
+</svg>

@@ -1,0 +1,25 @@
+<script>
+/* Макросы ролей ENF для MathJax.
+   Имена совпадают с макросами хранилища Obsidian
+   (Obsidian/Vault/_meta/mathjax-preamble.md) и с командами LaTeX
+   (Build/templates/enf-colors.tex) — один исходник собирается везде.
+
+   Макрос вешает CSS-класс, а не фиксирует цвет: значение приходит из
+   enf-tokens.css, поэтому формула перекрашивается вместе с темой
+   страницы, а единый источник истины не нарушается (ENF-COLOR-001). */
+window.MathJax = {
+  tex: {
+    macros: {
+      enfVar: ['\\htmlClass{enf-variable}{#1}', 1],
+      enfFun: ['\\htmlClass{enf-function}{#1}', 1],
+      enfPar: ['\\htmlClass{enf-parameter}{#1}', 1],
+      enfOp:  ['\\htmlClass{enf-operator}{#1}', 1],
+      enfTgt: ['\\htmlClass{enf-target}{#1}', 1],
+      enfNeu: ['\\htmlClass{enf-neutral}{#1}', 1]
+    },
+    inlineMath: [['$', '$']],
+    displayMath: [['$$', '$$']]
+  },
+  options: { enableMenu: false }
+};
+</script>

@@ -1,0 +1,86 @@
+/* =============================================================
+   ENF · оформление формул и типографики в Obsidian
+   Работает поверх enf-tokens.css — включайте оба сниппета.
+   ============================================================= */
+
+/* ---------- Типографика основного текста ---------- */
+.markdown-preview-view,
+.markdown-source-view.mod-cm6 .cm-content {
+  font-family: 'Charter', 'PT Serif', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--enf-fg);
+}
+
+.markdown-preview-view h1,
+.markdown-preview-view h2,
+.markdown-preview-view h3,
+.markdown-preview-view h4 {
+  font-family: 'Inter', 'PT Sans', system-ui, sans-serif;
+  line-height: 1.25;
+}
+
+/* Ширина строки: 60–80 знаков. Длинная строка в математическом тексте
+   утомляет сильнее обычного — глаз теряет место после каждой формулы. */
+.markdown-preview-view .markdown-preview-sizer {
+  max-width: 68ch;
+  margin-inline: auto;
+}
+
+/* ---------- Классы ролей для формул ----------
+   Их расставляют макросы \enfVar и другие из _meta/mathjax-preamble.md.
+   Те же имена использует Lua-фильтр при сборке HTML и EPUB — так
+   оформление в Obsidian и в собранном документе совпадает. */
+mjx-container .enf-variable,  .enf-variable  { color: var(--enf-color-variable); }
+mjx-container .enf-function,  .enf-function  { color: var(--enf-color-function); }
+mjx-container .enf-parameter, .enf-parameter { color: var(--enf-color-parameter); }
+mjx-container .enf-operator,  .enf-operator  { color: var(--enf-color-operator); }
+mjx-container .enf-target,    .enf-target    { color: var(--enf-color-target); }
+mjx-container .enf-neutral,   .enf-neutral   { color: var(--enf-color-neutral); }
+
+/* Выключная формула: воздух сверху и снизу, горизонтальная прокрутка
+   вместо обрезки — длинный вывод не должен молча терять правый край. */
+.markdown-preview-view mjx-container[display="true"] {
+  margin-block: 1.1em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 2px;
+}
+
+/* ---------- Таблицы ---------- */
+.markdown-preview-view table {
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+.markdown-preview-view th {
+  background: var(--enf-bg-soft);
+  text-align: left;
+  font-weight: 600;
+}
+.markdown-preview-view th,
+.markdown-preview-view td {
+  border: 1px solid var(--enf-border);
+  padding: 6px 10px;
+}
+
+/* ---------- Код ---------- */
+.markdown-preview-view code,
+.markdown-preview-view pre {
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 0.9em;
+}
+.markdown-preview-view :not(pre) > code {
+  background: var(--enf-bg-soft);
+  border: 1px solid var(--enf-border);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+/* ---------- Диаграммы ---------- */
+/* SVG из библиотеки наследует переменные палитры: файлы объявляют цвета
+   как var(--enf-color-*, #запасной), поэтому в хранилище они получают
+   значения темы, а вне его — запасные. */
+.markdown-preview-view .internal-embed svg {
+  max-width: 100%;
+  height: auto;
+}

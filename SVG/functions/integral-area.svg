@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500"
+     role="img" aria-labelledby="t d">
+  <title id="t">Определённый интеграл как площадь под кривой</title>
+  <desc id="d">График положительной функции на отрезке от a до b. Область под кривой
+    закрашена и разбита на шесть прямоугольников, вписанных по левым концам частичных
+    отрезков. Сумма площадей прямоугольников приближает площадь криволинейной трапеции;
+    при увеличении числа отрезков приближение становится точным и даёт значение
+    определённого интеграла.</desc>
+
+  <style>
+    .axis  { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; fill: none; }
+    .curve { stroke: var(--enf-color-function, #8A5214); stroke-width: 2.5; fill: none; }
+    .area  { fill: var(--enf-fill-variable, #E3EDF4); }
+    .rect  { fill: none; stroke: var(--enf-color-variable, #1D5B85); stroke-width: 1.6; }
+    .bound { stroke: var(--enf-color-target, #7A0A2C); stroke-width: 2; stroke-dasharray: 6 4; }
+    .lbl   { font: 15px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .mlbl  { font: italic 17px 'Charter', Georgia, serif; }
+  </style>
+
+  <path class="axis" d="M 50 420 H 470"/>
+  <path class="axis" d="M 50 420 V 40"/>
+
+  <!-- закрашенная криволинейная трапеция между a=120 и b=400 -->
+  <path class="area" d="M 120 420 L 120 300 C 180 250 240 160 300 140 C 340 127 370 132 400 150 L 400 420 Z"/>
+
+  <!-- прямоугольники по левым концам, ширина 40 -->
+  <g class="rect">
+    <rect x="120" y="300" width="40" height="120"/>
+    <rect x="160" y="262" width="40" height="158"/>
+    <rect x="200" y="220" width="40" height="200"/>
+    <rect x="240" y="180" width="40" height="240"/>
+    <rect x="280" y="146" width="40" height="274"/>
+    <rect x="320" y="134" width="40" height="286"/>
+    <rect x="360" y="136" width="40" height="284"/>
+  </g>
+
+  <path class="curve" d="M 70 350 L 120 300 C 180 250 240 160 300 140 C 340 127 370 132 400 150 L 450 178"/>
+
+  <path class="bound" d="M 120 420 V 290 M 400 420 V 142"/>
+
+  <text class="lbl mlbl" x="120" y="444" text-anchor="middle"
+        fill="var(--enf-color-target, #7A0A2C)">a</text>
+  <text class="lbl mlbl" x="400" y="444" text-anchor="middle"
+        fill="var(--enf-color-target, #7A0A2C)">b</text>
+
+  <text class="lbl" x="260" y="392" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">сумма площадей → интеграл</text>
+  <text class="lbl mlbl" x="452" y="166" text-anchor="end"
+        fill="var(--enf-color-function, #8A5214)">f</text>
+
+  <text class="lbl mlbl" x="466" y="412" text-anchor="end">x</text>
+  <text class="lbl mlbl" x="62" y="52">y</text>
+</svg>

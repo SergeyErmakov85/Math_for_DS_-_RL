@@ -1,0 +1,27 @@
+# Сборка EPUB.
+
+from: markdown+tex_math_dollars+pipe_tables+yaml_metadata_block+fenced_divs+bracketed_spans
+to: epub3
+
+metadata-files:
+  - Build/metadata.yaml
+
+filters:
+  - Build/filters/enf-callouts.lua
+  - Build/filters/enf-color.lua
+
+css:
+  - Build/css/enf-tokens.css
+  - Build/css/enf-html.css
+
+resource-path:
+  - .
+  - SVG
+  - Figures
+
+standalone: true
+toc: true
+toc-depth: 3
+epub-chapter-level: 2
+html-math-method:
+  method: mathml

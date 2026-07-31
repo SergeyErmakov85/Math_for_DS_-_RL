@@ -1,0 +1,31 @@
+{
+  "name": "ermakov-notes-framework",
+  "version": "1.0.0",
+  "description": "Открытый фреймворк для научных и образовательных материалов по математике, Data Science и Reinforcement Learning",
+  "license": "MIT",
+  "author": "Sergey Ermakov",
+  "type": "module",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SergeyErmakov85/Math_for_DS_-_RL.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "check": "pwsh Scripts/check.ps1 .",
+    "check:palette": "node Scripts/check-contrast.mjs",
+    "check:colors": "node Scripts/check-colors.mjs .",
+    "check:links": "node Scripts/check-links.mjs .",
+    "check:alt": "node Scripts/check-alt.mjs .",
+    "check:frontmatter": "node Scripts/check-frontmatter.mjs .",
+    "check:structure": "node Scripts/check-structure.mjs .",
+    "gen": "npm run gen:latex && npm run gen:mermaid && npm run gen:obsidian",
+    "gen:latex": "node Scripts/gen-latex-colors.mjs",
+    "gen:mermaid": "node Scripts/gen-mermaid-init.mjs",
+    "gen:obsidian": "node Scripts/gen-obsidian-css.mjs",
+    "build:env": "pwsh Scripts/build.ps1 -CheckEnv",
+    "build:all": "pwsh Scripts/build.ps1 -Source Examples/Bellman_Equation.learning.md -All"
+  }
+}

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300"
+     role="img" aria-labelledby="t d">
+  <title id="t">Цикл взаимодействия агента со средой</title>
+  <desc id="d">Два блока: агент слева и среда справа. От агента к среде идёт стрелка,
+    подписанная «действие»; от среды к агенту — две стрелки, подписанные «состояние»
+    и «награда». Взаимодействие замкнуто в цикл: каждое действие меняет состояние
+    среды, а новое состояние и полученная награда определяют следующее действие.</desc>
+
+  <style>
+    .box-a { fill: var(--enf-fill-function, #F6EBDC);
+             stroke: var(--enf-color-function, #8A5214); stroke-width: 2.4; }
+    .box-e { fill: var(--enf-fill-variable, #E3EDF4);
+             stroke: var(--enf-color-variable, #1D5B85); stroke-width: 2.4; }
+    .flow-a{ stroke: var(--enf-color-function, #8A5214); stroke-width: 2.4; fill: none; }
+    .flow-s{ stroke: var(--enf-color-variable, #1D5B85); stroke-width: 2.4; fill: none; }
+    .flow-r{ stroke: var(--enf-color-target, #7A0A2C); stroke-width: 2.4; fill: none;
+             stroke-dasharray: 8 4; }
+    .title { font: 600 19px 'Inter', system-ui, sans-serif; fill: var(--enf-fg, #1A1D21); }
+    .lbl   { font: 15px 'Inter', system-ui, sans-serif; }
+    .mlbl  { font: italic 15px 'Charter', Georgia, serif; }
+  </style>
+
+  <defs>
+    <marker id="ar-a" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--enf-color-function, #8A5214)"/>
+    </marker>
+    <marker id="ar-s" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--enf-color-variable, #1D5B85)"/>
+    </marker>
+    <marker id="ar-r" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--enf-color-target, #7A0A2C)"/>
+    </marker>
+  </defs>
+
+  <rect class="box-a" x="60"  y="100" width="200" height="100" rx="10"/>
+  <text class="title" x="160" y="157" text-anchor="middle">Агент</text>
+
+  <rect class="box-e" x="540" y="100" width="200" height="100" rx="10"/>
+  <text class="title" x="640" y="157" text-anchor="middle">Среда</text>
+
+  <!-- действие: агент → среда -->
+  <path class="flow-a" marker-end="url(#ar-a)" d="M 260 130 H 536"/>
+  <text class="lbl mlbl" x="398" y="118" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">действие aₜ</text>
+
+  <!-- состояние: среда → агент -->
+  <path class="flow-s" marker-end="url(#ar-s)" d="M 540 176 H 264"/>
+  <text class="lbl mlbl" x="398" y="198" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">состояние sₜ₊₁</text>
+
+  <!-- награда: среда → агент, нижним путём -->
+  <path class="flow-r" marker-end="url(#ar-r)"
+        d="M 640 200 V 250 H 160 V 204"/>
+  <text class="lbl mlbl" x="398" y="270" text-anchor="middle"
+        fill="var(--enf-color-target, #7A0A2C)">награда rₜ₊₁</text>
+
+  <text class="lbl" x="398" y="52" text-anchor="middle"
+        fill="var(--enf-color-neutral, #414A54)">цикл повторяется на каждом шаге времени t</text>
+</svg>

@@ -1,0 +1,23 @@
+# Сборка DOCX.
+# Word не поддерживает цвет внутри формул OMML, поэтому фильтр enf-color.lua
+# снимает цветовую разметку. Это ограничение формата, а не потеря качества:
+# смысл, переданный цветом, по ENF-COLOR-003 всегда продублирован словами.
+
+from: markdown+tex_math_dollars+pipe_tables+yaml_metadata_block+fenced_divs+bracketed_spans
+to: docx
+
+metadata-files:
+  - Build/metadata.yaml
+
+filters:
+  - Build/filters/enf-callouts.lua
+  - Build/filters/enf-color.lua
+
+resource-path:
+  - .
+  - SVG
+  - Figures
+
+standalone: true
+toc: true
+toc-depth: 3

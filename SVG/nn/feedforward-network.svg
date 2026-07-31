@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500"
+     role="img" aria-labelledby="t d">
+  <title id="t">Полносвязная нейронная сеть с одним скрытым слоем</title>
+  <desc id="d">Три слоя: входной из трёх нейронов, скрытый из четырёх и выходной
+    из двух. Каждый нейрон слоя соединён со всеми нейронами следующего слоя;
+    связи обозначают веса. Входной слой показан кругами, скрытый — кругами
+    с более толстой обводкой, выходной — квадратами, чтобы слои различались
+    не только цветом.</desc>
+
+  <style>
+    .in    { fill: var(--enf-fill-variable, #E3EDF4);
+             stroke: var(--enf-color-variable, #1D5B85); stroke-width: 2.4; }
+    .hid   { fill: var(--enf-fill-function, #F6EBDC);
+             stroke: var(--enf-color-function, #8A5214); stroke-width: 3; }
+    .out   { fill: var(--enf-fill-target, #F7E2E8);
+             stroke: var(--enf-color-target, #7A0A2C); stroke-width: 2.6; }
+    .w     { stroke: var(--enf-color-parameter, #3E7D3A); stroke-width: 1.3;
+             opacity: 0.75; fill: none; }
+    .lbl   { font: 15px 'Inter', system-ui, sans-serif; fill: var(--enf-fg, #1A1D21); }
+    .cap   { font: 600 15px 'Inter', system-ui, sans-serif; }
+    .mlbl  { font: italic 15px 'Charter', Georgia, serif; }
+  </style>
+
+  <!-- связи вход → скрытый -->
+  <g class="w">
+    <path d="M 178 130 L 372  90 M 178 130 L 372 190 M 178 130 L 372 290 M 178 130 L 372 390"/>
+    <path d="M 178 250 L 372  90 M 178 250 L 372 190 M 178 250 L 372 290 M 178 250 L 372 390"/>
+    <path d="M 178 370 L 372  90 M 178 370 L 372 190 M 178 370 L 372 290 M 178 370 L 372 390"/>
+  </g>
+  <!-- связи скрытый → выход -->
+  <g class="w">
+    <path d="M 428  90 L 612 170 M 428  90 L 612 310"/>
+    <path d="M 428 190 L 612 170 M 428 190 L 612 310"/>
+    <path d="M 428 290 L 612 170 M 428 290 L 612 310"/>
+    <path d="M 428 390 L 612 170 M 428 390 L 612 310"/>
+  </g>
+
+  <g>
+    <circle class="in" cx="150" cy="130" r="28"/>
+    <circle class="in" cx="150" cy="250" r="28"/>
+    <circle class="in" cx="150" cy="370" r="28"/>
+  </g>
+  <g class="lbl mlbl" text-anchor="middle">
+    <text x="150" y="136">x₁</text>
+    <text x="150" y="256">x₂</text>
+    <text x="150" y="376">x₃</text>
+  </g>
+
+  <g>
+    <circle class="hid" cx="400" cy="90"  r="28"/>
+    <circle class="hid" cx="400" cy="190" r="28"/>
+    <circle class="hid" cx="400" cy="290" r="28"/>
+    <circle class="hid" cx="400" cy="390" r="28"/>
+  </g>
+  <g class="lbl mlbl" text-anchor="middle">
+    <text x="400" y="96">h₁</text>
+    <text x="400" y="196">h₂</text>
+    <text x="400" y="296">h₃</text>
+    <text x="400" y="396">h₄</text>
+  </g>
+
+  <g>
+    <rect class="out" x="612" y="142" width="56" height="56" rx="6"/>
+    <rect class="out" x="612" y="282" width="56" height="56" rx="6"/>
+  </g>
+  <g class="lbl mlbl" text-anchor="middle">
+    <text x="640" y="176">ŷ₁</text>
+    <text x="640" y="316">ŷ₂</text>
+  </g>
+
+  <text class="cap" x="150" y="440" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">вход</text>
+  <text class="cap" x="400" y="452" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">скрытый слой</text>
+  <text class="cap" x="640" y="380" text-anchor="middle"
+        fill="var(--enf-color-target, #7A0A2C)">выход</text>
+
+  <text class="lbl" x="275" y="472" text-anchor="middle"
+        fill="var(--enf-color-parameter, #3E7D3A)">линии — веса, они и обучаются</text>
+</svg>

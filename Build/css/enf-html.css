@@ -1,0 +1,112 @@
+/* =============================================================
+   ENF · оформление HTML, EPUB и Reveal.js.
+   Подключается вместе с enf-tokens.css — цвета берутся оттуда.
+   ============================================================= */
+
+body {
+  font-family: 'Charter', 'PT Serif', Georgia, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--enf-fg);
+  background: var(--enf-bg);
+  max-width: 68ch;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Inter', 'PT Sans', system-ui, sans-serif;
+  line-height: 1.25;
+  margin-top: 2em;
+}
+
+h1 { font-size: 1.9em; margin-top: 0; }
+h2 { font-size: 1.45em; }
+h3 { font-size: 1.2em; }
+
+a { color: var(--enf-color-variable); }
+
+/* ---------- Формулы ---------- */
+.enf-variable  { color: var(--enf-color-variable); }
+.enf-function  { color: var(--enf-color-function); }
+.enf-parameter { color: var(--enf-color-parameter); }
+.enf-operator  { color: var(--enf-color-operator); }
+.enf-target    { color: var(--enf-color-target); }
+.enf-neutral   { color: var(--enf-color-neutral); }
+
+mjx-container[display="true"] {
+  margin-block: 1.1em;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* ---------- Коллауты ----------
+   Классы расставляет фильтр Build/filters/enf-callouts.lua. */
+.callout {
+  border-left: 3px solid var(--enf-callout-accent, var(--enf-color-neutral));
+  background: var(--enf-callout-bg, var(--enf-bg-soft));
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-block: 1em;
+}
+
+.callout-title {
+  font-family: 'Inter', 'PT Sans', system-ui, sans-serif;
+  font-weight: 600;
+  color: var(--enf-callout-accent, var(--enf-color-neutral));
+  margin-bottom: 0.3em;
+}
+
+.callout-title p { margin: 0; }
+
+/* Текст берёт основной цвет, а не цвет акцента: тёмный тон на своей же
+   светлой заливке даёт недостаточный контраст (ENF-COLOR-031). */
+.callout > :not(.callout-title) { color: var(--enf-fg); }
+
+.callout-definition { --enf-callout-accent: var(--enf-color-variable);  --enf-callout-bg: var(--enf-fill-variable); }
+.callout-theorem,
+.callout-lemma,
+.callout-corollary   { --enf-callout-accent: var(--enf-color-target);    --enf-callout-bg: var(--enf-fill-target); }
+.callout-proof       { --enf-callout-accent: var(--enf-color-operator);  --enf-callout-bg: var(--enf-fill-operator); }
+.callout-example     { --enf-callout-accent: var(--enf-color-function);  --enf-callout-bg: var(--enf-fill-function); }
+.callout-intuition   { --enf-callout-accent: var(--enf-color-parameter); --enf-callout-bg: var(--enf-fill-parameter); }
+.callout-remark,
+.callout-note,
+.callout-warning     { --enf-callout-accent: var(--enf-color-neutral);   --enf-callout-bg: var(--enf-fill-neutral); }
+
+/* Значок перед заголовком: цвет не единственный носитель типа блока */
+.callout-definition .callout-title::before { content: "§ "; }
+.callout-theorem   .callout-title::before  { content: "▣ "; }
+.callout-lemma     .callout-title::before  { content: "▢ "; }
+.callout-corollary .callout-title::before  { content: "↳ "; }
+.callout-proof     .callout-title::before  { content: "⊢ "; }
+.callout-example   .callout-title::before  { content: "▶ "; }
+.callout-intuition .callout-title::before  { content: "◈ "; }
+.callout-remark    .callout-title::before  { content: "※ "; }
+.callout-warning   .callout-title::before  { content: "⚠ "; }
+
+/* ---------- Таблицы ---------- */
+table { border-collapse: collapse; font-size: 0.95em; width: 100%; }
+th { background: var(--enf-bg-soft); text-align: left; font-weight: 600; }
+th, td { border: 1px solid var(--enf-border); padding: 6px 10px; }
+
+/* ---------- Код ---------- */
+code, pre { font-family: 'JetBrains Mono', Consolas, monospace; font-size: 0.9em; }
+pre {
+  background: var(--enf-bg-soft);
+  border: 1px solid var(--enf-border);
+  border-radius: 4px;
+  padding: 10px 12px;
+  overflow-x: auto;
+}
+:not(pre) > code {
+  background: var(--enf-bg-soft);
+  border: 1px solid var(--enf-border);
+  border-radius: 3px;
+  padding: 1px 4px;
+}
+
+/* ---------- Иллюстрации ---------- */
+img, svg { max-width: 100%; height: auto; }
+figure { margin: 1.5em 0; }
+figcaption { font-size: 0.9em; color: var(--enf-fg-muted); }

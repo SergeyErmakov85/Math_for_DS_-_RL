@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500"
+     role="img" aria-labelledby="t d">
+  <title id="t">Координатная плоскость с сеткой</title>
+  <desc id="d">Декартова система координат: горизонтальная ось x и вертикальная ось y
+    пересекаются в начале координат в центре. Нанесена сетка с шагом 40 единиц,
+    оси размечены штрихами и подписаны числами от минус пяти до пяти.
+    Заготовка для построения графиков.</desc>
+
+  <style>
+    .grid  { stroke: var(--enf-border, #D3D9DF); stroke-width: 1; }
+    .axis  { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; }
+    .tick  { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; }
+    .lbl   { font: 13px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .axlbl { font: italic 17px 'Charter', Georgia, serif; fill: var(--enf-color-variable, #1D5B85); }
+  </style>
+
+  <g class="grid">
+    <path d="M 50 10 V 490 M 90 10 V 490 M 130 10 V 490 M 170 10 V 490 M 210 10 V 490
+             M 290 10 V 490 M 330 10 V 490 M 370 10 V 490 M 410 10 V 490 M 450 10 V 490"/>
+    <path d="M 10 50 H 490 M 10 90 H 490 M 10 130 H 490 M 10 170 H 490 M 10 210 H 490
+             M 10 290 H 490 M 10 330 H 490 M 10 370 H 490 M 10 410 H 490 M 10 450 H 490"/>
+  </g>
+
+  <path class="axis" d="M 10 250 H 484"/>
+  <path class="axis" d="M 250 490 V 16"/>
+  <path class="axis" fill="var(--enf-color-neutral, #414A54)" stroke="none"
+        d="M 492 250 L 480 245 L 480 255 Z"/>
+  <path class="axis" fill="var(--enf-color-neutral, #414A54)" stroke="none"
+        d="M 250 8 L 245 20 L 255 20 Z"/>
+
+  <g class="tick">
+    <path d="M 90 245 V 255 M 170 245 V 255 M 330 245 V 255 M 410 245 V 255"/>
+    <path d="M 245 90 H 255 M 245 170 H 255 M 245 330 H 255 M 245 410 H 255"/>
+  </g>
+
+  <g class="lbl" text-anchor="middle">
+    <text x="90"  y="272">−4</text>
+    <text x="170" y="272">−2</text>
+    <text x="330" y="272">2</text>
+    <text x="410" y="272">4</text>
+    <text x="240" y="242" text-anchor="end">0</text>
+  </g>
+  <g class="lbl" text-anchor="end">
+    <text x="240" y="95">4</text>
+    <text x="240" y="175">2</text>
+    <text x="240" y="335">−2</text>
+    <text x="240" y="415">−4</text>
+  </g>
+
+  <text class="axlbl" x="474" y="240" text-anchor="end">x</text>
+  <text class="axlbl" x="262" y="26">y</text>
+</svg>

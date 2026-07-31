@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300"
+     role="img" aria-labelledby="t d">
+  <title id="t">Средняя скорость как наклон секущей</title>
+  <desc id="d">График функции с двумя отмеченными точками, соответствующими значениям
+    аргумента x и x плюс дельта x. Через точки проведена секущая. Приращение аргумента
+    отложено по горизонтали, приращение функции — по вертикали; их отношение равно
+    наклону секущей, то есть средней скорости изменения функции на отрезке.</desc>
+
+  <style>
+    .axis  { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; fill: none; }
+    .curve { stroke: var(--enf-color-function, #8A5214); stroke-width: 2.5; fill: none; }
+    .sec   { stroke: var(--enf-color-operator, #A32EAD); stroke-width: 2.2; fill: none; }
+    .delta { stroke: var(--enf-color-target, #7A0A2C); stroke-width: 1.8; fill: none;
+             stroke-dasharray: 6 4; }
+    .pt    { fill: var(--enf-color-variable, #1D5B85); }
+    .lbl   { font: 15px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .mlbl  { font: italic 16px 'Charter', Georgia, serif; }
+  </style>
+
+  <path class="axis" d="M 60 260 H 760"/>
+  <path class="axis" d="M 60 260 V 30"/>
+
+  <path class="curve" d="M 80 240 C 240 210 360 100 520 80 C 620 68 700 62 750 58"/>
+
+  <!-- секущая через две точки графика -->
+  <path class="sec" d="M 140 216 L 620 68"/>
+
+  <!-- катеты треугольника приращений -->
+  <path class="delta" d="M 200 200 H 520 M 520 200 V 84"/>
+
+  <circle class="pt" cx="200" cy="200" r="6"/>
+  <circle class="pt" cx="520" cy="84"  r="6"/>
+
+  <path class="axis" stroke-dasharray="4 4" d="M 200 200 V 260 M 520 84 V 260"/>
+
+  <text class="lbl mlbl" x="200" y="282" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">x</text>
+  <text class="lbl mlbl" x="520" y="282" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">x + Δx</text>
+
+  <text class="lbl" x="360" y="222" text-anchor="middle"
+        fill="var(--enf-color-target, #7A0A2C)">Δx</text>
+  <text class="lbl" x="534" y="146"
+        fill="var(--enf-color-target, #7A0A2C)">Δf</text>
+
+  <text class="lbl" x="640" y="56"
+        fill="var(--enf-color-operator, #A32EAD)">секущая: наклон = Δf / Δx</text>
+  <text class="lbl mlbl" x="752" y="46" text-anchor="end"
+        fill="var(--enf-color-function, #8A5214)">f</text>
+
+  <text class="lbl mlbl" x="756" y="252" text-anchor="end">x</text>
+  <text class="lbl mlbl" x="72" y="42">y</text>
+</svg>

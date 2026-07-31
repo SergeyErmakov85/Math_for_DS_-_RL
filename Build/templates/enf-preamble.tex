@@ -1,0 +1,76 @@
+% =============================================================
+% Преамбула ENF для XeLaTeX.
+%
+% Цвета и макросы ролей подключаются из порождаемого файла
+% enf-colors.tex — править его вручную нельзя, см. заголовок файла.
+% =============================================================
+
+% Цвета подключаются отдельным файлом через include-in-header в
+% Build/defaults/pdf.yaml, а не командой \input: Pandoc копирует
+% преамбулу во временный каталог, и относительный путь там не находится.
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mdframed}
+\usepackage{needspace}
+
+% ---------- Коллауты ----------
+% Lua-фильтр enf-callouts.lua превращает цитаты Obsidian в Div с классом
+% callout-<тип>; Pandoc отображает такой Div окружением с тем же именем.
+% Каждый тип получает не только цвет, но и словесный заголовок:
+% ENF-COLOR-003 запрещает делать цвет единственным носителем смысла.
+
+\newmdenv[
+  linecolor=enfvariable, linewidth=2pt,
+  topline=false, bottomline=false, rightline=false,
+  backgroundcolor=white, skipabove=8pt, skipbelow=8pt,
+  innerleftmargin=10pt, innertopmargin=6pt, innerbottommargin=6pt
+]{enfcalloutdefinition}
+
+\newmdenv[
+  linecolor=enftarget, linewidth=2pt,
+  topline=false, bottomline=false, rightline=false,
+  skipabove=8pt, skipbelow=8pt,
+  innerleftmargin=10pt, innertopmargin=6pt, innerbottommargin=6pt
+]{enfcallouttheorem}
+
+\newmdenv[
+  linecolor=enfoperator, linewidth=2pt,
+  topline=false, bottomline=false, rightline=false,
+  skipabove=8pt, skipbelow=8pt,
+  innerleftmargin=10pt, innertopmargin=6pt, innerbottommargin=6pt
+]{enfcalloutproof}
+
+\newmdenv[
+  linecolor=enfparameter, linewidth=2pt,
+  topline=false, bottomline=false, rightline=false,
+  skipabove=8pt, skipbelow=8pt,
+  innerleftmargin=10pt, innertopmargin=6pt, innerbottommargin=6pt
+]{enfcalloutintuition}
+
+\newmdenv[
+  linecolor=enffunction, linewidth=2pt,
+  topline=false, bottomline=false, rightline=false,
+  skipabove=8pt, skipbelow=8pt,
+  innerleftmargin=10pt, innertopmargin=6pt, innerbottommargin=6pt
+]{enfcalloutexample}
+
+\newmdenv[
+  linecolor=enfneutral, linewidth=2pt,
+  topline=false, bottomline=false, rightline=false,
+  skipabove=8pt, skipbelow=8pt,
+  innerleftmargin=10pt, innertopmargin=6pt, innerbottommargin=6pt
+]{enfcalloutremark}
+
+% Псевдонимы для типов, оформляемых одинаково с базовым
+\newenvironment{enfcalloutlemma}{\begin{enfcallouttheorem}}{\end{enfcallouttheorem}}
+\newenvironment{enfcalloutcorollary}{\begin{enfcallouttheorem}}{\end{enfcallouttheorem}}
+\newenvironment{enfcalloutwarning}{\begin{enfcalloutremark}}{\end{enfcalloutremark}}
+\newenvironment{enfcalloutnote}{\begin{enfcalloutremark}}{\end{enfcalloutremark}}
+
+% ---------- Выключные формулы ----------
+% Не разрывать формулу между страницами: разорванный вывод нечитаем.
+\AtBeginDocument{\interdisplaylinepenalty=10000}
+
+% ---------- Заголовок коллаута ----------
+\newcommand{\enfcallouttitle}[1]{{\sffamily\bfseries #1}\par\vspace{2pt}}

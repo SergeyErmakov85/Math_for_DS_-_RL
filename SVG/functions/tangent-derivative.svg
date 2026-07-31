@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500"
+     role="img" aria-labelledby="t d">
+  <title id="t">Касательная как предел секущих</title>
+  <desc id="d">График возрастающей функции с отмеченной точкой x нуль. Через эту точку
+    и три последовательно приближающиеся к ней точки проведены секущие, показанные
+    штриховыми линиями. По мере сближения точек секущие поворачиваются и стремятся
+    к касательной, показанной сплошной линией; её наклон равен производной функции
+    в точке x нуль.</desc>
+
+  <style>
+    .axis   { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; fill: none; }
+    .curve  { stroke: var(--enf-color-function, #8A5214); stroke-width: 2.5; fill: none; }
+    .secant { stroke: var(--enf-color-operator, #A32EAD); stroke-width: 1.8; fill: none;
+              stroke-dasharray: 7 5; }
+    .tangent{ stroke: var(--enf-color-target, #7A0A2C); stroke-width: 2.5; fill: none; }
+    .pt     { fill: var(--enf-color-variable, #1D5B85); }
+    .ptmark { fill: none; stroke: var(--enf-color-target, #7A0A2C); stroke-width: 2.2; }
+    .lbl    { font: 15px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .mlbl   { font: italic 16px 'Charter', Georgia, serif; }
+  </style>
+
+  <path class="axis" d="M 50 440 H 470"/>
+  <path class="axis" d="M 50 440 V 40"/>
+
+  <!-- график: пологая возрастающая кривая -->
+  <path class="curve" d="M 70 400 C 160 380 220 300 280 220 C 330 152 390 110 450 90"/>
+
+  <!-- секущие из точки касания (160, 380) к всё более близким точкам -->
+  <path class="secant" d="M 130 300 L 470 76"/>
+  <path class="secant" d="M 130 330 L 470 118"/>
+  <path class="secant" d="M 130 356 L 470 168"/>
+
+  <!-- касательная -->
+  <path class="tangent" d="M 120 300 L 440 118"/>
+
+  <!-- точка касания: цвет продублирован двойным маркером, ENF-DIAG-032 -->
+  <circle class="pt" cx="280" cy="220" r="6"/>
+  <circle class="ptmark" cx="280" cy="220" r="11"/>
+
+  <!-- приближающиеся точки -->
+  <circle class="pt" cx="400" cy="107" r="4"/>
+  <circle class="pt" cx="356" cy="139" r="4"/>
+  <circle class="pt" cx="322" cy="170" r="4"/>
+
+  <path class="axis" stroke-dasharray="4 4" d="M 280 220 V 440"/>
+  <text class="lbl mlbl" x="280" y="462" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">x₀</text>
+
+  <text class="lbl" x="452" y="72" text-anchor="end"
+        fill="var(--enf-color-operator, #A32EAD)">секущие</text>
+  <text class="lbl" x="446" y="140" text-anchor="end"
+        fill="var(--enf-color-target, #7A0A2C)">касательная</text>
+  <text class="lbl mlbl" x="462" y="86" text-anchor="end"
+        fill="var(--enf-color-function, #8A5214)">f</text>
+
+  <text class="lbl mlbl" x="466" y="432" text-anchor="end">x</text>
+  <text class="lbl mlbl" x="62" y="52">y</text>
+</svg>

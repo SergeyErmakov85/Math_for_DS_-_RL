@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500"
+     role="img" aria-labelledby="t d">
+  <title id="t">Нормальное распределение и правило трёх сигм</title>
+  <desc id="d">График плотности нормального распределения — симметричная колоколообразная
+    кривая с вершиной в точке мю. Область в пределах одного стандартного отклонения
+    от среднего закрашена плотнее и содержит около 68 процентов вероятности,
+    в пределах двух отклонений — около 95 процентов, трёх — около 99,7 процента.
+    Границы отмечены штриховыми вертикальными линиями.</desc>
+
+  <style>
+    .axis  { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; fill: none; }
+    .curve { stroke: var(--enf-color-function, #8A5214); stroke-width: 2.5; fill: none; }
+    .band1 { fill: var(--enf-fill-variable, #E3EDF4); }
+    .band2 { fill: var(--enf-fill-neutral, #ECEFF2); }
+    .mark  { stroke: var(--enf-color-target, #7A0A2C); stroke-width: 1.8; stroke-dasharray: 6 4; }
+    .mean  { stroke: var(--enf-color-parameter, #3E7D3A); stroke-width: 2.2; }
+    .lbl   { font: 14px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .mlbl  { font: italic 16px 'Charter', Georgia, serif; }
+    .pct   { font: 600 14px 'Inter', system-ui, sans-serif; }
+  </style>
+
+  <path class="axis" d="M 40 400 H 470"/>
+
+  <!-- ±2σ -->
+  <path class="band2" d="M 130 400 C 175 398 195 330 220 220 C 235 155 245 120 250 120
+                         C 255 120 265 155 280 220 C 305 330 325 398 370 400 Z"/>
+  <!-- ±1σ -->
+  <path class="band1" d="M 190 400 C 205 392 215 300 232 190 C 240 142 246 120 250 120
+                         C 254 120 260 142 268 190 C 285 300 295 392 310 400 Z"/>
+
+  <path class="curve" d="M 60 399 C 110 397 165 385 190 340 C 215 292 232 150 250 120
+                         C 268 150 285 292 310 340 C 335 385 390 397 440 399"/>
+
+  <path class="mean" d="M 250 400 V 112"/>
+  <path class="mark" d="M 190 400 V 200 M 310 400 V 200 M 130 400 V 330 M 370 400 V 330"/>
+
+  <g class="lbl" text-anchor="middle">
+    <text x="250" y="424" fill="var(--enf-color-parameter, #3E7D3A)" class="mlbl">μ</text>
+    <text x="190" y="424" class="mlbl" fill="var(--enf-color-target, #7A0A2C)">μ−σ</text>
+    <text x="310" y="424" class="mlbl" fill="var(--enf-color-target, #7A0A2C)">μ+σ</text>
+    <text x="130" y="446" class="mlbl" fill="var(--enf-color-target, #7A0A2C)">μ−2σ</text>
+    <text x="370" y="446" class="mlbl" fill="var(--enf-color-target, #7A0A2C)">μ+2σ</text>
+  </g>
+
+  <text class="pct" x="250" y="300" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">68 %</text>
+  <text class="pct" x="250" y="372" text-anchor="middle"
+        fill="var(--enf-color-neutral, #414A54)">95 %</text>
+
+  <text class="lbl" x="440" y="180" text-anchor="end"
+        fill="var(--enf-color-function, #8A5214)">плотность распределения</text>
+
+  <text class="lbl mlbl" x="466" y="392" text-anchor="end">x</text>
+</svg>

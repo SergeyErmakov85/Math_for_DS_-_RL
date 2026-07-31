@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500"
+     role="img" aria-labelledby="t d">
+  <title id="t">Цепь Маркова из трёх состояний</title>
+  <desc id="d">Три состояния A, B и C. Из A система с вероятностью 0,7 остаётся в A
+    и с вероятностью 0,3 переходит в B. Из B с вероятностью 0,5 возвращается в A
+    и с вероятностью 0,5 переходит в C. Состояние C поглощающее: из него система
+    с вероятностью 1 остаётся в C, что показано двойной обводкой узла.
+    Сумма вероятностей, выходящих из каждого состояния, равна единице.</desc>
+
+  <style>
+    .st    { fill: var(--enf-fill-variable, #E3EDF4);
+             stroke: var(--enf-color-variable, #1D5B85); stroke-width: 2.4; }
+    .st-abs{ fill: var(--enf-fill-target, #F7E2E8);
+             stroke: var(--enf-color-target, #7A0A2C); stroke-width: 2.6; }
+    .ring  { fill: none; stroke: var(--enf-color-target, #7A0A2C); stroke-width: 2; }
+    .edge  { stroke: var(--enf-color-function, #8A5214); stroke-width: 2.2; fill: none; }
+    .loop  { stroke: var(--enf-color-parameter, #3E7D3A); stroke-width: 2.2; fill: none;
+             stroke-dasharray: 7 4; }
+    .name  { font: 600 22px 'Inter', system-ui, sans-serif; fill: var(--enf-fg, #1A1D21); }
+    .p     { font: 15px 'Inter', system-ui, sans-serif; }
+    .cap   { font: 14px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+  </style>
+
+  <defs>
+    <marker id="m-e" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--enf-color-function, #8A5214)"/>
+    </marker>
+    <marker id="m-l" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--enf-color-parameter, #3E7D3A)"/>
+    </marker>
+  </defs>
+
+  <circle class="st" cx="140" cy="300" r="52"/>
+  <text class="name" x="140" y="309" text-anchor="middle">A</text>
+
+  <circle class="st" cx="400" cy="160" r="52"/>
+  <text class="name" x="400" y="169" text-anchor="middle">B</text>
+
+  <!-- поглощающее состояние: двойная обводка дублирует цвет, ENF-DIAG-032 -->
+  <circle class="st-abs" cx="660" cy="300" r="52"/>
+  <circle class="ring"   cx="660" cy="300" r="60"/>
+  <text class="name" x="660" y="309" text-anchor="middle">C</text>
+
+  <!-- A → B -->
+  <path class="edge" marker-end="url(#m-e)" d="M 184 272 L 356 186"/>
+  <text class="p" x="258" y="212" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">0,3</text>
+
+  <!-- B → A -->
+  <path class="edge" marker-end="url(#m-e)" d="M 358 200 L 178 330"/>
+  <text class="p" x="290" y="304" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">0,5</text>
+
+  <!-- B → C -->
+  <path class="edge" marker-end="url(#m-e)" d="M 444 186 L 616 272"/>
+  <text class="p" x="540" y="212" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">0,5</text>
+
+  <!-- петля A -->
+  <path class="loop" marker-end="url(#m-l)"
+        d="M 104 260 C 74 200 134 176 172 214 C 186 228 188 244 180 258"/>
+  <text class="p" x="126" y="172" text-anchor="middle"
+        fill="var(--enf-color-parameter, #3E7D3A)">0,7</text>
+
+  <!-- петля C -->
+  <path class="loop" marker-end="url(#m-l)"
+        d="M 700 268 C 748 224 786 288 744 322 C 728 334 712 332 704 322"/>
+  <text class="p" x="784" y="252" text-anchor="middle"
+        fill="var(--enf-color-parameter, #3E7D3A)">1,0</text>
+
+  <text class="cap" x="400" y="440" text-anchor="middle">C — поглощающее состояние: выйти из него нельзя</text>
+  <text class="cap" x="400" y="464" text-anchor="middle">сумма вероятностей из каждого состояния равна 1</text>
+</svg>

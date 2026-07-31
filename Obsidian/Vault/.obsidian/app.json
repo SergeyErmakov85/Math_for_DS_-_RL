@@ -1,0 +1,14 @@
+{
+  "attachmentFolderPath": "90 Ресурсы",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "00 Inbox",
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": true,
+  "newLinkFormat": "relative",
+  "showLineNumber": true,
+  "readableLineLength": true,
+  "strictLineBreaks": false,
+  "showFrontmatter": true,
+  "spellcheck": true,
+  "spellcheckLanguages": ["ru", "en-GB"]
+}

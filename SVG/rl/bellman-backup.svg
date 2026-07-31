@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 700" width="500" height="700"
+     role="img" aria-labelledby="t d">
+  <title id="t">Диаграмма обновления для уравнения Беллмана</title>
+  <desc id="d">Дерево обновления. В корне — состояние s, показанное кругом. От него
+    отходят две ветви, соответствующие действиям a, с вероятностями, задаваемыми
+    политикой. Каждое действие изображено малым закрашенным узлом, из которого
+    ветви ведут к возможным состояниям-преемникам s штрих; на этих ветвях подписаны
+    вероятности перехода и получаемая награда r. Ценность корня равна усреднённой
+    по обоим уровням сумме награды и дисконтированной ценности преемника.</desc>
+
+  <style>
+    .state { fill: var(--enf-fill-variable, #E3EDF4);
+             stroke: var(--enf-color-variable, #1D5B85); stroke-width: 2.4; }
+    .act   { fill: var(--enf-color-function, #8A5214);
+             stroke: var(--enf-color-function, #8A5214); stroke-width: 2; }
+    .e-pi  { stroke: var(--enf-color-parameter, #3E7D3A); stroke-width: 2.2; fill: none; }
+    .e-p   { stroke: var(--enf-color-function, #8A5214); stroke-width: 2.2; fill: none;
+             stroke-dasharray: 7 4; }
+    .name  { font: 600 18px 'Inter', system-ui, sans-serif; fill: var(--enf-fg, #1A1D21); }
+    .mlbl  { font: italic 16px 'Charter', Georgia, serif; }
+    .lbl   { font: 14px 'Inter', system-ui, sans-serif; }
+    .cap   { font: 14px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+  </style>
+
+  <!-- корень -->
+  <circle class="state" cx="250" cy="80" r="34"/>
+  <text class="name mlbl" x="250" y="87" text-anchor="middle">s</text>
+
+  <!-- рёбра политики -->
+  <path class="e-pi" d="M 224 102 L 146 218"/>
+  <path class="e-pi" d="M 276 102 L 354 218"/>
+  <text class="lbl mlbl" x="150" y="164" text-anchor="end"
+        fill="var(--enf-color-parameter, #3E7D3A)">π(a₁|s)</text>
+  <text class="lbl mlbl" x="352" y="164"
+        fill="var(--enf-color-parameter, #3E7D3A)">π(a₂|s)</text>
+
+  <!-- узлы действий -->
+  <circle class="act" cx="140" cy="230" r="11"/>
+  <circle class="act" cx="360" cy="230" r="11"/>
+  <text class="lbl mlbl" x="140" y="212" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">a₁</text>
+  <text class="lbl mlbl" x="360" y="212" text-anchor="middle"
+        fill="var(--enf-color-function, #8A5214)">a₂</text>
+
+  <!-- рёбра переходов -->
+  <path class="e-p" d="M 130 242 L  76 400"/>
+  <path class="e-p" d="M 150 242 L 204 400"/>
+  <path class="e-p" d="M 350 242 L 296 400"/>
+  <path class="e-p" d="M 370 242 L 424 400"/>
+
+  <text class="lbl mlbl" x="66"  y="330" text-anchor="end"
+        fill="var(--enf-color-function, #8A5214)">P, r</text>
+  <text class="lbl mlbl" x="216" y="330"
+        fill="var(--enf-color-function, #8A5214)">P, r</text>
+  <text class="lbl mlbl" x="286" y="330" text-anchor="end"
+        fill="var(--enf-color-function, #8A5214)">P, r</text>
+  <text class="lbl mlbl" x="434" y="330"
+        fill="var(--enf-color-function, #8A5214)">P, r</text>
+
+  <!-- состояния-преемники -->
+  <g>
+    <circle class="state" cx="70"  cy="430" r="30"/>
+    <circle class="state" cx="210" cy="430" r="30"/>
+    <circle class="state" cx="290" cy="430" r="30"/>
+    <circle class="state" cx="430" cy="430" r="30"/>
+  </g>
+  <g class="name mlbl" text-anchor="middle">
+    <text x="70"  y="437">s′</text>
+    <text x="210" y="437">s′</text>
+    <text x="290" y="437">s′</text>
+    <text x="430" y="437">s′</text>
+  </g>
+
+  <text class="cap" x="250" y="516" text-anchor="middle">Зелёный уровень — выбор действия политикой</text>
+  <text class="cap" x="250" y="540" text-anchor="middle">Оранжевый штриховой — переход среды, он же приносит награду</text>
+
+  <text class="cap" x="250" y="596" text-anchor="middle" style="font-size:15px">
+    V(s) = Σ π(a|s) · Σ P(s′|s,a) · [ r + γ · V(s′) ]
+  </text>
+  <text class="cap" x="250" y="630" text-anchor="middle">
+    внешняя сумма — по действиям, внутренняя — по преемникам
+  </text>
+</svg>
