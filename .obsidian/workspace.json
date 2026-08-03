@@ -11,12 +11,14 @@
             "id": "a6bdda9697645809",
             "type": "leaf",
             "state": {
-              "type": "pdf",
+              "type": "markdown",
               "state": {
-                "file": "out/Backpropagation.learning.pdf"
+                "file": "examples/Derivative.learning.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-file-text",
-              "title": "Backpropagation.learning"
+              "icon": "lucide-file",
+              "title": "Derivative.learning"
             }
           }
         ]
@@ -188,6 +190,14 @@
   },
   "active": "a6bdda9697645809",
   "lastOpenFiles": [
+    "Obsidian/Vault/_meta/dataview-queries.md",
+    "Obsidian/Vault/_templates/Proof.md",
+    "Obsidian/Vault/_templates/Lecture.md",
+    "examples/Bellman_Equation.publication.md",
+    "examples/Bellman_Equation.learning.md",
+    "examples/Backpropagation.publication.md",
+    "examples/Backpropagation.learning.md",
+    "out/Backpropagation.learning.pdf",
     "Obsidian/Vault/Calculus/Limit_of_a_Function.learning.md",
     "Obsidian/Vault/Linear_Algebra/Introduction_to_Linear_Algebra.md",
     "preamble.sty",
@@ -197,11 +207,9 @@
     "out/Bellman_Equation.publication.pdf",
     "out/Bellman_Equation.learning.pdf",
     "out/Backpropagation.publication.pdf",
-    "out/Backpropagation.learning.pdf",
     "docs/05_CSS_Guide.md",
     "Obsidian/Vault/_meta/mathjax-preamble.md",
     "Obsidian/Vault/_canvas/course-map.canvas",
-    "Obsidian/Vault/_meta/dataview-queries.md",
     "Obsidian/Vault/_meta/palette-reference.md",
     "templates/examples/ExerciseSheet.example.md",
     "templates/BookChapter.md",
