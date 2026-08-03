@@ -1,0 +1,214 @@
+{
+  "main": {
+    "id": "184a9682115f1952",
+    "type": "split",
+    "children": [
+      {
+        "id": "12c702a0e3dcb218",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a6bdda9697645809",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Obsidian/Vault/Calculus/Limit_of_a_Function.learning.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Limit_of_a_Function.learning"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4a30829be1ac2d99",
+    "type": "split",
+    "children": [
+      {
+        "id": "85a9f9a6e6711cf6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2f10eeb6e60f4741",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Файловый менеджер"
+            }
+          },
+          {
+            "id": "7110d58e63595361",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Поиск"
+            }
+          },
+          {
+            "id": "0c1adb2d2e7a1c3b",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Закладки"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "9586e1b471df3ad7",
+    "type": "split",
+    "children": [
+      {
+        "id": "b5adcb715a16c846",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "09034647cc8d3f62",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Obsidian/Vault/Linear_Algebra/Introduction_to_Linear_Algebra.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Обратные ссылки"
+            }
+          },
+          {
+            "id": "711b26c0e2d0e41d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Obsidian/Vault/Linear_Algebra/Introduction_to_Linear_Algebra.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Исходящие ссылки"
+            }
+          },
+          {
+            "id": "3f4f3276efc9c7ef",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Теги"
+            }
+          },
+          {
+            "id": "d7265f8b3e87f2bb",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Все свойства"
+            }
+          },
+          {
+            "id": "4aa91788f9522382",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Obsidian/Vault/Linear_Algebra/Introduction_to_Linear_Algebra.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Структура"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false,
+      "bases:Создать новую базу": false
+    }
+  },
+  "active": "a6bdda9697645809",
+  "lastOpenFiles": [
+    "Obsidian/Vault/Linear_Algebra/Introduction_to_Linear_Algebra.md",
+    "Obsidian/Vault/Calculus/Limit_of_a_Function.learning.md",
+    "out/Q_Learning.publication.pdf",
+    "out/Derivative.publication.pdf",
+    "out/Derivative.learning.pdf",
+    "out/Bellman_Equation.publication.pdf",
+    "out/Bellman_Equation.learning.pdf",
+    "out/Backpropagation.publication.pdf",
+    "out/Backpropagation.learning.pdf",
+    "docs/05_CSS_Guide.md",
+    "Obsidian/Vault/_meta/mathjax-preamble.md",
+    "Obsidian/Vault/_canvas/course-map.canvas",
+    "Obsidian/Vault/_meta/dataview-queries.md",
+    "Obsidian/Vault/_meta/palette-reference.md",
+    "templates/examples/ExerciseSheet.example.md",
+    "templates/BookChapter.md",
+    "CHANGELOG.md",
+    "CLAUDE.md",
+    "OVERVIEW.md",
+    "README.md"
+  ]
+}

@@ -1,0 +1,140 @@
+/* =============================================================
+   ПОРОЖДЁННЫЙ ФАЙЛ — НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ.
+
+   Источник: css/enf-tokens.css
+   Генератор: Scripts/gen-obsidian-css.mjs
+   Пересоздать: node Scripts/gen-obsidian-css.mjs
+
+   Правки, внесённые сюда напрямую, будут потеряны при следующей
+   генерации. Меняйте значения в источнике — там же лежит и
+   обоснование выбора цветов.
+   ============================================================= */
+
+/* =============================================================
+   Ermakov Notes Framework — цветовые токены
+   ЕДИНЫЙ ИСТОЧНИК ИСТИНЫ. Все прочие места (Obsidian CSS, SVG,
+   Mermaid init, LaTeX-преамбула) получают цвета отсюда: либо
+   через var(), либо генерацией скриптами.
+
+   Правка HEX где-либо ещё запрещена — ENF-COLOR-001.
+   После правки этого файла обязательно выполнить:
+       node Scripts/check-contrast.mjs
+       node Scripts/gen-mermaid-init.mjs
+       node Scripts/gen-latex-colors.mjs
+
+   Почему тонов ровно пять. Дихроматия (дейтеранопия, протанопия)
+   сводит цветовое пространство к светлоте и оси «синее — жёлтое».
+   Пять ролей в него укладываются с проверяемым запасом, шесть и
+   более — уже нет: пары начинают сливаться. Значения ниже подобраны
+   численно, измеренные величины — docs/02_Color_System.md.
+   ============================================================= */
+
+/* ---------- Светлая тема ---------- */
+:root {
+  /* Поверхности и текст */
+  --enf-bg:           #FFFFFF;
+  --enf-bg-soft:      #F4F6F8;
+  --enf-fg:           #1A1D21;
+  --enf-fg-muted:     #55606B;
+  --enf-border:       #D3D9DF;
+
+  /* Пять семантических тонов.
+     Тон закреплён за РОЛЬЮ сущности, а не за конкретным символом. */
+  --enf-color-variable:  #1D5B85;  /* объект, над которым действуем */
+  --enf-color-function:  #8A5214;  /* функция, действие, преобразование */
+  --enf-color-parameter: #3E7D3A;  /* то, что настраивается и обучается */
+  --enf-color-operator:  #A32EAD;  /* оператор, агрегат, свёртка */
+  --enf-color-target:    #7A0A2C;  /* целевая величина, награда, потери */
+
+  /* Нейтральный тон: служебные обозначения, константы, индексы.
+     Малонасыщенный намеренно — он не участвует в семантике. */
+  --enf-color-neutral:   #414A54;
+
+  /* Статусные тона — коллауты и подписи, не формулы */
+  --enf-status-note:     #1D5B85;
+  --enf-status-ok:       #3E7D3A;
+  --enf-status-warn:     #8A5214;
+  --enf-status-error:    #7A0A2C;
+
+  /* Заливки диаграмм: те же роли, осветлённые до фона.
+     Текст поверх заливки берётся из --enf-fg, а не из тона. */
+  --enf-fill-variable:   #E3EDF4;
+  --enf-fill-function:   #F6EBDC;
+  --enf-fill-parameter:  #E6F1E5;
+  --enf-fill-operator:   #F7E4F8;
+  --enf-fill-target:     #F7E2E8;
+  --enf-fill-neutral:    #ECEFF2;
+}
+
+/* ---------- Тёмная тема ----------
+   Те же роли, другие светлоты. Соответствие роли и семейства тона
+   сохраняется: переменная синяя, функция тёплая оранжевая, параметр
+   зелёный, оператор пурпурный, цель красная. */
+[data-enf-theme="dark"],
+.theme-dark {
+  --enf-bg:           #1B1E22;
+  --enf-bg-soft:      #24282E;
+  --enf-fg:           #E6EAEF;
+  --enf-fg-muted:     #A3ADB8;
+  --enf-border:       #39404A;
+
+  --enf-color-variable:  #9BA3D2;
+  --enf-color-function:  #E89157;
+  --enf-color-parameter: #A6E768;
+  --enf-color-operator:  #FFD6FF;
+  --enf-color-target:    #D6768B;
+
+  --enf-color-neutral:   #B9C2CC;
+
+  --enf-status-note:     #9BA3D2;
+  --enf-status-ok:       #A6E768;
+  --enf-status-warn:     #E89157;
+  --enf-status-error:    #D6768B;
+
+  --enf-fill-variable:   #23273D;
+  --enf-fill-function:   #402715;
+  --enf-fill-parameter:  #263A18;
+  --enf-fill-operator:   #3B2B3B;
+  --enf-fill-target:     #3D2129;
+  --enf-fill-neutral:    #2C323A;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-enf-theme="light"]) {
+    --enf-bg:           #1B1E22;
+    --enf-bg-soft:      #24282E;
+    --enf-fg:           #E6EAEF;
+    --enf-fg-muted:     #A3ADB8;
+    --enf-border:       #39404A;
+
+    --enf-color-variable:  #9BA3D2;
+    --enf-color-function:  #E89157;
+    --enf-color-parameter: #A6E768;
+    --enf-color-operator:  #FFD6FF;
+    --enf-color-target:    #D6768B;
+
+    --enf-color-neutral:   #B9C2CC;
+
+    --enf-status-note:     #9BA3D2;
+    --enf-status-ok:       #A6E768;
+    --enf-status-warn:     #E89157;
+    --enf-status-error:    #D6768B;
+
+    --enf-fill-variable:   #23273D;
+    --enf-fill-function:   #402715;
+    --enf-fill-parameter:  #263A18;
+    --enf-fill-operator:   #3B2B3B;
+    --enf-fill-target:     #3D2129;
+    --enf-fill-neutral:    #2C323A;
+  }
+}
+
+/* ---------- Применение к формулам ----------
+   Классы расставляет Lua-фильтр при сборке HTML и EPUB; те же имена
+   использует MathJax-преамбула хранилища Obsidian. */
+.enf-variable  { color: var(--enf-color-variable); }
+.enf-function  { color: var(--enf-color-function); }
+.enf-parameter { color: var(--enf-color-parameter); }
+.enf-operator  { color: var(--enf-color-operator); }
+.enf-target    { color: var(--enf-color-target); }
+.enf-neutral   { color: var(--enf-color-neutral); }
