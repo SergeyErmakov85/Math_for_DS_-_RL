@@ -15,7 +15,7 @@ filters:
 
 resource-path:
   - .
-  - SVG
+  - svg
   - Figures
 
 standalone: true

@@ -10,7 +10,7 @@
  *      прогоняются через модель Виено — Брет — Моллона, затем сравниваются
  *      по CIEDE2000.
  *
- * Источник данных — Build/css/enf-tokens.css. Другого источника нет
+ * Источник данных — css/enf-tokens.css. Другого источника нет
  * и быть не должно (ENF-COLOR-001).
  *
  * Коды возврата: 0 — нарушений нет, 1 — есть, 2 — ошибка запуска.
@@ -21,7 +21,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const TOKENS = resolve(HERE, '..', 'Build', 'css', 'enf-tokens.css');
+const TOKENS = resolve(HERE, '..', 'css', 'enf-tokens.css');
 
 /* Пороги. Меняются только вместе с правилами ENF-COLOR-*.
  *

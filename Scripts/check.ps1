@@ -20,7 +20,7 @@
     палитра меняется редко, а проверка занимает заметное время.
 
 .EXAMPLE
-    pwsh Scripts/check.ps1 Examples/
+    pwsh Scripts/check.ps1 examples/
 #>
 
 [CmdletBinding()]
@@ -101,7 +101,7 @@ try {
     }
 
     Write-Host 'Все проверки уровня 1 пройдены.' -ForegroundColor Green
-    Write-Host 'Уровень 2 — ревью по docs/Codex/Review_Checklist.md — выполняется отдельно.'
+    Write-Host 'Уровень 2 — ревью по docs/10_Review_Checklist.md — выполняется отдельно.'
     exit 0
 }
 finally {

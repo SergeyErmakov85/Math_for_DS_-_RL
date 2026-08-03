@@ -21,15 +21,25 @@ const DISCIPLINES = [
    репозитория материалом не является. */
 const EXEMPT = [
   /(^|\/)README\.md$/i,
+  /* Путеводители по каталогам: до реструктуризации это были README
+     соответствующих папок и они подпадали под правило выше. */
+  /(^|\/)04_Obsidian_Guide\.md$/i,
+  /(^|\/)06_Mermaid_Guide\.md$/i,
+  /(^|\/)07_SVG_Guide\.md$/i,
+  /(^|\/)11_Build_Pipeline\.md$/i,
   /(^|\/)CHANGELOG\.md$/i,
-  /(^|\/)CONTRIBUTING\.md$/i,
+  /(^|\/)12_Repository_Guide\.md$/i,
+  /(^|\/)00_Project_Charter\.md$/i,
   /(^|\/)CLAUDE\.md$/i,
+  /(^|\/)CODEX\.md$/i,
   /(^|\/)CATALOG\.md$/i,
   /(^|\/)AGENTS\.md$/i,
   /(^|\/)DOCUMENT_CONVERSION\.md$/i,
-  /(^|\/)docs\/PROGRESS\.md$/,
-  /(^|\/)docs\/Codex\//,
-  /(^|\/)Mermaid\//,
+  /(^|\/)docs\/reference\//,
+  /(^|\/)docs\/prompts\//,
+  /(^|\/)docs\/09_Prompt_Library\.md$/,
+  /(^|\/)docs\/10_Review_Checklist\.md$/,
+  /(^|\/)mermaid\//,
 ];
 
 const root = resolve('.');

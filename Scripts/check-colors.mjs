@@ -14,13 +14,14 @@ import { readText, walk, parseFrontmatter, maskCodeBlocks, lineOf, Report, targe
 /* Файлы, которым HEX разрешён по существу: единый источник истины,
    порождённые из него файлы и документация, объясняющая палитру. */
 const HEX_ALLOWED = [
-  /Build\/css\/enf-tokens\.css$/,
+  /css\/enf-tokens\.css$/,
+  /snippets\//,
   /Obsidian\/Vault\/\.obsidian\/snippets\/enf-tokens\.css$/,
   /Build\/templates\/enf-colors\.tex$/,
-  /docs\/StyleGuide\/Color_System\.md$/,
-  /Mermaid\//,
+  /docs\/02_Color_System\.md$/,
+  /mermaid\//,
   /Scripts\//,
-  /docs\/PROGRESS\.md$/,
+  /docs\/reference\/PROGRESS\.md$/,
 ];
 
 /* В SVG HEX допустим только как запасное значение в var(): файл обязан
@@ -48,7 +49,7 @@ function checkMarkdown(file, rel) {
   if (!HEX_ALLOWED.some((re) => re.test(rel))) {
     for (const m of masked.matchAll(HEX_RE)) {
       report.error(file, lineOf(masked, m.index), 'ENF-COLOR-001',
-        `HEX-код ${m[0]} в материале; цвет задаётся ролью, а значение живёт в Build/css/enf-tokens.css`);
+        `HEX-код ${m[0]} в материале; цвет задаётся ролью, а значение живёт в css/enf-tokens.css`);
     }
   }
 

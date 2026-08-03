@@ -1,6 +1,6 @@
 # Сборка HTML: одна самодостаточная страница.
 # Флаг --self-contained, а не --embed-resources: второй появился в Pandoc 3,
-# а в целевом окружении установлен Pandoc 2.19 (см. docs/PROGRESS.md).
+# а в целевом окружении установлен Pandoc 2.19 (см. docs/reference/PROGRESS.md).
 
 from: markdown+tex_math_dollars+pipe_tables+yaml_metadata_block+fenced_divs+bracketed_spans
 to: html5
@@ -13,15 +13,15 @@ filters:
   - Build/filters/enf-color.lua
 
 css:
-  - Build/css/enf-tokens.css
-  - Build/css/enf-html.css
+  - css/enf-tokens.css
+  - css/enf-html.css
 
 include-in-header:
   - Build/templates/mathjax-macros.html
 
 resource-path:
   - .
-  - SVG
+  - svg
   - Figures
 
 standalone: true

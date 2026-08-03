@@ -5,7 +5,7 @@
  * Зачем. Mermaid не умеет подключать внешние темы: цвета обязаны находиться
  * в тексте самой диаграммы, в директиве %%{init: ...}%%. Единственный способ
  * сохранить при этом единый источник истины (ENF-COLOR-001) — порождать эти
- * директивы из Build/css/enf-tokens.css, а не писать руками.
+ * директивы из css/enf-tokens.css, а не писать руками.
  *
  * Почему берётся светлая палитра. Директива одна на диаграмму, а тем две.
  * Разрешается это тем, что диаграмма задаёт собственный фон и не наследует
@@ -14,8 +14,8 @@
  * подстройкой под тему.
  *
  * Что делает:
- *   1. переписывает Mermaid/init-config.md;
- *   2. заменяет строки вида %%{init: ...}%% во всех остальных файлах Mermaid/.
+ *   1. переписывает mermaid/init-config.md;
+ *   2. заменяет строки вида %%{init: ...}%% во всех остальных файлах mermaid/.
  */
 
 import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
@@ -23,8 +23,8 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve, join } from 'node:path';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const TOKENS = resolve(HERE, '..', 'Build', 'css', 'enf-tokens.css');
-const MERMAID_DIR = resolve(HERE, '..', 'Mermaid');
+const TOKENS = resolve(HERE, '..', 'css', 'enf-tokens.css');
+const MERMAID_DIR = resolve(HERE, '..', 'mermaid');
 
 /* ---------- чтение палитры ---------- */
 
@@ -113,7 +113,7 @@ const CLASSDEFS = [
 /* ---------- запись init-config.md ---------- */
 
 const configDoc = `<!-- ПОРОЖДЁННЫЙ ФАЙЛ — НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ.
-     Источник: Build/css/enf-tokens.css
+     Источник: css/enf-tokens.css
      Генератор: Scripts/gen-mermaid-init.mjs
      Пересоздать: node Scripts/gen-mermaid-init.mjs -->
 
@@ -152,12 +152,12 @@ ${CLASSDEFS}
 
 \`\`\`powershell
 node Scripts/gen-mermaid-init.mjs      # пересоздать директивы
-node Scripts/check-colors.mjs Mermaid/ # цвета вне палитры
+node Scripts/check-colors.mjs mermaid/ # цвета вне палитры
 \`\`\`
 `;
 
 writeFileSync(join(MERMAID_DIR, 'init-config.md'), configDoc, 'utf8');
-console.log('Обновлён: Mermaid/init-config.md');
+console.log('Обновлён: mermaid/init-config.md');
 
 /* ---------- обновление init-строк в шаблонах ---------- */
 
@@ -170,7 +170,7 @@ for (const name of readdirSync(MERMAID_DIR)) {
   if (out !== src) {
     writeFileSync(path, out, 'utf8');
     touched++;
-    console.log(`Обновлён: Mermaid/${name}`);
+    console.log(`Обновлён: mermaid/${name}`);
   }
 }
 

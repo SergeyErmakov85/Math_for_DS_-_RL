@@ -12,15 +12,15 @@ filters:
   - Build/filters/enf-color.lua
 
 css:
-  - Build/css/enf-tokens.css
-  - Build/css/enf-html.css
+  - css/enf-tokens.css
+  - css/enf-html.css
 
 include-in-header:
   - Build/templates/mathjax-macros.html
 
 resource-path:
   - .
-  - SVG
+  - svg
   - Figures
 
 standalone: true

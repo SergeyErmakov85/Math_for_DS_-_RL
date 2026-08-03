@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 /**
- * gen-obsidian-css.mjs — генерирует CSS-сниппет токенов для хранилища Obsidian.
+ * gen-obsidian-css.mjs — переносит CSS-сниппеты в хранилище Obsidian.
  *
  * Зачем это нужно. Obsidian не умеет подключать CSS из-за пределов хранилища:
- * @import на файл вне vault не работает. Значит, значения цветов обязаны
- * физически лежать внутри хранилища. Копировать их руками нельзя — это
- * нарушило бы ENF-COLOR-001 (единый источник истины), поэтому копия
- * порождается скриптом и помечена как порождённая.
+ * @import на файл вне vault не работает. Значит, сниппеты обязаны физически
+ * лежать внутри хранилища. Копировать их руками нельзя — это нарушило бы
+ * ENF-COLOR-001 (единый источник истины), поэтому копии порождаются
+ * скриптом и помечены как порождённые.
  *
- * Источник: Build/css/enf-tokens.css
- * Результат: Obsidian/Vault/.obsidian/snippets/enf-tokens.css
+ * Источники: css/enf-tokens.css, snippets/enf-math.css, snippets/enf-callouts.css
+ * Результат:  Obsidian/Vault/.obsidian/snippets/
  */
 
 import { readFileSync, writeFileSync } from 'node:fs';
@@ -17,21 +17,21 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const SRC = resolve(HERE, '..', 'Build', 'css', 'enf-tokens.css');
-const DST = resolve(HERE, '..', 'Obsidian', 'Vault', '.obsidian', 'snippets', 'enf-tokens.css');
+const VAULT = resolve(HERE, '..', 'Obsidian', 'Vault', '.obsidian', 'snippets');
 
-let src;
-try {
-  src = readFileSync(SRC, 'utf8');
-} catch {
-  console.error(`Не найден источник токенов: ${SRC}`);
-  process.exit(2);
-}
+/* Токены живут в css/ вместе с остальной конфигурацией сборки: их читают
+   и Pandoc, и генератор LaTeX-цветов. Остальные сниппеты специфичны для
+   Obsidian и живут в snippets/. */
+const SOURCES = [
+  { src: resolve(HERE, '..', 'css', 'enf-tokens.css'), from: 'css/enf-tokens.css', name: 'enf-tokens.css' },
+  { src: resolve(HERE, '..', 'snippets', 'enf-math.css'), from: 'snippets/enf-math.css', name: 'enf-math.css' },
+  { src: resolve(HERE, '..', 'snippets', 'enf-callouts.css'), from: 'snippets/enf-callouts.css', name: 'enf-callouts.css' },
+];
 
-const header = `/* =============================================================
+const header = (from) => `/* =============================================================
    ПОРОЖДЁННЫЙ ФАЙЛ — НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ.
 
-   Источник: Build/css/enf-tokens.css
+   Источник: ${from}
    Генератор: Scripts/gen-obsidian-css.mjs
    Пересоздать: node Scripts/gen-obsidian-css.mjs
 
@@ -42,5 +42,15 @@ const header = `/* =============================================================
 
 `;
 
-writeFileSync(DST, header + src, 'utf8');
-console.log(`Сниппет обновлён: ${DST}`);
+for (const { src, from, name } of SOURCES) {
+  let text;
+  try {
+    text = readFileSync(src, 'utf8');
+  } catch {
+    console.error(`Не найден источник: ${src}`);
+    process.exit(2);
+  }
+  const dst = resolve(VAULT, name);
+  writeFileSync(dst, header(from) + text, 'utf8');
+  console.log(`Сниппет обновлён: ${dst}`);
+}

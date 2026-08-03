@@ -1,0 +1,63 @@
+name: checks
+
+# Уровень 1 контроля качества (D8): машинные проверки. Уровень 2 — ревью
+# по docs/10_Review_Checklist.md — выполняется человеком или LLM отдельно.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # Проверки независимы: прогоняются все, чтобы отчёт был полным,
+      # а не обрывался на первом же нарушении.
+      - name: Контраст палитры
+        run: node Scripts/check-contrast.mjs
+
+      - name: Цвета вне палитры
+        if: '!cancelled()'
+        run: node Scripts/check-colors.mjs .
+
+      - name: Внутренние ссылки
+        if: '!cancelled()'
+        run: node Scripts/check-links.mjs .
+
+      - name: Alt-текст иллюстраций
+        if: '!cancelled()'
+        run: node Scripts/check-alt.mjs .
+
+      - name: Фронтматтер
+        if: '!cancelled()'
+        run: node Scripts/check-frontmatter.mjs .
+
+      - name: Структура документов
+        if: '!cancelled()'
+        run: node Scripts/check-structure.mjs .
+
+  generated:
+    # Порождённые файлы обязаны совпадать с тем, что даёт генератор из
+    # единого источника: расхождение означает правку копии вручную
+    # в обход ENF-COLOR-001.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Перегенерировать
+        run: npm run gen
+
+      - name: Проверить отсутствие расхождений
+        run: git diff --exit-code

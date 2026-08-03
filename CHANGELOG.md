@@ -18,6 +18,56 @@
 
 ---
 
+## [1.1.0] — 2026-08-03
+
+Реструктуризация репозитория. Нормы не изменились: номера правил `ENF-*`, палитра, фронтматтер и режимы раскраски прежние, поэтому существующие материалы продолжают проходить проверки без правок. Менять нужно только пути в ссылках.
+
+### Changed
+
+- **Документация собрана в плоский нумерованный `docs/`** — двенадцать разделов вместо вложенных `StyleGuide/`, `Codex/` и `Claude/`. Порядок чтения задан именами файлов.
+- **Каталоги приведены к нижнему регистру** — `templates/`, `svg/`, `mermaid/`, `examples/`. Прежние имена с заглавной буквы на регистронезависимых файловых системах расходились с регистрочувствительным Git и ломали сборку в CI.
+- **CSS вынесен из `Build/`** — токены и оформление сборки в `css/`, сниппеты Obsidian в `snippets/`. `Build/` остался конфигурацией Pandoc: `defaults/`, `filters/`, `templates/`, `metadata.yaml`.
+- **`Scripts/gen-obsidian-css.mjs` переносит в хранилище все три сниппета**, а не только `enf-tokens.css`. Причина прежняя: Obsidian не подключает CSS извне хранилища, а держать рабочую копию в двух местах запрещает `ENF-COLOR-001`. Правки в `Obsidian/Vault/.obsidian/snippets/` теперь теряются при генерации для всех трёх файлов — менять нужно источник.
+- **Индексы `docs/Codex/README.md` и `docs/Claude/README.md` удалены** — они описывали состав каталогов, которых больше нет.
+
+### Added
+
+- **Файлы агентов собраны в `agents/`** — `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `DOCUMENT_CONVERSION.md`. В корне остались указатели на них: без файла в корне агент не прочитает конституцию первым.
+- **`docs/05_CSS_Guide.md`** — что лежит в `css/` и `snippets/`, почему сниппеты хранятся вне хранилища, что пересоздавать после правки токенов.
+- **`.github/workflows/checks.yml`** — уровень 1 контроля качества в CI. Задача `quality` прогоняет шесть проверок на Node 18; задача `generated` перегенерирует порождённые файлы и падает, если они разошлись с источниками.
+
+### Соответствие путей
+
+| Было | Стало |
+|------|-------|
+| `CLAUDE.md` (мастер-промт) | `docs/00_Project_Charter.md` |
+| `docs/StyleGuide/Ermakov_Math_Style_Guide_v4.md` | `docs/01_Style_Guide.md` |
+| `docs/StyleGuide/Color_System.md` | `docs/02_Color_System.md` |
+| `docs/StyleGuide/Mathematics.md` | `docs/03_Math_Notation.md` |
+| `Obsidian/README.md` | `docs/04_Obsidian_Guide.md` |
+| `Mermaid/README.md` | `docs/06_Mermaid_Guide.md` |
+| `SVG/README.md` | `docs/07_SVG_Guide.md` |
+| `docs/StyleGuide/AI.md` | `docs/08_AI_Constitution.md` |
+| `docs/Codex/Prompt_Standard.md` | `docs/09_Prompt_Library.md` |
+| `docs/Codex/Review_Checklist.md` | `docs/10_Review_Checklist.md` |
+| `Build/README.md` | `docs/11_Build_Pipeline.md` |
+| `CONTRIBUTING.md` | `docs/12_Repository_Guide.md` |
+| `docs/StyleGuide/{Typography,Diagrams,Publishing}.md` | `docs/style/` |
+| `docs/Codex/Prompts/` | `docs/prompts/` |
+| `docs/PROGRESS.md` | `docs/reference/PROGRESS.md` |
+| `docs/Claude/Teaching_Mode.md` | `docs/reference/Teaching_Mode.md` |
+| `docs/Codex/Review_Report_Example.md` | `docs/reference/Review_Report_Example.md` |
+| `docs/Examples/` | `docs/reference/examples/` |
+| `AGENTS.md` | `agents/AGENTS.md` |
+| `docs/Claude/CLAUDE.md` | `agents/CLAUDE.md` |
+| `docs/Codex/AGENTS.md` | `agents/CODEX.md` |
+| `DOCUMENT_CONVERSION.md` | `agents/DOCUMENT_CONVERSION.md` |
+| `Build/css/` | `css/` |
+| `Obsidian/Vault/.obsidian/snippets/{enf-math,enf-callouts}.css` | `snippets/` |
+| `Templates/`, `SVG/`, `Mermaid/`, `Examples/` | `templates/`, `svg/`, `mermaid/`, `examples/` |
+
+---
+
 ## [1.0.0] — 2026-07-31
 
 Первая полная версия Ermakov Notes Framework. Все десять компонент (D1–D10) реализованы и проходят проверки.
@@ -64,5 +114,6 @@
 - `node Scripts/check-contrast.mjs` — палитра проходит пороги контраста и различимости в светлой и тёмной теме.
 - Все 14 документов `Examples/` собраны во все пять форматов: 70 успешных сборок.
 
-[Unreleased]: https://github.com/SergeyErmakov85/Math_for_DS_-_RL/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/SergeyErmakov85/Math_for_DS_-_RL/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/SergeyErmakov85/Math_for_DS_-_RL/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/SergeyErmakov85/Math_for_DS_-_RL/releases/tag/v1.0.0

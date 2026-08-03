@@ -1,6 +1,6 @@
 {
   "name": "ermakov-notes-framework",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Открытый фреймворк для научных и образовательных материалов по математике, Data Science и Reinforcement Learning",
   "license": "MIT",
   "author": "Sergey Ermakov",
@@ -26,6 +26,6 @@
     "gen:mermaid": "node Scripts/gen-mermaid-init.mjs",
     "gen:obsidian": "node Scripts/gen-obsidian-css.mjs",
     "build:env": "pwsh Scripts/build.ps1 -CheckEnv",
-    "build:all": "pwsh Scripts/build.ps1 -Source Examples/Bellman_Equation.learning.md -All"
+    "build:all": "pwsh Scripts/build.ps1 -Source examples/Bellman_Equation.learning.md -All"
   }
 }

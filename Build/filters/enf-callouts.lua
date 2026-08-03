@@ -7,7 +7,7 @@
 
   Фильтр распознаёт эту строку и превращает цитату в Div с классами
   «callout» и «callout-<тип>». Дальше оформление берут на себя:
-    HTML и EPUB — Build/css/enf-html.css;
+    HTML и EPUB — css/enf-html.css;
     LaTeX и PDF — окружения из Build/templates/enf-callouts.tex.
 ]]
 

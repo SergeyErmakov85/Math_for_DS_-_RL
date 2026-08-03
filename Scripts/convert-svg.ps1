@@ -18,7 +18,7 @@
       inkscape      — тяжелее, но обычно уже установлен у иллюстраторов
 
 .PARAMETER Path
-    Каталог с SVG. По умолчанию SVG/.
+    Каталог с SVG. По умолчанию svg/.
 
 .PARAMETER Force
     Пересоздавать PDF, даже если он новее исходника.
@@ -29,7 +29,7 @@
 
 [CmdletBinding()]
 param(
-    [string]$Path = 'SVG',
+    [string]$Path = 'svg',
     [switch]$Force
 )
 

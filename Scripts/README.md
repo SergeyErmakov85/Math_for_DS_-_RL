@@ -1,6 +1,6 @@
 # Scripts — сборка, проверки, генераторы
 
-Скрипты написаны на **Node.js** (логика проверок) и **PowerShell 7** (оркестрация). Python не используется намеренно — обоснование в журнале решений [`../docs/PROGRESS.md`](../docs/PROGRESS.md).
+Скрипты написаны на **Node.js** (логика проверок) и **PowerShell 7** (оркестрация). Python не используется намеренно — обоснование в журнале решений [`../docs/reference/PROGRESS.md`](../docs/reference/PROGRESS.md).
 
 ## Проверки качества, уровень 1
 
@@ -16,12 +16,12 @@
 
 ## Генераторы
 
-Порождают файлы из единого источника цветов `Build/css/enf-tokens.css`. Результаты помечены как порождённые; правки в них теряются при следующем запуске.
+Порождают файлы из единого источника цветов `css/enf-tokens.css`. Результаты помечены как порождённые; правки в них теряются при следующем запуске.
 
 | Скрипт | Что создаёт |
 |--------|-------------|
 | [`gen-latex-colors.mjs`](gen-latex-colors.mjs) | `Build/templates/enf-colors.tex` — `\definecolor` и макросы ролей для XeLaTeX |
-| [`gen-mermaid-init.mjs`](gen-mermaid-init.mjs) | `Mermaid/init-config.md` и init-директивы во всех шаблонах Mermaid |
+| [`gen-mermaid-init.mjs`](gen-mermaid-init.mjs) | `mermaid/init-config.md` и init-директивы во всех шаблонах Mermaid |
 | [`gen-obsidian-css.mjs`](gen-obsidian-css.mjs) | `Obsidian/Vault/.obsidian/snippets/enf-tokens.css` — Obsidian не читает CSS извне хранилища |
 
 ## Сборка
@@ -46,10 +46,10 @@
 pwsh Scripts/check.ps1 .
 
 # по одному каталогу, без проверки палитры
-pwsh Scripts/check.ps1 Examples/ -SkipPalette
+pwsh Scripts/check.ps1 examples/ -SkipPalette
 
 # отдельная проверка
-node Scripts/check-colors.mjs Examples/
+node Scripts/check-colors.mjs examples/
 
 # пересоздать все порождаемые файлы
 npm run gen
@@ -58,7 +58,7 @@ npm run gen
 pwsh Scripts/build.ps1 -CheckEnv
 
 # сборка во все пять форматов
-pwsh Scripts/build.ps1 -Source Examples/Bellman_Equation.learning.md -All
+pwsh Scripts/build.ps1 -Source examples/Bellman_Equation.learning.md -All
 ```
 
 ## Коды возврата

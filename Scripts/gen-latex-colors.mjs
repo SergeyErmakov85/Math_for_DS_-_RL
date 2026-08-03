@@ -4,9 +4,9 @@
  *
  * LaTeX не читает CSS, поэтому значения палитры обязаны попасть в преамбулу.
  * Чтобы единый источник истины не раздваивался (ENF-COLOR-001), файл
- * порождается из Build/css/enf-tokens.css, а не пишется руками.
+ * порождается из css/enf-tokens.css, а не пишется руками.
  *
- * Источник:   Build/css/enf-tokens.css (светлая тема — печать идёт по белому)
+ * Источник:   css/enf-tokens.css (светлая тема — печать идёт по белому)
  * Результат:  Build/templates/enf-colors.tex
  */
 
@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const SRC = resolve(HERE, '..', 'Build', 'css', 'enf-tokens.css');
+const SRC = resolve(HERE, '..', 'css', 'enf-tokens.css');
 const DST = resolve(HERE, '..', 'Build', 'templates', 'enf-colors.tex');
 
 let css;
@@ -56,7 +56,7 @@ const lines = [
   '% =============================================================',
   '% ПОРОЖДЁННЫЙ ФАЙЛ — НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ.',
   '%',
-  '% Источник:  Build/css/enf-tokens.css',
+  '% Источник:  css/enf-tokens.css',
   '% Генератор: Scripts/gen-latex-colors.mjs',
   '% Пересоздать: node Scripts/gen-latex-colors.mjs',
   '%',

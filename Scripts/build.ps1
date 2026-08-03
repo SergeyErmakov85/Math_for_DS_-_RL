@@ -6,7 +6,7 @@
 .DESCRIPTION
     Роль `make all` во фреймворке выполняет этот скрипт: GNU Make в целевом
     окружении нет, а требовать его установки противоречит принципу «стек
-    без барьеров» (см. журнал решений docs/PROGRESS.md).
+    без барьеров» (см. журнал решений docs/reference/PROGRESS.md).
 
     Перед сборкой обязательно пересоздаются порождаемые файлы палитры:
     LaTeX-цвета и init-блоки Mermaid. Так собранный документ не может
@@ -40,7 +40,7 @@
     pwsh Scripts/build.ps1 -CheckEnv
 
 .EXAMPLE
-    pwsh Scripts/build.ps1 -Source Examples/Bellman_Equation.learning.md -All
+    pwsh Scripts/build.ps1 -Source examples/Bellman_Equation.learning.md -All
 #>
 
 [CmdletBinding()]
@@ -194,7 +194,7 @@ if ($CheckEnv) { exit (Show-Environment) }
 
 if (-not $Source) {
     Write-Host 'Не указан исходный файл. Пример:' -ForegroundColor Red
-    Write-Host '  pwsh Scripts/build.ps1 -Source Examples/Bellman_Equation.learning.md -All'
+    Write-Host '  pwsh Scripts/build.ps1 -Source examples/Bellman_Equation.learning.md -All'
     exit 2
 }
 
