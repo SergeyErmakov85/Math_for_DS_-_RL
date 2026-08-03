@@ -22,7 +22,7 @@ const ALLOWED_MERMAID = [
   'classDiagram', 'pie', 'gitGraph',
 ];
 
-const EXEMPT_STRUCTURE = [/(^|\/)CHANGELOG\.md$/i, /(^|\/)docs\/PROGRESS\.md$/];
+const EXEMPT_STRUCTURE = [/(^|\/)CHANGELOG\.md$/i, /(^|\/)docs\/reference\/PROGRESS\.md$/];
 
 const root = resolve('.');
 const report = new Report('структура', root);
