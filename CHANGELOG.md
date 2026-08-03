@@ -16,6 +16,14 @@
 
 Изменения, ещё не вошедшие в релиз.
 
+### Fixed
+
+- **Раскраска формул в Obsidian, HTML, EPUB и Reveal.js не работала: макросы ролей использовали `\htmlClass{}{}`.** Этот макрос принадлежит KaTeX; в MathJax его нет — расширение `html` определяет `\class`, `\cssId`, `\style`, `\href`, `\data`. Вместо цветной формулы MathJax печатал «Undefined control sequence». Заменено на `\class{}{}` в `Obsidian/Vault/preamble.sty`, `Obsidian/Vault/_meta/mathjax-preamble.md` и `Build/templates/mathjax-macros.html`. Имена CSS-классов, палитра, токены и правила `ENF-*` не изменились, материалы править не нужно. Сборка PDF не затронута — там макросы приходят из `Build/templates/enf-colors.tex`.
+
+### Added
+
+- **Хранилище Obsidian раскрашивает формулы сразу после копирования на другую машину.** В поставку `Obsidian/Vault/` добавлены плагин Extended MathJax (`obsidian-latex` 0.4.1, файлы в `.obsidian/plugins/`), `.obsidian/community-plugins.json` и `preamble.sty` в корне хранилища. Плагин читает преамбулу при старте Obsidian, поэтому открывать `_meta/mathjax-preamble.md` вручную больше не нужно. Заметка сохранена как запасной путь при выключенных плагинах и как проверочный стенд; при правке макросов меняются оба файла. Снимает известное ограничение версии 1.0.0 «Макросы MathJax в Obsidian действуют в пределах сессии».
+
 ---
 
 ## [1.1.0] — 2026-08-03

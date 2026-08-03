@@ -39,7 +39,7 @@ $$\enfFun{f}(\enfVar{x}) = \enfPar{a}\enfVar{x} + \enfPar{b} \qquad\text{и}\qqu
 
 ## Живая проверка
 
-Формула ниже показывает все пять тонов подряд. Если она чёрно-белая — не открыта преамбула [`mathjax-preamble.md`](mathjax-preamble.md) или выключены сниппеты.
+Формула ниже показывает все пять тонов подряд. Если она чёрно-белая — выключены сниппеты либо не загрузилась преамбула: проверьте, разрешены ли плагины сообщества (преамбулу читает Extended MathJax), а если они выключены намеренно — откройте [`mathjax-preamble.md`](mathjax-preamble.md).
 
 $$
 \enfOp{\mathbb{E}}\!\left[\enfTgt{r} + \enfPar{\gamma}\,\enfFun{g}(\enfVar{s})\right]

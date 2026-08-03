@@ -1,0 +1,17 @@
+% Преамбула MathJax хранилища ENF.
+% Загружается автоматически плагином Extended MathJax (obsidian-latex)
+% при старте Obsidian. Второй экземпляр макросов — в _meta/mathjax-preamble.md
+% (запасной путь и проверочный стенд); при правке меняются ОБА файла.
+%
+% Макросы вешают CSS-класс, а не цвет: значения приходят из сниппета
+% enf-tokens.css, единый источник истины — css/enf-tokens.css (ENF-COLOR-001).
+%
+% Класс вешает \class{}{} — макрос расширения html в MathJax. Не \htmlClass:
+% это макрос KaTeX, в MathJax он не определён и отрисовывается как ошибка.
+
+\newcommand{\enfVar}[1]{\class{enf-variable}{#1}}
+\newcommand{\enfFun}[1]{\class{enf-function}{#1}}
+\newcommand{\enfPar}[1]{\class{enf-parameter}{#1}}
+\newcommand{\enfOp}[1]{\class{enf-operator}{#1}}
+\newcommand{\enfTgt}[1]{\class{enf-target}{#1}}
+\newcommand{\enfNeu}[1]{\class{enf-neutral}{#1}}
