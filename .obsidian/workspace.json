@@ -11,14 +11,12 @@
             "id": "a6bdda9697645809",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "pdf",
               "state": {
-                "file": "Obsidian/Vault/Calculus/Limit_of_a_Function.learning.md",
-                "mode": "source",
-                "source": false
+                "file": "out/Backpropagation.learning.pdf"
               },
-              "icon": "lucide-file",
-              "title": "Limit_of_a_Function.learning"
+              "icon": "lucide-file-text",
+              "title": "Backpropagation.learning"
             }
           }
         ]
@@ -190,8 +188,9 @@
   },
   "active": "a6bdda9697645809",
   "lastOpenFiles": [
-    "Obsidian/Vault/Linear_Algebra/Introduction_to_Linear_Algebra.md",
     "Obsidian/Vault/Calculus/Limit_of_a_Function.learning.md",
+    "Obsidian/Vault/Linear_Algebra/Introduction_to_Linear_Algebra.md",
+    "preamble.sty",
     "out/Q_Learning.publication.pdf",
     "out/Derivative.publication.pdf",
     "out/Derivative.learning.pdf",
