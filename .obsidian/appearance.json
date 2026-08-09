@@ -3,5 +3,6 @@
     "enf-callouts",
     "enf-math",
     "enf-tokens"
-  ]
+  ],
+  "cssTheme": "Obsidianite"
 }
