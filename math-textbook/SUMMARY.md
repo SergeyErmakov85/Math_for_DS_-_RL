@@ -1,0 +1,196 @@
+---
+title: "Оглавление пособия"
+enf_mode: publication
+discipline: meta
+date: 2026-08-09
+status: ready
+---
+
+# Оглавление
+
+Всего: **7 частей**, **51 раздел**, **39 узлов mind map**, **112 подпараграфов**. Все разделы написаны как самостоятельные лекции и проходят машинные проверки фреймворка.
+
+Подписи под разделами перечисляют подпараграфы соответствующего узла mind map; ★ отмечает разделы, вынесенные на карте отдельными узлами.
+
+- [О пособии и страница навигации](README.md)
+
+- [Часть I. Пределы, последовательности и ряды](part-1-limits-series/index.md)
+  - [Введение](part-1-limits-series/00-introduction.md)
+  - [1. Теоретические основы: предел последовательности](part-1-limits-series/01-sequence-limit.md) ★
+    - 1.1 Предел последовательности
+  - [2. Бесконечные ряды и их сходимость](part-1-limits-series/02-infinite-series.md) ★
+    - Геометрический ряд
+    - Необходимое условие сходимости
+    - Абсолютная сходимость
+  - [3. Пределы и ряды в контексте обучения с подкреплением](part-1-limits-series/03-limits-in-rl.md)
+  - [4. Уравнения Беллмана и дисконтирование](part-1-limits-series/04-bellman-and-discounting.md) ★
+    - Функция ценности состояния
+    - Уравнение оптимальности Беллмана
+    - Пример: MDP с двумя состояниями
+  - [5. Итерация ценности: сходимость на практике](part-1-limits-series/05-value-iteration.md) ★
+  - [6. Дисконтирование в RL и его влияние](part-1-limits-series/06-discounting-in-rl.md) ★
+  - [7. Примеры, аналогии и задачи](part-1-limits-series/07-examples-and-tasks.md)
+    - 7.1 Предел последовательности: рекурсия
+    - 7.2 Сумма геометрического ряда
+    - 7.3 Дисконтированные награды в RL
+    - 7.4 Конвергенция Q-обучения
+  - [8. Интерактивные визуализации сходимости](part-1-limits-series/08-convergence-visualizations.md) ★
+    - 8.1 Сходимость геометрического ряда
+    - 8.2 Визуализация итерации ценности
+  - [8b. Практические задачи: пределы и сходимость](part-1-limits-series/09-practice-limits.md)
+  - [9. Источники](part-1-limits-series/10-sources.md)
+  - [Мини-глоссарий](part-1-limits-series/11-glossary.md)
+- [Часть II. Производные, градиент и оптимизация](part-2-derivatives-gradient/index.md)
+  - [§ 1. Производные и дифференцирование](part-2-derivatives-gradient/01-derivatives.md) ★
+    - Определение производной
+    - Три интуиции
+    - Таблица основных производных
+    - Правила дифференцирования
+  - [§ 2. Частные производные и градиент](part-2-derivatives-gradient/02-partial-derivatives-gradient.md) ★
+    - Функции многих переменных
+    - Частная производная
+    - Градиент
+  - [§ 3. Градиентный спуск и оптимизация](part-2-derivatives-gradient/03-gradient-descent.md) ★
+    - Варианты градиентного спуска
+    - Проблемы и решения
+  - [§ 4. Применение в RL: Policy Gradient](part-2-derivatives-gradient/04-policy-gradient-application.md) ★
+    - Задача оптимизации политики
+    - Теорема о градиенте политики
+    - TD-ошибка как стохастический градиент
+  - [§ 5. Весь раздел в одной картине](part-2-derivatives-gradient/05-big-picture.md) ★
+- [Часть III. Линейная алгебра для RL](part-3-linear-algebra/index.md)
+  - [1. Векторы](part-3-linear-algebra/01-vectors.md) ★
+    - 1.4. Линейная комбинация векторов
+    - 1.5. Линейная зависимость и независимость
+    - 1.6. Базис и размерность
+  - [2. Матрицы](part-3-linear-algebra/02-matrices.md) ★
+    - 2.1. Определение и типы матриц
+    - 2.2. Операции над матрицами
+    - 2.3. Определитель матрицы
+    - 2.4. Ранг матрицы
+    - 2.5. Обратная матрица
+  - [3. Скалярное произведение](part-3-linear-algebra/03-dot-product.md) ★
+  - [4. Собственные значения и собственные векторы](part-3-linear-algebra/04-eigenvalues.md) ★
+    - Спектральное разложение
+    - Связь с собственными значениями
+  - [5. Сингулярное разложение (SVD)](part-3-linear-algebra/05-svd.md) ★
+    - Теорема Эккарта-Янга
+  - [6. Дополнительные темы](part-3-linear-algebra/06-advanced-topics.md) ★
+    - 6.1. Квадратичные формы
+    - 6.2. Ортогональная проекция
+    - 6.3. Изменение базиса
+    - 6.4. Разложения LU и QR
+- [Часть IV. От вероятности к алгоритмам RL](part-4-probability/index.md)
+  - [1. Теория вероятностей](part-4-probability/01-probability-theory.md) ★
+    - Основные понятия
+    - Случайные величины и распределения
+    - Ожидаемое значение и дисперсия
+    - Условная вероятность и правило Байеса
+  - [2. Статистика](part-4-probability/02-statistics.md) ★
+    - Описательная статистика
+    - Оценка параметров
+    - Проверка гипотез
+  - [3. Марковские процессы](part-4-probability/03-markov-processes.md) ★
+    - Цепи Маркова
+    - MDP — Марковский процесс принятия решений
+  - [4. Функции ценности и уравнения Беллмана](part-4-probability/04-value-functions-bellman.md) ★
+    - Функция ценности состояния
+    - Функция ценности действия
+    - Уравнения Беллмана
+    - Уравнения оптимальности Беллмана
+  - [5. Алгоритмы RL](part-4-probability/05-rl-algorithms.md) ★
+    - Методы, основанные на ценности
+    - Методы, основанные на политике
+    - Методы, основанные на модели
+  - [6. Практические примеры (Python)](part-4-probability/06-python-examples.md) ★
+    - Пример 1: Симуляция бросков монеты
+    - Пример 2: Анализ вознаграждений
+    - Пример 3: Оценка политики в MDP
+    - Упражнения для самопроверки
+- [Часть V. Методы оптимизации политик](part-5-policy-optimization/index.md)
+  - [Лекция 1. Основы RL и оптимизация политики](part-5-policy-optimization/01-policy-optimization-basics.md) ★
+    - Целевая функция политики
+  - [Лекция 2. Вывод градиента политики](part-5-policy-optimization/02-policy-gradient-derivation.md) ★
+    - Шаг 1: Дифференцирование под знаком интеграла
+    - Шаг 2: Трюк с логарифмом
+    - Шаг 3: Упрощение
+    - Шаг 4: Формула REINFORCE
+    - Шаг 5: Reward-to-go
+    - Шаг 6: Базис и Advantage
+  - [Лекция 3. Градиентный спуск и его варианты](part-5-policy-optimization/03-gradient-descent-variants.md) ★
+    - 1. Momentum
+    - 2. RMSProp
+    - 3. Adam (Adaptive Moment Estimation)
+  - [Лекция 4. Proximal Policy Optimization (PPO)](part-5-policy-optimization/04-ppo.md) ★
+    - Клиповый суррогат-объектив
+    - Гиперпараметры PPO
+- [Часть VI. Фундаментальная математика RL](part-6-fundamental-rl/index.md)
+  - [Введение: От интуитивного кодирования к математическому осознанию](part-6-fundamental-rl/00-introduction.md)
+  - [Глава 1. Теоретико-вероятностный фундамент](part-6-fundamental-rl/01-probability-foundation.md) ★
+    - Случайная величина (Random Variable)
+    - Математическое ожидание (Expected Value)
+  - [Глава 2. Многорукие бандиты: Исследование vs Использование](part-6-fundamental-rl/02-multi-armed-bandits.md) ★
+    - Дилемма Exploration vs Exploitation
+    - Ценность действия (Action-Value)
+    - ε-жадная стратегия
+    - Верхняя доверительная граница (UCB)
+  - [Глава 3. Марковские процессы принятия решений (MDP)](part-6-fundamental-rl/03-mdp.md) ★
+    - Марковское свойство
+  - [Глава 4. Возврат, политики и функции ценности](part-6-fundamental-rl/04-return-policy-value.md)
+    - Возврат (Return)
+    - Политика (Policy)
+    - Функции ценности (Value Functions)
+  - [Глава 5. Сердце RL: Уравнения Беллмана](part-6-fundamental-rl/05-bellman-equations.md) ★
+    - Рекурсивное разложение возврата
+    - Уравнение ожиданий Беллмана
+    - Уравнение оптимальности Беллмана
+  - [Глава 6. От динамического программирования к Model-Free RL](part-6-fundamental-rl/06-model-free-rl.md) ★
+    - Монте-Карло vs Temporal Difference
+    - TD-обучение: величайший прорыв
+    - SARSA vs Q-learning
+  - [Глава 7. Следы пригодности (Eligibility Traces)](part-6-fundamental-rl/07-eligibility-traces.md)
+    - Механизм кратковременной памяти
+    - Backward View: мгновенное распространение
+  - [Глава 8. Аппроксимация функций и Deep RL](part-6-fundamental-rl/08-function-approximation.md)
+    - Нейросети как аппроксиматоры
+    - DQN: Deep Q-Network
+  - [Глава 9. Методы градиента политики (Policy Gradients)](part-6-fundamental-rl/09-policy-gradients.md) ★
+    - Параметризация политики
+    - Теорема о градиенте политики
+    - Логарифмический трюк (Log-derivative trick)
+    - Алгоритм REINFORCE
+    - Архитектура Актор-Критик (Actor-Critic)
+  - [Глава 10. Мост к практике: Unity ML-Agents](part-6-fundamental-rl/10-unity-ml-agents-bridge.md) ★
+    - Связь MDP → Unity Event-функции
+    - Гиперпараметры .yaml и их математический смысл
+  - [Заключение](part-6-fundamental-rl/11-conclusion.md)
+  - [Мини-глоссарий](part-6-fundamental-rl/12-glossary.md)
+- [Часть VII. Глубокое обучение с подкреплением](part-7-deep-rl/index.md)
+  - [1.1 Основные понятия](part-7-deep-rl/01-core-concepts.md) ★
+    - Ключевые компоненты
+    - Особенности Deep RL
+  - [1.2 Обзор алгоритмов RL](part-7-deep-rl/02-algorithms-overview.md) ★
+    - Deep Q-Network (DQN)
+    - Улучшения DQN
+    - Современные алгоритмы
+  - [2.1 Математический анализ](part-7-deep-rl/03-calculus.md) ★
+    - Производные и правила дифференцирования
+    - Частные производные и градиент
+    - Экстремумы функций
+  - [2.2 Теория вероятностей и статистика](part-7-deep-rl/04-probability-statistics.md) ★
+    - Нормальное распределение
+    - Оценка максимального правдоподобия (MLE)
+    - Оценка MAP
+  - [2.3 Дифференциальные уравнения](part-7-deep-rl/05-differential-equations.md) ★
+    - ОДУ с разделяющимися переменными
+    - ОДУ второго порядка
+
+- Служебное
+  - [Карта mind map](_meta/mindmap.md)
+  - [Реестр перекрёстных ссылок](_meta/crosslinks.md)
+  - [24 раздела курса](_meta/lessons.md)
+  - [Мост в Unity-репозиторий](_meta/unity-bridge.md)
+  - [Соглашения по наполнению](_meta/conventions.md)
+  - [Перенос пособия на сайт](_meta/site-integration.md)
+
+★ — раздел вынесен отдельным узлом в mind map сайта.
