@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400"
+     role="img" aria-labelledby="t d">
+  <title id="t">Два способа разрезать площадь под графиком: по оси аргумента и по оси значений</title>
+  <desc id="d">Две панели с одним и тем же двугорбым графиком функции f. Слева область под
+    графиком разрезана вертикальными линиями: разбивается отрезок оси x, и каждая полоска
+    приближается прямоугольником — так устроена интегральная сумма Римана. Справа та же
+    область разрезана горизонтальными линиями на уровнях c1, c2, c3: разбивается ось
+    значений, а на оси x жирно отмечено множество тех точек, где f не меньше уровня c2.
+    Это множество распадается на два отрезка, и вклад слоя в интеграл Лебега равен
+    произведению уровня на меру этого множества.</desc>
+
+  <style>
+    .axis  { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; fill: none; }
+    .curve { stroke: var(--enf-color-function, #8A5214); stroke-width: 2.5; fill: none; }
+    .area  { fill: var(--enf-fill-variable, #E3EDF4); }
+    .cutx  { stroke: var(--enf-color-variable, #1D5B85); stroke-width: 1.2; }
+    .cuty  { stroke: var(--enf-color-parameter, #3E7D3A); stroke-width: 1.6; }
+    .lvl   { stroke: var(--enf-color-parameter, #3E7D3A); stroke-width: 1.4; stroke-dasharray: 6 4; }
+    .drop  { stroke: var(--enf-color-variable, #1D5B85); stroke-width: 1.2; stroke-dasharray: 3 3; }
+    .preim { stroke: var(--enf-color-variable, #1D5B85); stroke-width: 6; stroke-linecap: butt; }
+    .lbl   { font: 14px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .hdr   { font: 600 15px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .mlbl  { font: italic 16px 'Charter', Georgia, serif; }
+  </style>
+
+  <clipPath id="clipL">
+    <path d="M 80 300 C 110 300 115 120 150 120 C 185 120 190 260 220 260
+             C 250 260 255 100 300 100 C 340 100 345 280 368 292 L 368 330 L 80 330 Z"/>
+  </clipPath>
+  <clipPath id="clipR">
+    <path d="M 460 300 C 490 300 495 120 530 120 C 565 120 570 260 600 260
+             C 630 260 635 100 680 100 C 720 100 725 280 748 292 L 748 330 L 460 330 Z"/>
+  </clipPath>
+
+  <!-- ============ левая панель: разбиение оси аргумента ============ -->
+  <text class="hdr" x="210" y="34" text-anchor="middle">Риман: делим ось x</text>
+
+  <path class="area" d="M 80 300 C 110 300 115 120 150 120 C 185 120 190 260 220 260
+                        C 250 260 255 100 300 100 C 340 100 345 280 368 292 L 368 330 L 80 330 Z"/>
+
+  <g class="cutx" clip-path="url(#clipL)">
+    <path d="M 100 90 V 330 M 120 90 V 330 M 140 90 V 330 M 160 90 V 330 M 180 90 V 330
+             M 200 90 V 330 M 220 90 V 330 M 240 90 V 330 M 260 90 V 330 M 280 90 V 330
+             M 300 90 V 330 M 320 90 V 330 M 340 90 V 330 M 360 90 V 330"/>
+  </g>
+
+  <path class="curve" d="M 80 300 C 110 300 115 120 150 120 C 185 120 190 260 220 260
+                         C 250 260 255 100 300 100 C 340 100 345 280 368 292"/>
+
+  <path class="axis" d="M 50 330 H 380"/>
+  <path class="axis" d="M 60 330 V 55"/>
+
+  <text class="lbl mlbl" x="376" y="352" text-anchor="end">x</text>
+  <text class="lbl mlbl" x="52" y="66" text-anchor="end">y</text>
+  <text class="lbl mlbl" x="374" y="286" fill="var(--enf-color-function, #8A5214)">f</text>
+  <text class="lbl" x="210" y="378" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">высота полоски следует за f</text>
+
+  <!-- ============ правая панель: разбиение оси значений ============ -->
+  <text class="hdr" x="604" y="34" text-anchor="middle">Лебег: делим ось y</text>
+
+  <path class="area" d="M 460 300 C 490 300 495 120 530 120 C 565 120 570 260 600 260
+                        C 630 260 635 100 680 100 C 720 100 725 280 748 292 L 748 330 L 460 330 Z"/>
+
+  <g class="cuty" clip-path="url(#clipR)">
+    <path d="M 450 250 H 760 M 450 215 H 760 M 450 180 H 760 M 450 145 H 760 M 450 110 H 760"/>
+  </g>
+
+  <path class="lvl" d="M 440 250 H 760 M 440 180 H 760 M 440 110 H 760"/>
+
+  <path class="curve" d="M 460 300 C 490 300 495 120 530 120 C 565 120 570 260 600 260
+                         C 630 260 635 100 680 100 C 720 100 725 280 748 292"/>
+
+  <path class="drop" d="M 499 180 V 330 M 564 180 V 330 M 634 180 V 330 M 718 180 V 330"/>
+  <path class="preim" d="M 499 330 H 564 M 634 330 H 718"/>
+
+  <path class="axis" d="M 440 330 H 770"/>
+  <path class="axis" d="M 450 330 V 55"/>
+
+  <text class="lbl mlbl" x="766" y="352" text-anchor="end">x</text>
+  <text class="lbl mlbl" x="442" y="66" text-anchor="end">y</text>
+  <text class="lbl mlbl" x="754" y="286" fill="var(--enf-color-function, #8A5214)">f</text>
+
+  <text class="lbl mlbl" x="436" y="255" text-anchor="end"
+        fill="var(--enf-color-parameter, #3E7D3A)">c₁</text>
+  <text class="lbl mlbl" x="436" y="185" text-anchor="end"
+        fill="var(--enf-color-parameter, #3E7D3A)">c₂</text>
+  <text class="lbl mlbl" x="436" y="115" text-anchor="end"
+        fill="var(--enf-color-parameter, #3E7D3A)">c₃</text>
+
+  <text class="lbl" x="604" y="378" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">множество, где f ≥ c₂: два отрезка суммарной меры</text>
+</svg>

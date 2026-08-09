@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400"
+     role="img" aria-labelledby="t d">
+  <title id="t">Внешняя мера: накрыть множество интервалами и взять инфимум суммы длин</title>
+  <desc id="d">Внизу на числовой оси отмечено множество E: два жирных отрезка и три отдельные
+    точки. Над ним два ряда покрытий. Верхний ряд — грубое покрытие из двух длинных интервалов,
+    показанных штриховой линией: оно накрывает E целиком, но захватывает много лишнего, и сумма
+    длин велика. Средний ряд — плотное покрытие из пяти коротких интервалов, показанных сплошной
+    линией: каждый кусок E накрыт почти впритык, три крошечных интервала накрывают три отдельные
+    точки, и сумма длин заметно меньше. Внешняя мера множества E — точная нижняя грань суммы длин
+    по всем таким счётным покрытиям.</desc>
+
+  <style>
+    .axis { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; fill: none; }
+    .set  { stroke: var(--enf-color-variable, #1D5B85); stroke-width: 7; stroke-linecap: butt; fill: none; }
+    .dot  { fill: var(--enf-color-variable, #1D5B85); }
+    .fine { stroke: var(--enf-color-parameter, #3E7D3A); stroke-width: 2.5; fill: none; }
+    .rough{ stroke: var(--enf-color-parameter, #3E7D3A); stroke-width: 2.5; fill: none; stroke-dasharray: 8 5; }
+    .guide{ stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; fill: none; stroke-dasharray: 3 5; }
+    .lbl  { font: 14px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .hdr  { font: 600 15px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .row  { font: 13px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .mlbl { font: italic 16px 'Charter', Georgia, serif; }
+  </style>
+
+  <text class="hdr" x="400" y="30" text-anchor="middle">Накрываем интервалами, складываем длины, берём инфимум</text>
+
+  <!-- ============ ряд 1: грубое покрытие ============ -->
+  <text class="row" x="215" y="118" text-anchor="end">грубое покрытие:</text>
+  <text class="row" x="215" y="136" text-anchor="end">сумма длин велика</text>
+
+  <g class="rough">
+    <path d="M 250 122 H 430 M 250 112 V 132 M 430 112 V 132"/>
+    <path d="M 500 122 H 760 M 500 112 V 132 M 760 112 V 132"/>
+  </g>
+
+  <!-- ============ ряд 2: плотное покрытие ============ -->
+  <text class="row" x="215" y="218" text-anchor="end">покрытие плотнее:</text>
+  <text class="row" x="215" y="236" text-anchor="end">сумма длин меньше</text>
+
+  <g class="fine">
+    <path d="M 268 222 H 398 M 268 212 V 232 M 398 212 V 232"/>
+    <path d="M 512 222 H 632 M 512 212 V 232 M 632 212 V 232"/>
+    <path d="M 672 222 H 690 M 672 212 V 232 M 690 212 V 232"/>
+    <path d="M 702 222 H 720 M 702 212 V 232 M 720 212 V 232"/>
+    <path d="M 732 222 H 750 M 732 212 V 232 M 750 212 V 232"/>
+  </g>
+
+  <text class="lbl mlbl" x="333" y="205" text-anchor="middle"
+        fill="var(--enf-color-parameter, #3E7D3A)">J₁</text>
+  <text class="lbl mlbl" x="572" y="205" text-anchor="middle"
+        fill="var(--enf-color-parameter, #3E7D3A)">J₂</text>
+  <text class="lbl mlbl" x="711" y="196" text-anchor="middle"
+        fill="var(--enf-color-parameter, #3E7D3A)">J₃, J₄, J₅</text>
+
+  <!-- ============ ряд 3: само множество ============ -->
+  <path class="guide" d="M 270 240 V 320 M 395 240 V 320 M 515 240 V 320 M 630 240 V 320"/>
+
+  <path class="axis" d="M 230 330 H 780"/>
+  <text class="lbl mlbl" x="776" y="354" text-anchor="end">x</text>
+
+  <path class="set" d="M 270 330 H 395 M 515 330 H 630"/>
+  <circle class="dot" cx="680" cy="330" r="5"/>
+  <circle class="dot" cx="710" cy="330" r="5"/>
+  <circle class="dot" cx="740" cy="330" r="5"/>
+
+  <text class="row" x="215" y="326" text-anchor="end">множество E:</text>
+  <text class="row" x="215" y="344" text-anchor="end">отрезки и точки</text>
+
+  <text class="lbl" x="500" y="382" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">E не обязано быть отрезком: покрытие годится любое счётное</text>
+</svg>
