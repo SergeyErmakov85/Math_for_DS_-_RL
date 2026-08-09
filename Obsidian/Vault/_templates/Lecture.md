@@ -15,8 +15,8 @@ date: <% tp.date.now("YYYY-MM-DD") %>
 
 | Символ | Значение | Роль |
 |--------|----------|------|
-| $x$ | | `variable` |
-| $f$ | | `function` |
+| $\enfVar{x}$ | | `variable` |
+| $\enfFun{f}$ | | `function` |
 
 ## Раздел 1
 
