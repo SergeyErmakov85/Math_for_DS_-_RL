@@ -169,7 +169,8 @@ $$
 
 ## Практика в этом репозитории
 
-- GridWorld: state = r·5 + c, действия N/S/E/W — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
+- GridWorld: s = r·5 + c, действия N/S/E/W — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldEnvironment.cs`
+- Та же модель на Python — на ней задачи можно решать численно — `python/labrl/envs/gridworld_mdp.py`
 
 ## Источник на сайте
 

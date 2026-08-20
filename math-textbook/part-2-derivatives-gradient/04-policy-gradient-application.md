@@ -188,7 +188,9 @@ $$
 
 ## Практика в этом репозитории
 
-- RollerAgent: непрерывная политика, 2 действия — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/Scripts/RollerAgent.cs`
+- REINFORCE: градиент политики в чистом виде — `python/labrl/algos/reinforce.py`
+- Гауссова политика: среднее и обучаемое log σ — `python/labrl/nets/gaussian_policy.py`
+- RollerBall: вектор наблюдений из восьми чисел — `unity/MLAgentsLab/Assets/Envs/E03_RollerBall/Scripts/RollerAgent.cs`
 
 ## Источник на сайте
 

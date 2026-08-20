@@ -141,10 +141,10 @@ $$
 
 ## Практика в этом репозитории
 
-- gamma: 0.95 в конфиге GridWorld — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/config/GridWorldQLearning.yaml`
-- gamma: 0.99 в конфиге RollerAgent — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
-- GridWorld: доходность кратчайшего пути +0.68 — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
-- GridWorld: шаг −0.04, цель +1.0, ловушка −1.0 — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
+- gamma: 0.99 и точная доходность оптимального пути +0.68 — `configs/E01_GridWorld__qlearning.yaml`
+- GridWorld: шаг −0.04, цель +1.0, ловушка −1.0 — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/ENV_SPEC.md`
+- Потенциальное формирование награды: почему γ обязана быть той же (теорема Ына) — `docs/algos/ppo.md`
+- Формирование награды по расстоянию до цели — `unity/MLAgentsLab/Assets/Envs/E06_Hunter3D/Scripts/HunterAgent.cs`
 
 ## Источник на сайте
 

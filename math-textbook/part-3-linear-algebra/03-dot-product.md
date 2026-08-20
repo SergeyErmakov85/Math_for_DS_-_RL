@@ -150,8 +150,9 @@ $$
 
 ## Практика в этом репозитории
 
-- RollerAgent: вектор наблюдений из 8 чисел — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/Scripts/RollerAgent.cs`
-- network_settings: hidden_units, num_layers — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- one-hot × Q = ровно строка Q[s]: скалярное произведение как выборка — `python/labrl/nets/tabular.py`
+- Внимание: скалярное произведение запроса и ключа задаёт вес — `python/labrl/nets/attention.py`
+- Полносвязная сеть: слои, ширина, активации — `python/labrl/nets/mlp.py`
 
 ## Источник на сайте
 

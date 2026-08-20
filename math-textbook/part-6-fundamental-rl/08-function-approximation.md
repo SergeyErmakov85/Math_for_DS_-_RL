@@ -190,7 +190,10 @@ flowchart TD
 
 ## Практика в этом репозитории
 
-- Обучение нейросетевой политики через mlagents-learn — `docs/TRAINING.md`
+- Полносвязная сеть вместо таблицы — `python/labrl/nets/mlp.py`
+- Double DQN: буфер, целевая сеть, функция Хубера — `python/labrl/algos/dqn.py`
+- double_dqn: true, target_update_interval: 500 — `configs/E03_RollerBall__dqn.yaml`
+- Табличная политика как линейный слой — граница между таблицей и сетью — `python/labrl/nets/tabular.py`
 
 ## Источник на сайте
 

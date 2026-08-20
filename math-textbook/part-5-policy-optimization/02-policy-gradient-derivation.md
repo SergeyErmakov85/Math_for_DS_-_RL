@@ -241,8 +241,10 @@ $$
 
 ## Практика в этом репозитории
 
-- RollerAgent: непрерывная политика, 2 действия — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/Scripts/RollerAgent.cs`
-- lambd — параметр GAE — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- REINFORCE с базисом: та же формула, меньше дисперсия — `python/labrl/algos/reinforce.py`
+- GAE: преимущество как усечённая сумма TD-ошибок — `python/labrl/algos/ppo.py`
+- Категориальная политика с маской действий — `python/labrl/nets/categorical_policy.py`
+- Сборщик еды: гибридные действия и GridSensor — `unity/MLAgentsLab/Assets/Envs/E05_FoodCollector/Scripts/FoodCollectorAgent.cs`
 
 ## Источник на сайте
 

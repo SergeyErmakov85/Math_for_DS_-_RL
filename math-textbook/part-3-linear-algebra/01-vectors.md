@@ -153,8 +153,9 @@ $$
 
 ## Практика в этом репозитории
 
-- RollerAgent: вектор наблюдений из 8 чисел — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/Scripts/RollerAgent.cs`
-- network_settings: hidden_units, num_layers — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- RollerBall: вектор наблюдений из восьми чисел — `unity/MLAgentsLab/Assets/Envs/E03_RollerBall/Scripts/RollerAgent.cs`
+- Склейка нескольких сенсоров в один вход политики — `python/labrl/envs/vec_unity_env.py`
+- Полносвязная сеть: слои, ширина, активации — `python/labrl/nets/mlp.py`
 
 ## Источник на сайте
 

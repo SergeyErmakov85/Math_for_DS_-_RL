@@ -175,10 +175,9 @@ $$
 
 ## Практика в этом репозитории
 
-- gamma: 0.95 в конфиге GridWorld — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/config/GridWorldQLearning.yaml`
-- gamma: 0.99 в конфиге RollerAgent — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
-- GridWorld: доходность кратчайшего пути +0.68 — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
-- Обзор лаборатории сред — `README.md`
+- gamma: 0.99 — горизонт дисконтирования GridWorld — `configs/E01_GridWorld__qlearning.yaml`
+- GridWorld: доходность кратчайшего пути ровно +0.68 — конечная сумма восьми членов — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/ENV_SPEC.md`
+- Обзор лаборатории: двенадцать сред и своё ядро обучения — `README.md`
 
 ## Источник на сайте
 

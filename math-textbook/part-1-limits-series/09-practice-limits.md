@@ -147,7 +147,9 @@ status: ready
 
 ## Практика в этом репозитории
 
-- _(прямой привязки к средам нет)_
+- Расписания как последовательности: линейное, экспоненциальное, постоянное — `python/labrl/utils/schedules.py`
+- Сходимость Value Iteration — задача с точным ответом — `python/labrl/algos/tabular/value_iteration.py`
+- Модель MDP, на которой этот ответ считается — `python/labrl/envs/gridworld_mdp.py`
 
 ## Источник на сайте
 

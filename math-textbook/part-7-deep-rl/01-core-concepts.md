@@ -139,8 +139,10 @@ status: ready
 
 ## Практика в этом репозитории
 
-- Обучение нейросетевой политики через mlagents-learn — `docs/TRAINING.md`
-- Обзор лаборатории сред — `README.md`
+- Обзор лаборатории: двенадцать сред и своё ядро обучения — `README.md`
+- Карточка на каждый из тринадцати алгоритмов — `docs/algos/`
+- Расписание сложности и рандомизация домена — `python/labrl/train/curriculum.py`
+- Лабиринт 5→11 клеток: генерация и проверка разрешимости — `unity/MLAgentsLab/Assets/Envs/E09_CurriculumMaze/Scripts/MazeArea.cs`
 
 ## Источник на сайте
 

@@ -238,8 +238,10 @@ for name in ("sarsa", "qlearning"):
 
 ## Практика в этом репозитории
 
-- GridWorld: state = r·5 + c, действия N/S/E/W — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
-- GridWorld: перебор клеток 5×5 как модель для value iteration — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
+- Табличный Q-learning: одна строка обновления — `python/labrl/algos/tabular/q_learning.py`
+- GridWorld: s = r·5 + c, действия N/S/E/W — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldEnvironment.cs`
+- CartPole в Unity: непрерывное состояние из четырёх чисел — `unity/MLAgentsLab/Assets/Envs/E02_CartPoleUnity/Scripts/CartPoleAgent.cs`
+- Дискретизация непрерывного состояния под таблицу — `python/labrl/nets/discretized.py`
 
 ## Источник на сайте
 

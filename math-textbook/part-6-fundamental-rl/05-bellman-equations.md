@@ -199,9 +199,10 @@ $$
 
 ## Практика в этом репозитории
 
-- GridWorld: CurrentStateIndex 0–24 для табличного Q — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldAgent.cs`
-- GridWorld: разметка наград по клеткам — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
-- GridWorld: перебор клеток 5×5 как модель для value iteration — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
+- Оператор Беллмана в коде: одна итерация на 25 состояниях — `python/labrl/algos/tabular/value_iteration.py`
+- Табличное обновление Q по TD-ошибке — `python/labrl/algos/tabular/q_learning.py`
+- GridWorld: индекс состояния 0–24 для табличного Q — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldAgent.cs`
+- Целевое значение: terminated против truncated — `python/labrl/buffers/rollout.py`
 
 ## Источник на сайте
 

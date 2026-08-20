@@ -189,9 +189,10 @@ if __name__ == "__main__":
 
 ## Практика в этом репозитории
 
-- GridWorld: CurrentStateIndex 0–24 для табличного Q — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldAgent.cs`
-- GridWorld: перебор клеток 5×5 как модель для value iteration — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
-- GridWorld: разметка наград по клеткам — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
+- Value Iteration целиком: стягивающее отображение на 25 состояниях — `python/labrl/algos/tabular/value_iteration.py`
+- Явная модель переходов и наград, без которой DP невозможен — `python/labrl/envs/gridworld_mdp.py`
+- GridWorld 5×5 — MDP на индексах клеток — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/ENV_SPEC.md`
+- GridWorld: разметка наград по клеткам — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldEnvironment.cs`
 
 ## Источник на сайте
 

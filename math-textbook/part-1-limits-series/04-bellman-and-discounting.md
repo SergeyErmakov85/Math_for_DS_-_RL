@@ -163,10 +163,10 @@ $$
 
 ## Практика в этом репозитории
 
-- GridWorld: CurrentStateIndex 0–24 для табличного Q — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldAgent.cs`
-- GridWorld: разметка наград по клеткам — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
-- gamma: 0.95 в конфиге GridWorld — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/config/GridWorldQLearning.yaml`
-- gamma: 0.99 в конфиге RollerAgent — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- GridWorld: индекс состояния 0–24 для табличного Q — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldAgent.cs`
+- GridWorld: разметка наград по клеткам — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldEnvironment.cs`
+- Оператор Беллмана в коде: одна итерация на 25 состояниях — `python/labrl/algos/tabular/value_iteration.py`
+- gamma: 0.99 — горизонт дисконтирования GridWorld — `configs/E01_GridWorld__qlearning.yaml`
 
 ## Источник на сайте
 
