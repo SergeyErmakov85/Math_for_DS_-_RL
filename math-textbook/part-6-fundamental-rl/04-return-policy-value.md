@@ -175,10 +175,9 @@ $$
 
 ## Практика в этом репозитории
 
-- GridWorld: доходность кратчайшего пути +0.68 — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
-- GridWorld: разметка наград по клеткам — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
-- gamma: 0.95 в конфиге GridWorld — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/config/GridWorldQLearning.yaml`
-- gamma: 0.99 в конфиге RollerAgent — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- GridWorld: доходность кратчайшего пути ровно +0.68 — `configs/E01_GridWorld__qlearning.yaml`
+- GridWorld: разметка наград по клеткам — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldEnvironment.cs`
+- Value Iteration: V* как точный ориентир для сравнения — `python/labrl/algos/tabular/value_iteration.py`
 
 ## Источник на сайте
 

@@ -219,8 +219,10 @@ plt.show()
 
 ## Практика в этом репозитории
 
-- TensorBoard: scripts/tensorboard.ps1 — `docs/TRAINING.md`
-- GridWorld: перебор клеток 5×5 как модель для value iteration — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
+- Обязательная схема тегов TensorBoard — `docs/05_TENSORBOARD.md`
+- Запись метрик по ходу обучения — `python/labrl/logging/tb_logger.py`
+- IQM и доверительные интервалы: как кривая превращается в число — `python/labrl/eval/aggregate.py`
+- Сходимость V_k, которую эти графики и показывают — `python/labrl/algos/tabular/value_iteration.py`
 
 ## Источник на сайте
 

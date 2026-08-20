@@ -182,7 +182,8 @@ print("максимальное расхождение:", np.abs(reconstructed -
 
 ## Практика в этом репозитории
 
-- network_settings: hidden_units, num_layers — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- Оператор Беллмана — сжатие с коэффициентом γ; отсюда и скорость сходимости — `python/labrl/algos/tabular/value_iteration.py`
+- Полносвязная сеть: слои, ширина, активации — `python/labrl/nets/mlp.py`
 
 ## Источник на сайте
 

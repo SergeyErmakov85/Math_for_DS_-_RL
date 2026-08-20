@@ -177,8 +177,9 @@ $$
 
 ## Практика в этом репозитории
 
-- GridWorld: one-hot наблюдение размера 25 — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldAgent.cs`
-- network_settings: hidden_units, num_layers — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- Матрица Q 25×4 и её экспорт линейным слоем без смещения — `python/labrl/nets/tabular.py`
+- GridWorld: one-hot наблюдение размера 25 — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldAgent.cs`
+- Полносвязная сеть: слои, ширина, активации — `python/labrl/nets/mlp.py`
 
 ## Источник на сайте
 

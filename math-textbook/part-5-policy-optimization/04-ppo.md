@@ -183,10 +183,10 @@ flowchart TD
 
 ## Практика в этом репозитории
 
-- PPO-конфиг RollerAgent (epsilon 0.2, lambd, num_epoch) — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
-- Справочные конфиги PPO из ml-agents — `config/ml-agents-reference/ppo/`
-- epsilon: 0.2 — клиппинг PPO — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
-- Все trainer-конфиги проекта — `config/ml-agents-reference/`
+- PPO целиком: отношение, клиппинг, GAE, несколько эпох — `python/labrl/algos/ppo.py`
+- clip_range: 0.2 — клиппинг отношения вероятностей — `configs/E06_Hunter3D__ppo.yaml`
+- Разбор PPO с формулами и измеренными граблями — `docs/algos/ppo.md`
+- Эталонные конфиги штатного тренера ML-Agents — для сравнения со своим — `configs/mlagents/`
 
 ## Источник на сайте
 

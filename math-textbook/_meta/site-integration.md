@@ -808,13 +808,12 @@ npm run audit:links       # якоря внутри сайта
 
 **Осталось**
 
-- Пять путей из `_meta/unity-bridge.md` лежат в репозитории сред на невлитой ветке
-  `mlagents-training-setup` и до её слияния с `main` дадут 404: `docs/TRAINING.md`,
-  `Assets/Editor/MLAgentsTrainingValidator.cs`, `config/ml-agents-reference/`,
-  `config/ml-agents-reference/ppo/`,
-  `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/config/GridWorldQLearning.yaml`.
-  `npm run textbook:audit` печатает этот список, если репозиторий сред есть локально
-  (путь берётся из `UNITY_LAB_SRC`, по умолчанию `C:/unity-ml-agents-lab`).
+- Реестр `_meta/unity-bridge.md` переписан под текущую раскладку лаборатории
+  (единый Unity-проект `unity/MLAgentsLab/` с двенадцатью средами `E00`–`E11`
+  и ядро обучения `python/labrl`). Все пути реестра проверены на существование
+  в `main` лаборатории; `npm run textbook:audit` печатает расхождения, если
+  репозиторий сред есть локально (путь берётся из `UNITY_LAB_SRC`,
+  по умолчанию `C:/unity-ml-agents-lab`).
 - Уроки 3.2, 3.3, 3.5, 3.8 связей с пособием не получили: в `_meta/crosslinks.md` §3 для них
   нет пар, и придумывать их без разбора содержания урока не нужно.
 

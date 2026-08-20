@@ -173,8 +173,9 @@ $$
 
 ## Практика в этом репозитории
 
-- gamma: 0.95 в конфиге GridWorld — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/config/GridWorldQLearning.yaml`
-- gamma: 0.99 в конфиге RollerAgent — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- gamma: 0.99 — знаменатель геометрического ряда наград — `configs/E01_GridWorld__qlearning.yaml`
+- GAE: преимущество как усечённая сумма TD-ошибок с весами (γλ)^k — `python/labrl/algos/ppo.py`
+- gae_lambda: 0.95 — где обрывать ряд, чтобы не разогнать дисперсию — `configs/E06_Hunter3D__ppo.yaml`
 
 ## Источник на сайте
 

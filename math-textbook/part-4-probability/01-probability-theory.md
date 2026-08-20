@@ -186,7 +186,9 @@ $$
 
 ## Практика в этом репозитории
 
-- slipProbability — модель скольжения FrozenLake — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
+- Скольжение как стохастика переходов — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldEnvironment.cs`
+- Бандит: пять рук с вероятностями 0.80 / 0.65 / … — `unity/MLAgentsLab/Assets/Envs/E00_Bandit/Scripts/BanditArea.cs`
+- GAIL: дискриминатор как оценка вероятности, награда −log(1−D) — `python/labrl/algos/gail.py`
 
 ## Источник на сайте
 

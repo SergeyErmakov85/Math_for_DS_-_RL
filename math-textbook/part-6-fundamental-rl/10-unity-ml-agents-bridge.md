@@ -60,9 +60,9 @@ status: ready
 
 ## Наблюдение и марковское свойство
 
-**RollerAgent** (`Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/Scripts/RollerAgent.cs`) передаёт вектор из 8 чисел. В нём есть и позиции, и скорости — именно поэтому задача марковская: по одной лишь позиции будущее не предсказуемо, движение инерционно.
+**RollerBall** (`unity/MLAgentsLab/Assets/Envs/E03_RollerBall/Scripts/RollerAgent.cs`) передаёт вектор из 8 чисел. В нём есть и позиции, и скорости — именно поэтому задача марковская: по одной лишь позиции будущее не предсказуемо, движение инерционно.
 
-**GridWorld** (`Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldAgent.cs`) использует one-hot наблюдение размера 25 при состоянии $\enfVar{s} = 5r + c$. Инерции нет, поэтому позиции достаточно, и свойство выполняется.
+**GridWorld** (`unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldAgent.cs`) использует one-hot наблюдение размера 25 при состоянии $\enfVar{s} = 5r + c$. Инерции нет, поэтому позиции достаточно, и свойство выполняется.
 
 *Таблица 2. Диагностика наблюдения.*
 
@@ -169,10 +169,12 @@ status: ready
 
 ## Практика в этом репозитории
 
-- Обучение: scripts/train.ps1 — `docs/TRAINING.md`
-- Сборка сцен из кода — `Assets/Editor/ProjectBootstrap.cs`
-- Все trainer-конфиги проекта — `config/ml-agents-reference/`
-- Проверка обучаемости сред — `Assets/Editor/MLAgentsTrainingValidator.cs`
+- Связь Python ↔ Unity через ML-Agents — `python/labrl/envs/unity_env.py`
+- Векторизация: N арен в сцене = N параллельных сред — `python/labrl/envs/vec_unity_env.py`
+- Сцена собирается кодом, а не руками — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Editor/GridWorldSetup.cs`
+- Контракт экспорта ONNX: имена входов, выходов, opset — `docs/04_ONNX_CONTRACT.md`
+- Сборка графа политики под Unity Inference Engine — `python/labrl/export/onnx_export.py`
+- Эталонные конфиги штатного тренера ML-Agents — `configs/mlagents/`
 
 ## Источник на сайте
 

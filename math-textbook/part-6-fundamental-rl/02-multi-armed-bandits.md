@@ -215,7 +215,10 @@ for name in ("greedy", "eps", "ucb"):
 
 ## Практика в этом репозитории
 
-- beta: 5.0e-3 — энтропийный бонус GridWorld — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/config/GridWorldQLearning.yaml`
+- ε-greedy, UCB1 и Thompson — три стратегии одним кодом — `python/labrl/algos/bandits.py`
+- Пять рук с вероятностями 0.80 / 0.65 / … — `unity/MLAgentsLab/Assets/Envs/E00_Bandit/Scripts/BanditArea.cs`
+- ucb_c: 1.414 — ширина доверительного интервала — `configs/E00_Bandit__ucb.yaml`
+- Три стратегии разведки на одной задаче: что измерено — `docs/envs/E00_Bandit.md`
 
 ## Источник на сайте
 

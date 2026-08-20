@@ -147,8 +147,9 @@ flowchart LR
 
 ## Практика в этом репозитории
 
-- GridWorld 5×5 — MDP на индексах клеток — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
-- GridWorld: детерминированные переходы, slipProbability — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
+- GridWorld 5×5 — MDP на индексах клеток — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/ENV_SPEC.md`
+- GridWorld: переходы и необязательное скольжение — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldEnvironment.cs`
+- Явная модель переходов и наград на стороне Python — `python/labrl/envs/gridworld_mdp.py`
 
 ## Источник на сайте
 

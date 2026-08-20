@@ -163,7 +163,8 @@ print("накопленная доля энергии:", np.round(energy, 6))
 
 ## Практика в этом репозитории
 
-- network_settings: hidden_units, num_layers — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- Полносвязная сеть: слои, ширина, активации — `python/labrl/nets/mlp.py`
+- Внимание над переменным числом агентов (RSA) — `python/labrl/nets/attention.py`
 
 ## Источник на сайте
 

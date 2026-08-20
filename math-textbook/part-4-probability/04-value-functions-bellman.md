@@ -181,9 +181,10 @@ $$
 
 ## Практика в этом репозитории
 
-- GridWorld: CurrentStateIndex 0–24 для табличного Q — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldAgent.cs`
-- GridWorld: разметка наград по клеткам — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
-- GridWorld 5×5 — MDP на индексах клеток — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/INSTRUCTIONS.md`
+- GridWorld: индекс состояния 0–24 для табличного Q — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldAgent.cs`
+- GridWorld: разметка наград по клеткам — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldEnvironment.cs`
+- Value Iteration: V* как неподвижная точка — `python/labrl/algos/tabular/value_iteration.py`
+- GridWorld 5×5 — MDP на индексах клеток — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/ENV_SPEC.md`
 
 ## Источник на сайте
 

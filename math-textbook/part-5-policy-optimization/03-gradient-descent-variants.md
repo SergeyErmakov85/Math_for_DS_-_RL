@@ -185,7 +185,9 @@ print("Adam     :", run("adam", alpha=0.05))
 
 ## Практика в этом репозитории
 
-- learning_rate 3.0e-4, learning_rate_schedule: linear — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- learning_rate линейным расписанием до нуля — `configs/E06_Hunter3D__ppo.yaml`
+- Несколько эпох по одному набору данных — почему это требует клиппинга — `python/labrl/algos/ppo.py`
+- A2C — тот же actor-critic без клиппинга, для сравнения — `python/labrl/algos/a2c.py`
 
 ## Источник на сайте
 

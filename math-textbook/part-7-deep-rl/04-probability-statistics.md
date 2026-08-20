@@ -168,8 +168,10 @@ $$
 
 ## Практика в этом репозитории
 
-- slipProbability — модель скольжения FrozenLake — `Assets/ML-ENVIRONMENTS/02-Examples/Greed_world/Scripts/GridWorldEnvironment.cs`
-- Метрики обучения в results/ — `docs/TRAINING.md`
+- Сжатая гауссиана: tanh и поправка к логарифму плотности — `python/labrl/nets/squashed_gaussian.py`
+- IQM и доверительные интервалы по трём сидам — `python/labrl/eval/aggregate.py`
+- Скольжение как стохастика переходов — `unity/MLAgentsLab/Assets/Envs/E01_GridWorld/Scripts/GridWorldEnvironment.cs`
+- Измерено: BC решает коридор, чистый RL — нет — `docs/envs/E10_Imitation.md`
 
 ## Источник на сайте
 

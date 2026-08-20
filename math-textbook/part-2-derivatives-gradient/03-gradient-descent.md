@@ -185,7 +185,9 @@ if __name__ == "__main__":
 
 ## Практика в этом репозитории
 
-- learning_rate 3.0e-4, learning_rate_schedule: linear — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- learning_rate линейным расписанием до нуля — `configs/E06_Hunter3D__ppo.yaml`
+- max_grad_norm: клиппинг градиента как страховка шага — `python/labrl/algos/ppo.py`
+- Полносвязная сеть: слои, ширина, активации — `python/labrl/nets/mlp.py`
 
 ## Источник на сайте
 

@@ -155,7 +155,12 @@ flowchart TD
 
 ## Практика в этом репозитории
 
-- Обучение нейросетевой политики через mlagents-learn — `docs/TRAINING.md`
+- Карточка на каждый из тринадцати алгоритмов — `docs/algos/`
+- MA-POCA: централизованный критик и контрфактный базис — `python/labrl/algos/mapoca.py`
+- Пул снимков соперников и рейтинг ELO — `python/labrl/train/selfplay.py`
+- Футбол 2×2: зеркальный порядок тегов у двух команд — `unity/MLAgentsLab/Assets/Envs/E08_SoccerArena/Scripts/SoccerArea.cs`
+- Поведенческое клонирование: обучение с учителем на записях — `python/labrl/algos/bc.py`
+- GAIL: награда −log(1−D) от дискриминатора — `python/labrl/algos/gail.py`
 
 ## Источник на сайте
 

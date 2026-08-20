@@ -170,8 +170,10 @@ flowchart LR
 
 ## Практика в этом репозитории
 
-- RollerAgent: непрерывная политика, 2 действия — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/Scripts/RollerAgent.cs`
-- lambd — параметр GAE — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- REINFORCE с базисом — `python/labrl/algos/reinforce.py`
+- PPO целиком: отношение, клиппинг, GAE, несколько эпох — `python/labrl/algos/ppo.py`
+- Гауссова политика: среднее и обучаемое log σ — `python/labrl/nets/gaussian_policy.py`
+- Сборщик еды: гибридные действия и GridSensor — `unity/MLAgentsLab/Assets/Envs/E05_FoodCollector/Scripts/FoodCollectorAgent.cs`
 
 ## Источник на сайте
 

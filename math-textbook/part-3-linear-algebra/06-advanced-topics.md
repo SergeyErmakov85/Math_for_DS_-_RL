@@ -161,7 +161,10 @@ print("обусловленность A^T A:  ", np.linalg.cond(A.T @ A))
 
 ## Практика в этом репозитории
 
-- network_settings: hidden_units, num_layers — `Assets/ML-ENVIRONMENTS/01-Basics/Hit_the_ball/config/RollerAgent.yaml`
+- Решётка понятий: формальный анализ понятий, алгоритм Close-by-One — `python/labrl/utils/fca.py`
+- Слой понятий внутри графа политики — `python/labrl/nets/fca.py`
+- Ключ и дверь: семь бинарных признаков = формальный контекст — `unity/MLAgentsLab/Assets/Envs/E11_Research/Scripts/KeyDoorAgent.cs`
+- Внимание над переменным числом агентов (RSA) — `python/labrl/nets/attention.py`
 
 ## Источник на сайте
 
