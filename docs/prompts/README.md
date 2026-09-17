@@ -10,6 +10,7 @@
 | `ENF-PROMPT-004` | [`SVG_Generator.md`](SVG_Generator.md) | Рисует иллюстрацию в стиле библиотеки `svg/` |
 | `ENF-PROMPT-005` | [`Research_Assistant.md`](Research_Assistant.md) | Разбирает статью: конспект, критика или вопросы к авторам |
 | `ENF-PROMPT-006` | [`Book_Generator.md`](Book_Generator.md) | Пишет главу книги в Publication Mode |
+| `ENF-PROMPT-007` | [`Code_Lesson_Generator.md`](Code_Lesson_Generator.md) | Пишет урок в Learning Mode с кодом на Python: сквозная раскраска, таблицы «формула → код», настоящий вывод |
 
 ## Как пользоваться
 

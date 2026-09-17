@@ -85,10 +85,15 @@ function checkMarkdown(file, rel) {
 
   const offset = text.length - body.length;
 
+  const roles = mode === 'learning' ? collectRoles(formulas) : new Map();
+  const bound = collectBound(formulas);
+
   for (const f of formulas) {
     const used = new Set([...f[1].matchAll(MACRO_RE)].map((m) => m[1]));
-    if (used.size === 0) continue;
     const line = lineOf(text, offset + f.index);
+
+    if (roles.size) checkUndercolored(file, line, f[1], used, roles, limit.max, bound);
+    if (used.size === 0) continue;
 
     if (used.size > limit.max) {
       report.error(file, line, 'ENF-MATH-021',
@@ -103,6 +108,119 @@ function checkMarkdown(file, rel) {
       }
     }
   }
+}
+
+/* ENF-MATH-025: в Learning Mode символ, которому документ назначил роль,
+   окрашивается при каждом появлении, а не только при первом. Недокраска
+   не ловится глазом так же, как перекраска: формула выглядит аккуратно,
+   но ученик теряет связь символа с таблицей обозначений.
+
+   Словарь ролей строится из самого документа: атомом считается простое
+   содержимое макроса — одна буква или одна команда (`s`, `\gamma`,
+   `\mathcal{L}`). Нейтральное вхождение атома — предупреждение, если лимит
+   тонов формулы позволял его окрасить. Индексы, степени, `\text{}` и
+   `\mathrm{}` из поиска исключаются: они нейтральны по правилу. */
+const ATOM_RE = /^(?:[A-Za-z]|\\[A-Za-z]+|\\math(?:cal|bb|bf)\{[A-Za-z]\}|\\bar\{[A-Za-z]\}|\\bar\{\\[A-Za-z]+\})$/;
+const ROLE_OPEN_RE = /\\(enfVar|enfFun|enfPar|enfOp|enfTgt|enfNeu)\s*\{/g;
+
+/** Содержимое сбалансированной группы `{…}`, начиная с открывающей скобки. */
+function groupEnd(src, open) {
+  let depth = 0;
+  for (let i = open; i < src.length; i++) {
+    if (src[i] === '\\') { i++; continue; }
+    if (src[i] === '{') depth++;
+    else if (src[i] === '}' && --depth === 0) return i;
+  }
+  return src.length - 1;
+}
+
+function collectRoles(formulas) {
+  const votes = new Map();
+  for (const f of formulas) {
+    for (const m of f[1].matchAll(ROLE_OPEN_RE)) {
+      if (m[1] === 'enfNeu') continue;
+      const open = m.index + m[0].length - 1;
+      const atom = f[1].slice(open + 1, groupEnd(f[1], open)).trim();
+      if (!ATOM_RE.test(atom)) continue;
+      const byRole = votes.get(atom) ?? new Map();
+      byRole.set(m[1], (byRole.get(m[1]) ?? 0) + 1);
+      votes.set(atom, byRole);
+    }
+  }
+  const roles = new Map();
+  for (const [atom, byRole] of votes) {
+    roles.set(atom, [...byRole].sort((a, b) => b[1] - a[1])[0][0]);
+  }
+  return roles;
+}
+
+/** Формула без окрашенных групп, индексов, степеней и текстовых вставок. */
+function neutralPart(src) {
+  let out = '';
+  for (let i = 0; i < src.length; i++) {
+    ROLE_OPEN_RE.lastIndex = i;
+    const role = ROLE_OPEN_RE.exec(src);
+    if (role && role.index === i) {
+      i = groupEnd(src, i + role[0].length - 1);
+      out += ' ';
+      continue;
+    }
+    const text = /^\\(?:text|mathrm|operatorname|label|tag)\s*\{/.exec(src.slice(i));
+    if (text) {
+      i = groupEnd(src, i + text[0].length - 1);
+      out += ' ';
+      continue;
+    }
+    if (src[i] === '_' || src[i] === '^') {
+      let j = i + 1;
+      while (src[j] === ' ') j++;
+      if (src[j] === '{') i = groupEnd(src, j);
+      else if (src[j] === '\\') i = j + /^\\[A-Za-z]*/.exec(src.slice(j))[0].length - 1;
+      else i = j;
+      out += ' ';
+      continue;
+    }
+    out += src[i];
+  }
+  return out;
+}
+
+/* Связанные переменные — то, что стоит под \max, \arg\max, \sum и им
+   подобными (`\max_{a'}`). Они перебирают значения и нейтральны по
+   ENF-MATH-025, п. 4, в том числе вне своей формулы: `$a'$` в тексте. */
+const BINDER_RE = /\\(?:max|min|argmax|sum|prod|sup|inf)\s*\}?\s*_\s*\{?\s*([A-Za-z]'+|\\[A-Za-z]+'+|[A-Za-z]|\\[A-Za-z]+)\s*(?=[}\s\\(=]|$)/g;
+
+function collectBound(formulas) {
+  const bound = new Set();
+  for (const f of formulas) {
+    for (const m of f[1].matchAll(BINDER_RE)) {
+      if (m[1].includes("'")) bound.add(m[1]);
+    }
+  }
+  return bound;
+}
+
+function checkUndercolored(file, line, src, used, roles, max, bound) {
+  let neutral = neutralPart(src);
+  for (const b of bound) neutral = neutral.split(b).join(' ');
+  const missed = new Map();
+  for (const [atom, role] of roles) {
+    if (used.size >= max && !used.has(role)) continue;
+    const escaped = atom.replace(/[\\{}]/g, (c) => '\\' + c);
+    const re = atom.startsWith('\\')
+      ? new RegExp(`${escaped}(?![A-Za-z])`)
+      : new RegExp(`(?<![\\\\A-Za-z])${escaped}(?![A-Za-z{])`);
+    if (re.test(neutral)) missed.set(atom, role);
+  }
+  if (missed.size === 0) return;
+  const list = [...missed].map(([a, r]) => `${a} → \\${r}`).join(', ');
+  const newRoles = new Set([...missed.values()].filter((r) => !used.has(r)));
+  const free = max - used.size;
+  const budget = newRoles.size > free
+    ? ` (свободных тонов ${free}: выберите роли, которые разбираются рядом)`
+    : '';
+  report.warn(file, line, 'ENF-MATH-025',
+    `нейтральный символ с назначенной ролью, лимит тонов позволяет окрасить: ${list}${budget}`);
 }
 
 function checkSvg(file) {
