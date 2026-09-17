@@ -43,7 +43,7 @@ cd Math_for_DS_-_RL
 cp templates/Lecture.md "Лекция 01 — Предел функции.md"
 ```
 
-**Работать в Obsidian.** Откройте папку `Obsidian/Vault/` как хранилище — CSS-темы, Templater-шаблоны и Dataview-запросы уже настроены. Подробности — в [`docs/04_Obsidian_Guide.md`](docs/04_Obsidian_Guide.md).
+**Работать в Obsidian.** Откройте корень репозитория `Math_for_DS_&_RL` как хранилище (**Open folder as vault**) — тема, CSS-сниппеты формул, коллаутов и кода, плагин MathJax и формат ссылок уже настроены. Подробности — в [`docs/04_Obsidian_Guide.md`](docs/04_Obsidian_Guide.md).
 
 **Проверить качество.** Уровень 1 (машинные проверки) запускается одной командой:
 
@@ -68,9 +68,11 @@ pwsh Scripts/build.ps1 -Source examples/Bellman_Equation.md -All
 | [`docs/`](docs/) | Руководство по стилю: цвета, типографика, математика, диаграммы, правила для ИИ, публикация |
 | [`agents/`](agents/) | Конституция агентов, инструкции для Claude и Codex, перенос документов |
 | [`docs/prompts/`](docs/prompts/) | Библиотека промтов под конкретные задачи |
-| [`templates/`](templates/) | Шесть универсальных Markdown-шаблонов документов |
-| [`Obsidian/`](Obsidian/) | Готовое хранилище: CSS, Templater, Dataview, Canvas |
-| [`css/`](css/), [`snippets/`](snippets/) | Токены палитры, CSS сборки, сниппеты Obsidian |
+| [`math-textbook/`](math-textbook/) | Учебник «Математика для ML и RL»: 7 частей, 51 раздел |
+| [`materials/`](materials/) | Отдельные лекции по дисциплинам |
+| [`templates/`](templates/) | Шесть универсальных Markdown-шаблонов документов и их Templater-версии |
+| [`.obsidian/`](.obsidian/), [`Obsidian/`](Obsidian/) | Настройки хранилища (корень репозитория) и служебные заметки: преамбула, палитра, Dataview, Canvas |
+| [`css/`](css/), [`snippets/`](snippets/) | Токены палитры, CSS сборки, источники сниппетов Obsidian |
 | [`svg/`](svg/) | Редактируемая библиотека векторных иллюстраций |
 | [`mermaid/`](mermaid/) | Шаблоны диаграмм с подключённой палитрой |
 | [`Build/`](Build/) | Конфигурация Pandoc: шаблоны, Lua-фильтры |

@@ -8,16 +8,17 @@
  * ENF-COLOR-001 (единый источник истины), поэтому копии порождаются
  * скриптом и помечены как порождённые.
  *
- * Источники: css/enf-tokens.css, snippets/enf-math.css, snippets/enf-callouts.css
- * Результат:  Obsidian/Vault/.obsidian/snippets/
+ * Источники: css/enf-tokens.css, snippets/enf-math.css, snippets/enf-callouts.css,
+ *            snippets/enf-code.css
+ * Результат:  .obsidian/snippets/ — корень репозитория и есть хранилище
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const VAULT = resolve(HERE, '..', 'Obsidian', 'Vault', '.obsidian', 'snippets');
+const VAULT = resolve(HERE, '..', '.obsidian', 'snippets');
 
 /* Токены живут в css/ вместе с остальной конфигурацией сборки: их читают
    и Pandoc, и генератор LaTeX-цветов. Остальные сниппеты специфичны для
@@ -26,7 +27,10 @@ const SOURCES = [
   { src: resolve(HERE, '..', 'css', 'enf-tokens.css'), from: 'css/enf-tokens.css', name: 'enf-tokens.css' },
   { src: resolve(HERE, '..', 'snippets', 'enf-math.css'), from: 'snippets/enf-math.css', name: 'enf-math.css' },
   { src: resolve(HERE, '..', 'snippets', 'enf-callouts.css'), from: 'snippets/enf-callouts.css', name: 'enf-callouts.css' },
+  { src: resolve(HERE, '..', 'snippets', 'enf-code.css'), from: 'snippets/enf-code.css', name: 'enf-code.css' },
 ];
+
+mkdirSync(VAULT, { recursive: true });
 
 const header = (from) => `/* =============================================================
    ПОРОЖДЁННЫЙ ФАЙЛ — НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ.

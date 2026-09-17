@@ -1,0 +1,117 @@
+/* =============================================================
+   ПОРОЖДЁННЫЙ ФАЙЛ — НЕ РЕДАКТИРОВАТЬ ВРУЧНУЮ.
+
+   Источник: snippets/enf-code.css
+   Генератор: Scripts/gen-obsidian-css.mjs
+   Пересоздать: node Scripts/gen-obsidian-css.mjs
+
+   Правки, внесённые сюда напрямую, будут потеряны при следующей
+   генерации. Меняйте значения в источнике — там же лежит и
+   обоснование выбора цветов.
+   ============================================================= */
+
+/* =============================================================
+   ENF · подсветка кода в Obsidian — темы «Тетрадь» и «Доска»
+   Палитра и обоснование: docs/13_Code_Module_Python.md, п. 10.2.
+   Та же палитра для Pandoc: Build/themes/lesson-code.theme,
+   для HTML-сборки: css/lesson-export.css.
+   ============================================================= */
+
+/* ---------- Цвета токенов ----------
+   Штатные переменные Obsidian: действуют и в режиме чтения (Prism),
+   и в режиме редактирования (CodeMirror). Светлая и тёмная палитры
+   переключаются вместе с темой Obsidian. */
+body.theme-light {
+  --code-background: #F2F5F8;
+  --code-normal: #1E2A36;
+  --code-keyword: #6B2EA0;
+  --code-function: #194F99;
+  --code-property: #194F99;
+  --code-string: #195B33;
+  --code-value: #803B00;
+  --code-important: #803B00;
+  --code-comment: #48515B;
+  --code-operator: #34414E;
+  --code-punctuation: #34414E;
+  --code-tag: #6B2EA0;
+  --enf-code-margin: #D9A7A0;
+  --enf-output-bg: #EEF5F0;
+  --enf-output-margin: #7FA88A;
+  --enf-output-label: #33573D;
+}
+
+body.theme-dark {
+  --code-background: #1E2826;
+  --code-normal: #E3E8E4;
+  --code-keyword: #CDA8F2;
+  --code-function: #8EC1F5;
+  --code-property: #8EC1F5;
+  --code-string: #A6D49B;
+  --code-value: #F0C27A;
+  --code-important: #F0C27A;
+  --code-comment: #ACB7B3;
+  --code-operator: #C9D1CC;
+  --code-punctuation: #C9D1CC;
+  --code-tag: #CDA8F2;
+  --enf-code-margin: #8F6A64;
+  --enf-output-bg: #1A2320;
+  --enf-output-margin: #5E8F6D;
+  --enf-output-label: #A6D49B;
+}
+
+/* ---------- Шрифт ----------
+   JetBrains Mono: кириллица, различимые 0/O и 1/l/I. Лигатуры выключены —
+   ученик видит `!=`, а не `≠`, и набирает ровно то, что видит. */
+body {
+  --font-monospace-override: "JetBrains Mono", "Cascadia Mono", "Fira Mono", Consolas, monospace;
+}
+
+.markdown-rendered pre,
+.markdown-rendered code,
+.markdown-source-view.mod-cm6 .HyperMD-codeblock {
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+}
+
+/* ---------- Начертание: смысл не только в цвете ---------- */
+.markdown-rendered .token.keyword,
+.markdown-source-view.mod-cm6 .cm-keyword {
+  font-weight: 600;
+}
+
+.markdown-rendered .token.comment,
+.markdown-source-view.mod-cm6 .cm-comment {
+  font-style: italic;
+}
+
+/* ---------- Блоки кода и вывода в режиме чтения ----------
+   Черта слева кодирует тип блока: «поля тетради» — код, зелёная — вывод.
+   Строки не переносятся: перенос ломает отступы Python. */
+.markdown-rendered pre {
+  border-left: 3px solid var(--enf-code-margin);
+  border-radius: 4px;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.markdown-rendered pre code {
+  white-space: pre;
+}
+
+.markdown-rendered pre.language-output {
+  position: relative;
+  background: var(--enf-output-bg);
+  border-left-color: var(--enf-output-margin);
+  padding-top: 1.8em;
+}
+
+.markdown-rendered pre.language-output::before {
+  content: "Вывод";
+  position: absolute;
+  top: 0.4em;
+  left: 1em;
+  font-family: var(--font-interface);
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--enf-output-label);
+}

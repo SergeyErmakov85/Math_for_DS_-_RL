@@ -24,10 +24,17 @@ package-lock.json
 
 # Obsidian: рабочее состояние конкретного пользователя.
 # Настройки и сниппеты хранилища при этом версионируются намеренно.
-Obsidian/Vault/.obsidian/workspace.json
-Obsidian/Vault/.obsidian/workspace-mobile.json
-Obsidian/Vault/.obsidian/cache/
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
 .trash/
+
+# Python
+__pycache__/
+*.pyc
+
+# Конфликты Obsidian Sync — временные копии, разрешаются в приложении
+*.sync-conflict-*
 
 # ОС и редакторы
 Thumbs.db

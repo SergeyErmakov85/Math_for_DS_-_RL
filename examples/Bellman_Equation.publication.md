@@ -17,10 +17,10 @@ date: 2026-07-31
 
 | Символ | Значение | Роль |
 |--------|----------|------|
-| $s, s' \in \mathcal{S}$ | состояние и состояние-преемник | `variable` |
-| $a \in \mathcal{A}$ | действие | `function` |
-| $\pi(a \mid s)$ | политика | `parameter` |
-| $\gamma \in [0,1)$ | коэффициент дисконтирования | `parameter` |
+| $\enfVar{s}, \enfVar{s'} \in \mathcal{S}$ | состояние и состояние-преемник | `variable` |
+| $\enfFun{a} \in \mathcal{A}$ | действие | `function` |
+| $\enfPar{\pi}(a \mid s)$ | политика | `parameter` |
+| $\enfPar{\gamma} \in [0,1)$ | коэффициент дисконтирования | `parameter` |
 | $V^\pi$ | функция ценности состояния | — |
 | $\mathcal{T}^\pi$ | оператор Беллмана для политики $\pi$ | — |
 

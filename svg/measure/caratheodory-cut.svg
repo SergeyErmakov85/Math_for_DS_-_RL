@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" width="700" height="380"
+     role="img" aria-labelledby="t d">
+  <title id="t">Критерий Каратеодори: измеримое множество разрезает любое тестовое множество без потерь</title>
+  <desc id="d">Овал со штриховой границей — произвольное тестовое множество T. Прямоугольник со
+    сплошной границей справа — проверяемое множество A. Граница A проходит сквозь овал и делит его
+    на две части: правая часть, залитая и подписанная «T пересечь A», лежит внутри A; левая часть,
+    оставленная незалитой и подписанная «T без A», лежит вне A. Множество A называется измеримым,
+    если для любого тестового T внешняя мера T равна сумме внешних мер этих двух частей. Внизу
+    подпись: неравенство «меньше либо равно» выполняется всегда по полуаддитивности, проверять
+    нужно только «больше либо равно».</desc>
+
+  <style>
+    .test  { stroke: var(--enf-color-neutral, #414A54); stroke-width: 2; fill: none; stroke-dasharray: 8 5; }
+    .setA  { stroke: var(--enf-color-variable, #1D5B85); stroke-width: 2.5; fill: none; }
+    .fillA { fill: var(--enf-fill-variable, #E3EDF4); }
+    .cut   { stroke: var(--enf-color-variable, #1D5B85); stroke-width: 3; fill: none; }
+    .lbl   { font: 14px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .hdr   { font: 600 15px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .eq    { font: 600 16px 'Charter', Georgia, serif; fill: var(--enf-color-operator, #6B4E9E); }
+    .note  { font: 13px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .mlbl  { font: italic 16px 'Charter', Georgia, serif; }
+  </style>
+
+  <clipPath id="inA">
+    <rect x="350" y="70" width="290" height="220"/>
+  </clipPath>
+
+  <!-- залитая часть теста, попавшая внутрь A -->
+  <g clip-path="url(#inA)">
+    <ellipse class="fillA" cx="330" cy="190" rx="200" ry="100"/>
+  </g>
+
+  <!-- проверяемое множество A -->
+  <rect class="setA" x="350" y="70" width="290" height="220" rx="14"/>
+  <text class="lbl mlbl" x="612" y="98" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">A</text>
+
+  <!-- тестовое множество T -->
+  <ellipse class="test" cx="330" cy="190" rx="200" ry="100"/>
+  <text class="lbl mlbl" x="150" y="112" text-anchor="middle">T</text>
+
+  <!-- линия разреза -->
+  <path class="cut" d="M 350 106 V 274"/>
+
+  <text class="lbl" x="255" y="186" text-anchor="middle">часть вне A</text>
+  <text class="lbl mlbl" x="255" y="210" text-anchor="middle">T \ A</text>
+
+  <text class="lbl" x="430" y="186" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">часть внутри A</text>
+  <text class="lbl mlbl" x="430" y="210" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">T ∩ A</text>
+
+  <text class="hdr" x="350" y="32" text-anchor="middle">Множество A измеримо, если оно режет любое T без потерь</text>
+
+  <text class="eq" x="350" y="330" text-anchor="middle">μ*(T) = μ*(T ∩ A) + μ*(T \ A)</text>
+  <text class="note" x="350" y="358" text-anchor="middle">знак «≤» верен всегда по полуаддитивности — проверять нужно только «≥»</text>
+</svg>

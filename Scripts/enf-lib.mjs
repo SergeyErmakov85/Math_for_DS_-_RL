@@ -33,7 +33,6 @@ export const IGNORED_DIRS = new Set([
  */
 export function isTemplate(path) {
   const p = path.split(sep).join('/');
-  if (p.includes('/Vault/_templates/')) return true;
   return p.includes('/templates/') && !p.includes('/templates/examples/');
 }
 

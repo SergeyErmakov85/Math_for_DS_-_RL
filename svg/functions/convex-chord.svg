@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300"
+     role="img" aria-labelledby="t d">
+  <title id="t">Выпуклая функция: хорда лежит не ниже графика</title>
+  <desc id="d">График выпуклой функции в форме чаши. На графике отмечены две точки,
+    соответствующие значениям аргумента x один и x два. Через точки проведена хорда.
+    На всём промежутке между точками хорда проходит выше дуги графика; вертикальный
+    пунктирный отрезок в промежуточной точке показывает зазор между значением функции
+    и значением хорды — это и есть неравенство из определения выпуклости.</desc>
+
+  <style>
+    .axis  { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.5; fill: none; }
+    .curve { stroke: var(--enf-color-function, #8A5214); stroke-width: 2.5; fill: none; }
+    .chord { stroke: var(--enf-color-operator, #A32EAD); stroke-width: 2.2; fill: none; }
+    .gap   { stroke: var(--enf-color-target, #7A0A2C); stroke-width: 1.8; fill: none;
+             stroke-dasharray: 6 4; }
+    .pt    { fill: var(--enf-color-variable, #1D5B85); }
+    .lbl   { font: 15px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .mlbl  { font: italic 16px 'Charter', Georgia, serif; }
+  </style>
+
+  <path class="axis" d="M 60 260 H 760"/>
+  <path class="axis" d="M 60 260 V 30"/>
+
+  <!-- выпуклая дуга: квадратичная кривая Безье, чаша -->
+  <path class="curve" d="M 100 80 Q 410 400 720 60"/>
+
+  <!-- хорда между двумя точками графика -->
+  <path class="chord" d="M 224 182 L 627 147"/>
+
+  <!-- зазор между хордой и графиком в промежуточной точке -->
+  <path class="gap" d="M 441 163 V 232"/>
+
+  <circle class="pt" cx="224" cy="182" r="6"/>
+  <circle class="pt" cx="627" cy="147" r="6"/>
+
+  <path class="axis" stroke-dasharray="4 4" d="M 224 182 V 260 M 627 147 V 260"/>
+
+  <text class="lbl mlbl" x="224" y="282" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">x₁</text>
+  <text class="lbl mlbl" x="627" y="282" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">x₂</text>
+  <text class="lbl mlbl" x="441" y="282" text-anchor="middle"
+        fill="var(--enf-color-variable, #1D5B85)">λx₁ + (1−λ)x₂</text>
+  <path class="axis" stroke-dasharray="4 4" d="M 441 232 V 260"/>
+
+  <text class="lbl" x="452" y="205"
+        fill="var(--enf-color-target, #7A0A2C)">зазор ≥ 0</text>
+
+  <text class="lbl" x="330" y="140"
+        fill="var(--enf-color-operator, #A32EAD)">хорда: λf(x₁) + (1−λ)f(x₂)</text>
+  <text class="lbl mlbl" x="730" y="50" text-anchor="end"
+        fill="var(--enf-color-function, #8A5214)">f</text>
+
+  <text class="lbl mlbl" x="756" y="252" text-anchor="end">x</text>
+  <text class="lbl mlbl" x="72" y="42">y</text>
+</svg>

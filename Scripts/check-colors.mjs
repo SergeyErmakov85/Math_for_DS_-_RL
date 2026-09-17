@@ -16,7 +16,7 @@ import { readText, walk, parseFrontmatter, maskCodeBlocks, lineOf, Report, targe
 const HEX_ALLOWED = [
   /css\/enf-tokens\.css$/,
   /snippets\//,
-  /Obsidian\/Vault\/\.obsidian\/snippets\/enf-tokens\.css$/,
+  /\.obsidian\/snippets\//,
   /Build\/templates\/enf-colors\.tex$/,
   /docs\/02_Color_System\.md$/,
   /mermaid\//,

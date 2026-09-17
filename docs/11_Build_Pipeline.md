@@ -88,7 +88,7 @@ pwsh Scripts/convert-svg.ps1
 |------|-----------|
 | `templates/enf-colors.tex` | `Scripts/gen-latex-colors.mjs` |
 | `../Mermaid/init-config.md` и init-строки шаблонов | `Scripts/gen-mermaid-init.mjs` |
-| `../Obsidian/Vault/.obsidian/snippets/enf-tokens.css` | `Scripts/gen-obsidian-css.mjs` |
+| `../.obsidian/snippets/*.css` | `Scripts/gen-obsidian-css.mjs` |
 
 Все три пересоздаются автоматически перед каждой сборкой.
 

@@ -22,7 +22,7 @@
 |--------|-------------|
 | [`gen-latex-colors.mjs`](gen-latex-colors.mjs) | `Build/templates/enf-colors.tex` — `\definecolor` и макросы ролей для XeLaTeX |
 | [`gen-mermaid-init.mjs`](gen-mermaid-init.mjs) | `mermaid/init-config.md` и init-директивы во всех шаблонах Mermaid |
-| [`gen-obsidian-css.mjs`](gen-obsidian-css.mjs) | `Obsidian/Vault/.obsidian/snippets/enf-tokens.css` — Obsidian не читает CSS извне хранилища |
+| [`gen-obsidian-css.mjs`](gen-obsidian-css.mjs) | `.obsidian/snippets/*.css` — Obsidian подключает сниппеты только оттуда |
 
 ## Сборка
 

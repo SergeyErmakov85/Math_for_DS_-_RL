@@ -3,7 +3,8 @@
  * check-links.mjs — проверка внутренних ссылок.
  *
  * Правило ENF-TYPO-051: ссылки внутри репозитория — относительными путями;
- * wiki-ссылки Obsidian допустимы только внутри Obsidian/Vault/, потому что
+ * wiki-ссылки Obsidian допустимы только в служебных заметках хранилища
+ * (Obsidian/) и в Templater-шаблонах (templates/templater/), потому что
  * Pandoc их не понимает и материал развалится при сборке.
  */
 
@@ -45,14 +46,14 @@ const anchorsCached = (file) => {
 for (const target of targetsFromArgv(process.argv)) {
   for (const file of walk(resolve(target), ['.md'])) {
     const rel = report.rel(file);
-    const inVault = rel.includes('Obsidian/Vault/');
+    const wikiAllowed = rel.startsWith('Obsidian/') || rel.startsWith('templates/templater/');
     const raw = readText(file);
     const text = maskCodeBlocks(raw);
 
     for (const m of text.matchAll(WIKI_RE)) {
-      if (inVault) continue;
+      if (wikiAllowed) continue;
       report.error(file, lineOf(text, m.index), 'ENF-TYPO-051',
-        `wiki-ссылка [[${m[1]}]] вне Obsidian/Vault/; Pandoc её не понимает — используйте относительный путь`);
+        `wiki-ссылка [[${m[1]}]] в материале; Pandoc её не понимает — используйте относительный путь`);
     }
 
     for (const m of text.matchAll(LINK_RE)) {

@@ -16,7 +16,18 @@
 
 Изменения, ещё не вошедшие в релиз.
 
+### Changed
+
+- **Хранилищем Obsidian стал корень репозитория.** Вложенное хранилище `Obsidian/Vault/` упразднено. Настройки, тема, плагин Extended MathJax и сниппеты — в корневом `.obsidian/`; служебные заметки — в `Obsidian/`; лекции — в `materials/<Дисциплина>/`; Templater-шаблоны — в `templates/templater/`. `Scripts/gen-obsidian-css.mjs` пишет сниппеты в `.obsidian/snippets/`. Хранилище вставляет ссылки относительными путями (`.obsidian/app.json`), вложения сохраняет в `Figures/`, новые заметки создаёт в `materials/`.
+- **Модуль «Код» включён в документацию** как `docs/13_Code_Module_Python.md` и подключён в `agents/CLAUDE.md`, `agents/CODEX.md`, `agents/AGENTS.md`. Добавлен недостающий сниппет подсветки кода `snippets/enf-code.css` (темы «Тетрадь» и «Доска»).
+
+### Removed
+
+- Дубликаты: копия учебника `Obsidian/Vault/100 math-textbook_Cuber/`, второй `preamble.sty`, вложенные `.obsidian/` в `Obsidian/` и `Obsidian/Vault/`, README-заглушки `Obsidian/CSS|Canvas|Dataview|Icons|Snippets|Templates`, пустые папки `00 Inbox`…`90 Ресурсы`, копия `lesson-code.theme` в `.obsidian/themes/`, `materials/demo_lesson.md` (дублировал приложение А модуля «Код»), `Scripts/__pycache__/`.
+
 ### Fixed
+
+- **Около 1500 внутренних ссылок, испорченных внешним хранилищем Obsidian, восстановлены.** Ссылки были переписаны в пути вида `Education/Math/Math_for_DS_&_RL/…` или в имя файла без каталога и не открывались ни на GitHub, ни в сборке. Все ссылки снова относительные; `check-links.mjs` проходит без нарушений.
 
 - **Раскраска формул в Obsidian, HTML, EPUB и Reveal.js не работала: макросы ролей использовали `\htmlClass{}{}`.** Этот макрос принадлежит KaTeX; в MathJax его нет — расширение `html` определяет `\class`, `\cssId`, `\style`, `\href`, `\data`. Вместо цветной формулы MathJax печатал «Undefined control sequence». Заменено на `\class{}{}` в `Obsidian/Vault/preamble.sty`, `Obsidian/Vault/_meta/mathjax-preamble.md` и `Build/templates/mathjax-macros.html`. Имена CSS-классов, палитра, токены и правила `ENF-*` не изменились, материалы править не нужно. Сборка PDF не затронута — там макросы приходят из `Build/templates/enf-colors.tex`.
 

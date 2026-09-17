@@ -24,7 +24,7 @@ updated: 2026-07-31
 | 1.2 | Заполнены обязательные поля: `title`, `enf_mode`, `discipline` | `ENF-PUB-002` | `check-frontmatter.mjs` |
 | 1.3 | `enf_mode` имеет значение `learning` или `publication` | `ENF-MATH-022` | `check-frontmatter.mjs` |
 | 1.4 | Внутренние ссылки ведут на существующие файлы и якоря | `ENF-TYPO-051` | `check-links.mjs` |
-| 1.5 | Wiki-ссылки не используются вне `Obsidian/Vault/` | `ENF-TYPO-051` | `check-links.mjs` |
+| 1.5 | Wiki-ссылки не используются вне служебных заметок `Obsidian/` | `ENF-TYPO-051` | `check-links.mjs` |
 | 1.6 | В материалах нет HEX-кодов цвета | `ENF-COLOR-001` | `check-colors.mjs` |
 | 1.7 | Нет прямых вызовов `\textcolor`, `\color`, `\definecolor` | `ENF-COLOR-030` | `check-colors.mjs` |
 | 1.7a | Макросы ролей записаны с обратной косой чертой | `ENF-COLOR-030` | `check-colors.mjs` |

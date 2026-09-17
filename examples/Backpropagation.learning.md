@@ -22,15 +22,15 @@ date: 2026-07-31
 
 | Символ        | Значение                                                   | Роль        |
 | ------------- | ---------------------------------------------------------- | ----------- |
-| $x$           | вход сети                                                  | `variable`  |
-| $z$           | линейная комбинация до активации                           | `variable`  |
-| $h$           | выход слоя после активации                                 | `variable`  |
-| $\sigma$      | функция активации                                          | `function`  |
-| $w$, $b$      | вес и смещение                                             | `parameter` |
-| $\hat{y}$     | предсказание сети                                          | `target`    |
-| $y$           | истинный отклик                                            | `target`    |
-| $\mathcal{L}$ | функция потерь                                             | `target`    |
-| $\delta$      | ошибка на выходе слоя, $\partial \mathcal{L} / \partial z$ | `operator`  |
+| $\enfVar{x}$ | вход сети                                                  | `variable`  |
+| $\enfVar{z}$ | линейная комбинация до активации                           | `variable`  |
+| $\enfVar{h}$ | выход слоя после активации                                 | `variable`  |
+| $\enfFun{\sigma}$ | функция активации                                          | `function`  |
+| $\enfPar{w}$, $\enfPar{b}$ | вес и смещение                                             | `parameter` |
+| $\enfTgt{\hat{y}}$ | предсказание сети                                          | `target`    |
+| $\enfTgt{y}$ | истинный отклик                                            | `target`    |
+| $\enfTgt{\mathcal{L}}$ | функция потерь                                             | `target`    |
+| $\enfOp{\delta}$ | ошибка на выходе слоя, $\partial \mathcal{L} / \partial z$ | `operator`  |
 
 ## Сеть как композиция функций
 

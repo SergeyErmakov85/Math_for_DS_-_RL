@@ -1,7 +1,9 @@
 {
   "enabledCssSnippets": [
-    "enf-callouts",
+    "enf-tokens",
     "enf-math",
-    "enf-tokens"
-  ]
+    "enf-callouts",
+    "enf-code"
+  ],
+  "cssTheme": "Obsidianite"
 }

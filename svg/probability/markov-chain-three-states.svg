@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 330" width="900" height="330"
+     role="img" aria-labelledby="t d">
+  <title id="t">Цепь Маркова с тремя состояниями и её матрица переходов</title>
+  <desc id="d">Три кружка с номерами состояний расположены в ряд и соединены изогнутыми
+    стрелками: верхние дуги ведут вправо, нижние возвращают влево, у каждой дуги подписана
+    вероятность перехода. У первого и третьего состояний есть петли возврата в себя. Справа
+    те же девять чисел собраны в квадратную таблицу три на три: строка таблицы — распределение
+    по состояниям-преемникам, поэтому числа каждой строки в сумме дают единицу.</desc>
+
+  <style>
+    .node { fill: var(--enf-fill-variable, #E3EDF4); stroke: var(--enf-color-variable, #1D5B85); stroke-width: 2.2; }
+    .nlbl { font: 600 17px 'Inter', system-ui, sans-serif; fill: var(--enf-color-variable, #1D5B85); }
+    .edge { stroke: var(--enf-color-operator, #A32EAD); stroke-width: 2; fill: none; }
+    .plbl { font: 14px 'Inter', system-ui, sans-serif; fill: var(--enf-color-operator, #A32EAD); }
+    .lbl { font: 14px 'Inter', system-ui, sans-serif; fill: var(--enf-color-neutral, #414A54); }
+    .cell { font: 15px 'Charter', Georgia, serif; fill: var(--enf-color-operator, #A32EAD); }
+    .brace { stroke: var(--enf-color-neutral, #414A54); stroke-width: 1.8; fill: none; }
+  </style>
+  <defs>
+    <marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7"
+            orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--enf-color-operator, #A32EAD)"/>
+    </marker>
+  </defs>
+
+  <!-- дуги вперёд -->
+  <path class="edge" marker-end="url(#am)" d="M 118 132 Q 195 78 262 132"/>
+  <path class="edge" marker-end="url(#am)" d="M 298 132 Q 375 78 442 132"/>
+  <!-- дуги назад -->
+  <path class="edge" marker-end="url(#am)" d="M 262 188 Q 195 242 118 188"/>
+  <path class="edge" marker-end="url(#am)" d="M 442 188 Q 375 242 298 188"/>
+  <!-- петли -->
+  <path class="edge" marker-end="url(#am)" d="M 66 138 Q 16 158 64 182"/>
+  <path class="edge" marker-end="url(#am)" d="M 494 138 Q 544 158 496 182"/>
+
+  <circle class="node" cx="90" cy="160" r="30"/>
+  <circle class="node" cx="280" cy="160" r="30"/>
+  <circle class="node" cx="470" cy="160" r="30"/>
+  <text class="nlbl" x="90" y="166" text-anchor="middle">1</text>
+  <text class="nlbl" x="280" y="166" text-anchor="middle">2</text>
+  <text class="nlbl" x="470" y="166" text-anchor="middle">3</text>
+
+  <text class="plbl" x="190" y="86" text-anchor="middle">0,3</text>
+  <text class="plbl" x="370" y="86" text-anchor="middle">0,5</text>
+  <text class="plbl" x="190" y="252" text-anchor="middle">0,2</text>
+  <text class="plbl" x="370" y="252" text-anchor="middle">0,4</text>
+  <text class="plbl" x="18" y="128" text-anchor="middle">0,7</text>
+  <text class="plbl" x="536" y="128" text-anchor="middle">0,6</text>
+
+  <text class="lbl" x="280" y="300" text-anchor="middle">переходы за один шаг</text>
+
+  <path class="brace" d="M 626 96 q -10 0 -10 10 V 210 q 0 10 10 10"/>
+  <path class="brace" d="M 812 96 q 10 0 10 10 V 210 q 0 10 -10 10"/>
+  <text class="cell" x="660" y="128">0,7</text>
+  <text class="cell" x="718" y="128">0,3</text>
+  <text class="cell" x="776" y="128">0,0</text>
+  <text class="cell" x="660" y="168">0,2</text>
+  <text class="cell" x="718" y="168">0,3</text>
+  <text class="cell" x="776" y="168">0,5</text>
+  <text class="cell" x="660" y="208">0,0</text>
+  <text class="cell" x="718" y="208">0,4</text>
+  <text class="cell" x="776" y="208">0,6</text>
+  <text class="lbl" x="719" y="256" text-anchor="middle">каждая строка в сумме даёт единицу</text>
+  <text class="cell" x="596" y="168" fill="var(--enf-color-operator, #A32EAD)">P =</text>
+</svg>

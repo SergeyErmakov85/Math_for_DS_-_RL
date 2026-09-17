@@ -113,7 +113,7 @@ pwsh Scripts/build.ps1 -Source <файл> -All
 |------|----------------|-------------|
 | `Build/templates/enf-colors.tex` | `css/enf-tokens.css` | `Scripts/gen-latex-colors.mjs` |
 | `mermaid/init-config.md` и init-строки шаблонов | то же | `Scripts/gen-mermaid-init.mjs` |
-| `Obsidian/Vault/.obsidian/snippets/enf-tokens.css` | то же | `Scripts/gen-obsidian-css.mjs` |
+| `.obsidian/snippets/*.css` | `css/enf-tokens.css`, `snippets/*.css` | `Scripts/gen-obsidian-css.mjs` |
 
 Каждый такой файл начинается предупреждением. Правки в них теряются при следующей сборке — менять нужно источник.
 

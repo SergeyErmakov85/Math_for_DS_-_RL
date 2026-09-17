@@ -62,19 +62,17 @@ Math_for_DS_&_RL/
 │   ├── ResearchPaper.md
 │   ├── ExerciseSheet.md
 │   ├── Proof.md
-│   └── Presentation.md
+│   ├── Presentation.md
+│   └── templater/               # версии Lecture и Proof для плагина Templater
 │
 ├── css/                         # enf-tokens.css — единый источник цветов; enf-html.css
-├── snippets/                    # сниппеты Obsidian: enf-math.css, enf-callouts.css
+├── snippets/                    # источники сниппетов Obsidian: enf-math, enf-callouts, enf-code
 │
-├── Obsidian/
-│   ├── Vault/                   # готовое хранилище «распаковал и работай»
-│   ├── Templates/               # Templater-версии шаблонов
-│   ├── CSS/
-│   ├── Icons/
-│   ├── Snippets/
-│   ├── Canvas/
-│   └── Dataview/
+├── .obsidian/                   # корень репозитория — хранилище Obsidian; сниппеты порождаются
+├── preamble.sty                 # преамбула MathJax для плагина Extended MathJax
+├── Obsidian/                    # служебные заметки: преамбула, палитра, Dataview, Canvas
+├── math-textbook/               # учебник: 7 частей, 51 раздел
+├── materials/                   # отдельные лекции по дисциплинам
 │
 ├── svg/
 ├── mermaid/

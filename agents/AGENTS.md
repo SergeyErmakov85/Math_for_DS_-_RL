@@ -67,4 +67,6 @@ pwsh Scripts/build.ps1 -CheckEnv               # чего не хватает в
 | [`../docs/10_Review_Checklist.md`](../docs/10_Review_Checklist.md) | по чему будет проверен результат |
 | [`../docs/01_Style_Guide.md`](../docs/01_Style_Guide.md) | все 96 правил одним списком |
 | [`agents/DOCUMENT_CONVERSION.md`](DOCUMENT_CONVERSION.md) | перенос PDF и сканов в Markdown |
+| [`../docs/13_Code_Module_Python.md`](../docs/13_Code_Module_Python.md) | материал с кодом на Python: мост «формула ↔ код», вывод, проверка |
+| [`CLAUDE.md`](CLAUDE.md) | куда сохранять новые материалы и как их называть |
 | [`../docs/reference/Teaching_Mode.md`](../docs/reference/Teaching_Mode.md) | режим, в котором вы учите, а не пишете |

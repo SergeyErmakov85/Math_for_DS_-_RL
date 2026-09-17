@@ -1,0 +1,149 @@
+/* =====================================================================
+   HTML-сборка учебных материалов — тема «Тетрадь», v1.0
+   Цвета токенов задаёт Build/themes/lesson-code.theme; этот файл отвечает
+   за фон, рамки, шрифт и блоки вывода. Вклеивается в <style> вместе
+   с остальными стилями сборки (HTML без внешних ресурсов).
+   ===================================================================== */
+
+:root {
+  --ink: #1E2A36;
+  --code-bg: #F2F5F8;
+  --code-border: #DCE3EA;
+  --code-margin: #D9A7A0;
+  --output-bg: #EEF5F0;
+  --output-margin: #7FA88A;
+  --output-label: #33573D;
+  --mono: "JetBrains Mono", "Cascadia Mono", "Fira Mono", Consolas,
+    "DejaVu Sans Mono", monospace;
+}
+
+/* ---------- 1. Колонка текста ----------
+   Удалите этот раздел, если основная сборка задаёт свою вёрстку. */
+body {
+  max-width: 42em;
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+/* ---------- 2. Код ---------- */
+code,
+pre {
+  font-family: var(--mono);
+  font-variant-ligatures: none;
+}
+
+div.sourceCode,
+pre.output {
+  margin: 1.2em 0;
+  border: 1px solid var(--code-border);
+  border-left: 3px solid var(--code-margin);
+  border-radius: 6px;
+  background-color: var(--code-bg);
+}
+
+pre.sourceCode,
+pre.output {
+  padding: 0.9em 1.1em;
+  overflow-x: auto;
+}
+
+pre.sourceCode > code,
+pre.output > code {
+  font-size: 0.875em;
+  tab-size: 4;
+}
+
+/* Имена из кода в тексте объяснений. */
+:not(pre) > code {
+  padding: 0.1em 0.3em;
+  border-radius: 4px;
+  background-color: var(--code-bg);
+}
+
+pre > code.sourceCode > span {
+  line-height: 1.55;
+}
+
+/* ---------- 3. Вывод программы (```output) ---------- */
+pre.output {
+  position: relative;
+  padding-top: 2.1em;
+  line-height: 1.55;
+  background-color: var(--output-bg);
+  border-left-color: var(--output-margin);
+}
+
+pre.output::before {
+  content: "Вывод";
+  position: absolute;
+  top: 0.6em;
+  left: 1.1em;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--output-label);
+}
+
+/* Код и его вывод стоят ближе друг к другу, чем к тексту. */
+div.sourceCode + pre.output {
+  margin-top: -0.5em;
+}
+
+/* Широкий экран: блоки кода шире колонки текста,
+   строка в 79 символов помещается без прокрутки. */
+@media screen and (min-width: 62em) {
+  body > div.sourceCode,
+  body > pre.output {
+    width: 48em;
+    margin-left: calc((100% - 48em) / 2);
+  }
+}
+
+/* ---------- 4. Выноски (фильтр obsidian-callouts.lua) ---------- */
+.callout {
+  --callout-color: #465261;
+  --callout-bg: #F5F7F9;
+  margin: 1.4em 0;
+  padding: 0.15em 1.1em 0.35em;
+  border: 1px solid var(--code-border);
+  border-left: 4px solid var(--callout-color);
+  border-radius: 6px;
+  background-color: var(--callout-bg);
+}
+
+.callout-title {
+  margin: 0.65em 0 0.35em;
+  font-weight: 600;
+  color: var(--callout-color);
+}
+
+details.callout > summary {
+  cursor: pointer;
+}
+
+details.callout:not([open]) > summary {
+  margin-bottom: 0.65em;
+}
+
+.callout-body > :first-child { margin-top: 0.35em; }
+.callout-body > :last-child { margin-bottom: 0.65em; }
+.callout div.sourceCode,
+.callout pre.output { margin: 0.8em 0; }
+.callout div.sourceCode + pre.output { margin-top: -0.3em; }
+
+.callout-info { --callout-color: #1F5E99; --callout-bg: #F2F7FC; }
+.callout-tip { --callout-color: #0E6468; --callout-bg: #EFF7F7; }
+.callout-warning { --callout-color: #8A4300; --callout-bg: #FDF6EE; }
+.callout-question { --callout-color: #5B3E96; --callout-bg: #F6F3FB; }
+.callout-success { --callout-color: #2F6B40; --callout-bg: #F1F7F2; }
+.callout-bug,
+.callout-danger { --callout-color: #912A2A; --callout-bg: #FCF3F2; }
+
+/* ---------- 5. Печать ---------- */
+@media print {
+  div.sourceCode,
+  pre.output,
+  .callout {
+    break-inside: avoid;
+  }
+}

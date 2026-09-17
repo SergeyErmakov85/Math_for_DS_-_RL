@@ -20,20 +20,22 @@ updated: 2026-08-03
 | [`css/enf-html.css`](../css/enf-html.css) | Pandoc — HTML, EPUB, Reveal.js | типографика и вёрстка собранных документов |
 | [`snippets/enf-math.css`](../snippets/enf-math.css) | Obsidian | типографика текста и оформление формул в хранилище |
 | [`snippets/enf-callouts.css`](../snippets/enf-callouts.css) | Obsidian | коллауты: определение, теорема, лемма, следствие, доказательство, пример, замечание, интуиция, предупреждение |
+| [`snippets/enf-code.css`](../snippets/enf-code.css) | Obsidian | подсветка кода и блоки вывода: темы «Тетрадь» и «Доска» из [`13_Code_Module_Python.md`](13_Code_Module_Python.md) |
+| [`css/lesson-export.css`](../css/lesson-export.css) | Pandoc — HTML | фон, рамки и блоки вывода кода в HTML-сборке |
 
 Разделение проходит по потребителю, а не по содержимому. `css/` подключается Pandoc-сборкой и указан в [`Build/defaults/*.yaml`](../Build/defaults/); `snippets/` предназначен только для Obsidian и осмыслен исключительно внутри хранилища.
 
 ## Почему сниппеты лежат вне хранилища
 
-Obsidian не подключает CSS из-за пределов своей папки: `@import` на внешний файл не работает. Значит, физические копии сниппетов обязаны находиться в `Obsidian/Vault/.obsidian/snippets/`.
+Хранилище Obsidian — весь репозиторий, но Obsidian подключает сниппеты только из `.obsidian/snippets/`. Значит, физические копии сниппетов обязаны находиться там.
 
-Держать там же и рабочие версии означало бы два источника истины: правка в одной копии молча расходится с другой. Поэтому источник лежит в `snippets/`, а копии внутри хранилища **порождаются**:
+Держать там же и рабочие версии означало бы два источника истины: правка в одной копии молча расходится с другой, а токены к тому же нужны Pandoc-сборке. Поэтому источник лежит в `css/` и `snippets/`, а копии в `.obsidian/snippets/` **порождаются**:
 
 ```powershell
 node Scripts/gen-obsidian-css.mjs
 ```
 
-Скрипт переносит `css/enf-tokens.css`, `snippets/enf-math.css` и `snippets/enf-callouts.css` в хранилище, снабжая каждый заголовком «порождённый файл». Правки, внесённые прямо в `Obsidian/Vault/.obsidian/snippets/`, теряются при следующей генерации — это не побочный эффект, а цель.
+Скрипт переносит `css/enf-tokens.css`, `snippets/enf-math.css`, `snippets/enf-callouts.css` и `snippets/enf-code.css` в `.obsidian/snippets/`, снабжая каждый заголовком «порождённый файл». Правки, внесённые прямо в `.obsidian/snippets/`, теряются при следующей генерации — это не побочный эффект, а цель.
 
 ## Что происходит после правки токенов
 
