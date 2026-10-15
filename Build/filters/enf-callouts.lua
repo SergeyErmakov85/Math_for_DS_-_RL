@@ -22,6 +22,11 @@ local TITLES = {
   intuition  = 'Интуиция',
   warning    = 'Внимание',
   note       = 'Заметка',
+  -- Типы модуля «Код» (docs/13_Code_Module_Python.md); стили — css/lesson-export.css
+  info       = 'Информация',
+  tip        = 'Совет',
+  question   = 'Вопрос',
+  success    = 'Решение',
 }
 
 function BlockQuote(el)
@@ -32,7 +37,9 @@ function BlockQuote(el)
   if #inlines == 0 or inlines[1].t ~= 'Str' then return nil end
 
   -- Первый элемент имеет вид «[!theorem]»; заголовок идёт следом.
-  local kind = inlines[1].text:match('^%[!([%w%-]+)%]$')
+  -- Суффикс «-» или «+» у свёрнутой выноски Obsidian («[!success]-»)
+  -- вне Obsidian смысла не имеет и отбрасывается.
+  local kind = inlines[1].text:match('^%[!([%w%-]+)%][%-%+]?$')
   if not kind then return nil end
   kind = kind:lower()
   if not TITLES[kind] then return nil end

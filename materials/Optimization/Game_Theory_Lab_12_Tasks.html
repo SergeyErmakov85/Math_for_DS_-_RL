@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Лаборатория теории игр — 12 задач</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EDF0F4; --grid:#E1E6ED; --surface:#FFFFFF; --ink:#17202C; --muted:#5A6576; --rule:#D3DAE4; --soft:#F5F7FA;
+  --p1:#2747C4; --p1bg:#EAEFFF; --p2:#A0306E; --p2bg:#FBEAF3;
+  --eq:#D99A00; --eqbg:#FFF4D6; --ok:#17724A; --okbg:#E3F4EA; --warn:#9A4F00; --warnbg:#FDF0DE;
+  --r-lg:18px; --r-md:12px; --r-sm:8px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:17px/1.6 "Golos Text",system-ui,"Segoe UI",sans-serif;
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--p1);outline-offset:2px}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+
+/* ---------- шапка ---------- */
+header.top{padding:22px 0 10px}
+.top-row{display:flex;gap:16px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+.brand h1{margin:0;font-size:clamp(1.55rem,3.6vw,2.25rem);line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.brand p{margin:6px 0 0;color:var(--muted);max-width:60ch;font-size:.95rem}
+.progress-box{min-width:210px;text-align:right}
+.progress-box .count{font-weight:700;font-size:1.05rem}
+.progress-box .count small{font-weight:500;color:var(--muted);font-size:.85rem}
+.bar{height:8px;background:#DCE2EA;border-radius:99px;overflow:hidden;margin:6px 0 6px}
+.bar span{display:block;height:100%;width:0;background:var(--ok);transition:width .4s}
+.linkbtn{background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;padding:0;font-size:.85rem}
+
+/* ---------- полоса задач ---------- */
+nav.strip{position:sticky;top:0;z-index:5;background:rgba(237,240,244,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);padding:8px 0}
+.chips{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px}
+.chip{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px 6px;border:1px solid var(--rule);border-radius:var(--r-sm);background:var(--surface);cursor:pointer;min-width:0}
+.chip b{font-size:1rem;line-height:1}
+.chip span{font-size:.62rem;line-height:1.2;color:var(--muted);text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.chip.active{border-color:var(--ink);background:var(--ink);color:#fff}
+.chip.active span{color:#C9D2DF}
+.chip.done::after{content:"✓";position:absolute;top:-7px;right:-5px;width:18px;height:18px;border-radius:50%;background:var(--ok);color:#fff;font-size:.7rem;display:grid;place-items:center}
+
+/* ---------- карточка задачи ---------- */
+main{padding:18px 0 40px}
+.task{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-lg);padding:26px 28px}
+.task-head{display:flex;gap:16px;align-items:flex-start}
+.task-num{flex:none;width:56px;height:56px;border-radius:14px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:1.6rem;font-weight:800}
+.rubric{color:var(--muted);font-size:.88rem;font-weight:600}
+.task h2{margin:0;font-size:clamp(1.35rem,3vw,1.75rem);line-height:1.2;letter-spacing:-.01em}
+.cond{margin:16px 0 4px;max-width:70ch}
+.task h3{font-size:1rem;margin:22px 0 10px;font-weight:700}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.86rem;color:var(--muted);margin-bottom:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+
+/* ---------- биматрица ---------- */
+.matrix-wrap{overflow-x:auto}
+table.bm{border-collapse:separate;border-spacing:6px;margin:0 -6px}
+.bm th{font-weight:600;font-size:.9rem;color:var(--muted);padding:6px 10px;text-align:center}
+.bm thead th.c2{color:var(--p2)}
+.bm tbody th{color:var(--p1);text-align:right;white-space:nowrap}
+.bm th.corner{font-size:.78rem;text-align:left;font-weight:500;line-height:1.3}
+.bm th.corner .a{color:var(--p1)} .bm th.corner .b{color:var(--p2)}
+.cell{position:relative;min-width:150px;padding:16px 18px;border-radius:var(--r-md);background:var(--soft);border:2px solid transparent;cursor:pointer;text-align:center;transition:border-color .15s,background .15s}
+.cell:hover{border-color:#B9C4D4}
+.cell.sel{border-color:var(--ink);background:#fff}
+.pay{display:inline-flex;align-items:center;gap:12px;font-size:1.65rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1}
+.pay .v1{color:var(--p1)} .pay .v2{color:var(--p2)}
+.pay .div{width:1px;height:1.2em;background:#BFC8D6}
+.show-br .v1.br{text-decoration:underline 4px var(--p1);text-underline-offset:7px}
+.show-br .v2.br{text-decoration:underline 4px var(--p2);text-underline-offset:7px}
+.show-br .cell.ne{background:var(--eqbg);border-color:var(--eq)}
+.show-br .cell.ne::after{content:"★ равновесие";position:absolute;top:-10px;right:10px;background:var(--eq);color:#fff;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:99px}
+.matrix-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.analysis{margin-top:12px;padding:12px 16px;border-radius:var(--r-md);background:var(--soft);border:1px solid var(--rule);font-size:.95rem;display:none}
+.analysis.on{display:block}
+.analysis .v1{color:var(--p1);font-weight:700}.analysis .v2{color:var(--p2);font-weight:700}
+
+/* ---------- поля ---------- */
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.fld{background:var(--soft);border:1px solid var(--rule);border-radius:var(--r-md);padding:10px 12px}
+.fld label{display:block;font-size:.84rem;color:var(--muted);line-height:1.3;margin-bottom:6px}
+.fld input{width:100%;border:1px solid #C3CCD9;border-radius:var(--r-sm);padding:9px 11px;background:#fff;font-weight:700;font-variant-numeric:tabular-nums;font-size:1.05rem}
+.fld.ans{background:#fff;border-style:dashed;border-color:#9FAABB}
+.fld.ans input::placeholder{color:#A4AEBC;font-weight:500}
+
+/* ---------- варианты ---------- */
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--rule);border-radius:var(--r-md);cursor:pointer;background:#fff}
+.opt:hover{border-color:#AEB9C9}
+.opt:has(input:checked){border-color:var(--ink);background:var(--soft)}
+.opt input{accent-color:var(--ink);margin-top:5px;flex:none}
+
+/* ---------- кнопки и отклики ---------- */
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.btn{border:1px solid var(--rule);background:#fff;border-radius:var(--r-sm);padding:10px 16px;font-weight:600;cursor:pointer}
+.btn:hover{border-color:#9FAABB}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.primary:hover{background:#2A3546}
+.btn.small{padding:6px 12px;font-size:.88rem}
+.btn[aria-pressed="true"]{background:var(--eqbg);border-color:var(--eq)}
+.panel{display:none;margin-top:14px;padding:14px 18px;border-radius:var(--r-md);font-size:.97rem}
+.panel.on{display:block}
+.panel p{margin:.3em 0}
+.panel.hint{background:#EEF2F8;color:#28405F}
+.panel.good{background:var(--okbg);color:var(--ok)}
+.panel.try{background:var(--warnbg);color:var(--warn)}
+.panel.sol{background:#fff;border:1px solid var(--rule);color:var(--ink)}
+.panel.sol ol{margin:.4em 0 0;padding-left:1.3em}
+.panel.sol li{margin:.35em 0}
+.panel b.t{display:block;margin-bottom:4px}
+
+/* ---------- исследование и графики ---------- */
+details.explore{margin-top:16px;border:1px solid var(--rule);border-radius:var(--r-md);background:#fff}
+details.explore summary{cursor:pointer;padding:11px 16px;font-weight:600}
+details.explore[open] summary{border-bottom:1px solid var(--rule)}
+.explore-body{padding:14px 16px}
+.slider-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.slider-row input[type=range]{flex:1;min-width:200px;accent-color:var(--ink)}
+.slider-row output{font-weight:700;font-variant-numeric:tabular-nums;min-width:4ch}
+table.util{border-collapse:collapse;width:100%;margin-top:10px;font-variant-numeric:tabular-nums}
+.util th,.util td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:left}
+.util td.num{text-align:right;font-weight:700}
+.util tr.best td{background:var(--okbg)}
+.util td.neg{color:#B42318}
+svg.plot{width:100%;height:auto;display:block}
+svg text{font-family:"Golos Text",system-ui,sans-serif}
+.note{font-size:.88rem;color:var(--muted);margin-top:8px}
+
+/* ---------- нижние разделы ---------- */
+section.block{margin-top:22px;background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-lg);padding:22px 28px}
+section.block h2{margin:0 0 14px;font-size:1.25rem}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;counter-reset:s}
+.steps li{counter-increment:s;padding:14px;border-radius:var(--r-md);background:var(--soft);font-size:.92rem;line-height:1.45}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;font-weight:700;margin-bottom:8px}
+.steps li b{display:block;margin-bottom:2px}
+.steps .yes{color:var(--ok);font-weight:700}.steps .no{color:var(--warn);font-weight:700}
+select,textarea{width:100%;border:1px solid #C3CCD9;border-radius:var(--r-sm);padding:10px;background:#fff}
+textarea{min-height:110px;resize:vertical}
+.guide{margin:10px 0 14px;padding:12px 16px;border-left:4px solid var(--ink);background:var(--soft);border-radius:0 var(--r-sm) var(--r-sm) 0}
+.fieldlabel{display:block;font-weight:600;margin:10px 0 6px;font-size:.95rem}
+footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 30px}
+kbd{border:1px solid var(--rule);border-bottom-width:2px;border-radius:5px;padding:0 5px;font:inherit;font-size:.85em;background:#fff}
+
+@media (max-width:900px){
+  .chip span{display:none}
+  .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .task,section.block{padding:18px 16px}
+  .chips{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .grid2,.grid3{grid-template-columns:1fr}
+  .cell{min-width:82px;padding:12px 6px}
+  .pay{font-size:1.15rem;gap:6px}
+  .bm th{padding:4px;font-size:.8rem}
+  .bm tbody th{white-space:normal}
+  .task-num{width:44px;height:44px;font-size:1.25rem}
+  .progress-box{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{
+  body{background:#fff;font-size:12pt}
+  nav.strip,.actions,.matrix-tools,.linkbtn,#copyBtn{display:none!important}
+  .task,section.block{border:1px solid #999;break-inside:avoid}
+  .panel.sol{display:block!important}
+  details.explore{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-row">
+    <div class="brand">
+      <h1>Лаборатория теории игр</h1>
+      <p>Двенадцать задач на равновесие Нэша: от матриц выигрышей до смешанных стратегий, обратной индукции, повторяющихся игр, неполной информации и модели Курно.</p>
+    </div>
+    <div class="progress-box">
+      <div class="count"><span id="progressText">0 из 12</span> <small>решено правильно</small></div>
+      <div class="bar"><span id="bar"></span></div>
+      <button class="linkbtn" id="reset">Сбросить прогресс</button>
+    </div>
+  </div>
+</header>
+
+<nav class="strip" aria-label="Задачи">
+  <div class="wrap"><div class="chips" id="nav"></div></div>
+</nav>
+
+<main class="wrap">
+  <article class="task" id="task" aria-live="polite"></article>
+
+  <section class="block" id="algo">
+    <h2>Алгоритм поиска равновесия Нэша</h2>
+    <ol class="steps">
+      <li><b>Определите игроков и стратегии</b>Что может выбрать каждый участник?</li>
+      <li><b>Зафиксируйте действие соперника</b>Для каждого его выбора найдите свой лучший ответ.</li>
+      <li><b>Отметьте лучшие ответы</b>Подчеркните максимум игрока 1 в каждом столбце и максимум игрока 2 в каждой строке.</li>
+      <li><b>Проверьте одностороннее отклонение</b>Никто не выигрывает, сменив действие в одиночку: <span class="yes">равновесие</span>. Кто-то выигрывает: <span class="no">есть стимул уйти</span>.</li>
+    </ol>
+    <p class="note">Если ни одна клетка не получила двух подчёркиваний, равновесия в чистых стратегиях нет — ищите смешанное: вероятность каждого игрока подбирается так, чтобы соперник был безразличен между своими действиями.</p>
+  </section>
+
+  <section class="block" id="seminar">
+    <h2>Вопросы для семинара</h2>
+    <label class="fieldlabel" for="discussion">Тема обсуждения</label>
+    <select id="discussion">
+      <option>Почему индивидуальная рациональность может ухудшать общий результат?</option>
+      <option>Всегда ли равновесие Нэша — лучший коллективный исход?</option>
+      <option>Как меняется поведение при повторении игры?</option>
+      <option>Почему смешанные стратегии могут быть рациональны?</option>
+      <option>Как неполная информация меняет решение?</option>
+      <option>Как связаны теория игр и обучение с подкреплением?</option>
+    </select>
+    <div class="guide" id="guide"></div>
+    <label class="fieldlabel" for="notes">Заметки преподавателя</label>
+    <textarea id="notes" placeholder="Гипотезы студентов, промежуточные вычисления…"></textarea>
+    <div class="actions">
+      <button class="btn primary" id="copyBtn">Скопировать заметки</button>
+      <button class="btn" onclick="window.print()">Печать / сохранить в PDF</button>
+    </div>
+    <div class="note" id="copyStatus"></div>
+  </section>
+</main>
+
+<footer class="wrap">Автономный HTML-файл. Переход между задачами — клавиши <kbd>←</kbd> <kbd>→</kbd>. Дробные числа можно вводить с запятой.</footer>
+
+<script>
+"use strict";
+/* ---------- утилиты ---------- */
+const $ = id => document.getElementById(id);
+function num(s){ if(s==null) return NaN; s=String(s).trim().replace(/\s/g,'').replace(',', '.').replace(/[−–]/g,'-'); return s===''?NaN:Number(s); }
+function fmt(x,d=3){ if(!isFinite(x)) return '—'; let r=Math.round(x*10**d)/10**d; if(Object.is(r,-0)) r=0; return String(r).replace('.',',').replace('-','−'); }
+const near=(a,b,eps=0.011)=>isFinite(a)&&Math.abs(a-b)<eps;
+
+/* ---------- задачи ---------- */
+const tasks=[
+{id:1,n:"Дилемма заключённого",short:"Дилемма",d:"Социальная психология",
+ q:"Двух участников допрашивают отдельно. Каждый выбирает «молчать» или «предать». Если оба молчат, каждый получает 3; если оба предают — по 1. Предавший получает 5, если другой молчит, а молчащий — 0. Какой исход — равновесие Нэша?",
+ rows:["Молчать","Предать"],cols:["Молчать","Предать"],m:[[[3,3],[0,5]],[[5,0],[1,1]]],
+ opts:["Оба молчат","Оба предают","Любой исход с одним предателем"],ans:1,
+ hint:"Зафиксируйте выбор соперника и сравните свои выигрыши. Затем сравните равновесие с исходом, который лучше для обоих.",
+ sol:["Игрок 2 молчит: игроку 1 «Предать» даёт 5, «Молчать» — 3.","Игрок 2 предаёт: «Предать» даёт 1, «Молчать» — 0.","«Предать» строго доминирует при любом выборе соперника; игра симметрична, у игрока 2 то же самое.","Единственное равновесие Нэша — (Предать, Предать) с выигрышами (1, 1). Исход (Молчать, Молчать) = (3, 3) лучше для обоих, но неустойчив: каждому выгодно предать."]},
+
+{id:2,n:"Координация при разных предпочтениях",short:"Координация",d:"Координация и предпочтения",
+ q:"Два друга хотят провести вечер вместе. Анна предпочитает театр, Борис — футбол. Совместный вечер для обоих лучше раздельного, но каждому больше нравится его собственный вариант. Какие исходы — равновесия Нэша в чистых стратегиях?",
+ p1:"Анна",p2:"Борис",rows:["Театр","Футбол"],cols:["Театр","Футбол"],m:[[[3,2],[0,0]],[[0,0],[2,3]]],
+ opts:["Только (театр, театр)","Только (футбол, футбол)","Оба согласованных исхода"],ans:2,
+ hint:"Есть ли у Анны доминирующая стратегия? Если нет — найдите её лучший ответ на каждый выбор Бориса.",
+ sol:["Лучшие ответы Анны: на «Театр» — театр (3 > 0), на «Футбол» — футбол (2 > 0). У Бориса так же: 2 > 0 и 3 > 0.","Оба согласованных исхода — равновесия Нэша: (Театр, Театр) = (3, 2) и (Футбол, Футбол) = (2, 3). Несогласованные клетки неустойчивы.","Есть и смешанное равновесие. Анна идёт в театр с p = 3/5 (из безразличия Бориса: 2p = 3(1 − p)), Борис — с q = 2/5 (из безразличия Анны: 3q = 2(1 − q)). Ожидаемый выигрыш каждого 6/5, пара расходится с вероятностью 13/25.","Какое из чистых равновесий реализуется, матрица не определяет: нужны соглашение, традиция, сигнал или правило очерёдности."]},
+
+{id:3,n:"Ястребы и голуби",short:"Ястребы",d:"Конфликт за ресурс",
+ q:"Два игрока претендуют на ресурс ценностью V = 4. Ястреб борется, голубь уступает. Драка обходится в C = 6, поэтому при двух ястребах каждый получает (4 − 6)/2 = −1. Ястреб против голубя получает 4, голубь — 0. Два голубя делят ресурс поровну. Какие исходы — равновесия Нэша в чистых стратегиях?",
+ rows:["Ястреб","Голубь"],cols:["Ястреб","Голубь"],m:[[[-1,-1],[4,0]],[[0,4],[2,2]]],
+ opts:["Оба ястреба","Оба голубя","Два асимметричных исхода: (ястреб, голубь) и (голубь, ястреб)"],ans:2,
+ hint:"Найдите лучшие ответы и выделите равновесные клетки. Затем найдите смешанное равновесие: при какой доле ястребов игроку всё равно, кем быть?",
+ sol:["Против ястреба лучше голубь (0 > −1), против голубя — ястреб (4 > 2).","Чистые равновесия: (Ястреб, Голубь) = (4, 0) и (Голубь, Ястреб) = (0, 4). Симметричные исходы неустойчивы.","Симметричное смешанное равновесие: если соперник — ястреб с вероятностью p, ястреб даёт 4 − 5p, голубь — 2 − 2p. Равенство даёт p* = 2/3, то есть V/C. Ожидаемый выигрыш каждого 2/3.","Проверка: при p = 1/2 ястреб даёт 1,5, а голубь только 1 — безразличия нет, поэтому 1/2 не равновесие."]},
+
+{id:4,n:"Общественное благо",short:"Общее благо",d:"Коллективное действие",
+ q:"Два студента решают, вкладываться ли в общее мероприятие. Вклад стоит 2 тому, кто его делает; каждый вклад приносит 1,5 каждому участнику. Выигрыш = 1,5 × число вкладов − личная стоимость. Какой исход — равновесие Нэша?",
+ rows:["Не вкладываться","Вкладываться"],cols:["Не вкладываться","Вкладываться"],m:[[[0,0],[1.5,-0.5]],[[-0.5,1.5],[1,1]]],
+ opts:["Оба вкладываются","Никто не вкладывается","Вкладывается ровно один"],ans:1,
+ hint:"Насколько меняется ваш собственный выигрыш, если вы делаете вклад? Как субсидия или изменение правил может сделать вклад выгодным?",
+ sol:["Собственный вклад приносит вам 1,5, а стоит 2: личный эффект −0,5 при любом выборе другого.","По матрице: против «Не вкладываться» 0 > −0,5; против «Вкладываться» 1,5 > 1. «Не вкладываться» строго доминирует.","Равновесие — (Не вкладываться, Не вкладываться) = (0, 0), хотя совместный вклад даёт каждому 1. Для группы вклад выгоден: 2 × 1,5 − 2 = +1.","Субсидия больше 0,5 за вклад делает «вкладываться» доминирующей стратегией."]},
+
+{id:5,n:"Аукцион второй цены",short:"Аукцион",d:"Экономика и механизмы",kind:"auction",
+ q:"В закрытом аукционе второй цены побеждает наибольшая ставка, а победитель платит вторую по величине ставку. Ваша ценность предмета — 10. Ставка соперника — 7, ничьих нет. Какую ставку сделать?",
+ opts:["Ставка 5","Ставка 10","Ставка 15"],ans:1,
+ hint:"Рассчитайте полезность каждой ставки при ставке соперника 7 и при ставке 12.",
+ sol:["Ставка 5 при ставке соперника 7: проигрыш, полезность 0.","Ставка 10: победа, платите 7 — полезность 10 − 7 = 3. Ставка 15: тоже победа по цене 7 — полезность 3.","Если соперник поставил 12: ставка 15 выигрывает и платит 12 — полезность −2; ставка 10 проигрывает — 0.","Ставка влияет только на то, выиграете ли вы; цену задаёт соперник. Правдивая ставка 10 побеждает ровно тогда, когда победа выгодна, поэтому она слабо доминирует любую другую."]},
+
+{id:6,n:"Ценовая конкуренция",short:"Цены",d:"Экономика",
+ p1:"Фирма 1",p2:"Фирма 2",
+ q:"Две фирмы продают одинаковый товар. При высоких ценах обе получают 4; при низких — по 2. Фирма с низкой ценой при высокой цене конкурента получает 5, а фирма с высокой ценой — 0. Какой исход — равновесие Нэша?",
+ rows:["Высокая цена","Низкая цена"],cols:["Высокая цена","Низкая цена"],m:[[[4,4],[0,5]],[[5,0],[2,2]]],
+ opts:["Обе выбирают высокую цену","Обе выбирают низкую цену","Высокая у одной, низкая у другой"],ans:1,
+ hint:"Что меняется, если фирмы взаимодействуют многократно и наблюдают цены друг друга?",
+ sol:["Конкурент держит высокую цену: снизить свою выгоднее (5 > 4).","Конкурент снизил цену: снизить тоже выгоднее (2 > 0). Низкая цена строго доминирует.","Равновесие — (Низкая, Низкая) = (2, 2), хотя при (Высокая, Высокая) обе получают 4. Это дилемма заключённого: T = 5 > R = 4 > P = 2 > S = 0.","При бесконечном повторении высокие цены устойчивы, если фирмы достаточно ценят будущее: δ ≥ (T − R)/(T − P) = 1/3."]},
+
+{id:7,n:"Координация агентов RL",short:"Агенты RL",d:"Обучение с подкреплением",
+ p1:"Агент 1",p2:"Агент 2",
+ q:"Два агента выбирают левую или правую дверь. Если действия совпадают, каждый получает +3; если различаются, каждый получает −1. Что верно о равновесиях?",
+ rows:["Левая","Правая"],cols:["Левая","Правая"],m:[[[3,3],[-1,-1]],[[-1,-1],[3,3]]],
+ opts:["Единственное равновесие — случайный выбор 50/50","Есть два чистых равновесия: (левая, левая) и (правая, правая)","Согласованные действия всегда невыгодны"],ans:1,
+ hint:"Обозначьте состояние, действие, награду и политику агента. Почему независимое обучение может быть нестабильным?",
+ sol:["На «Левую» лучший ответ — левая (3 > −1), на «Правую» — правая.","Два чистых равновесия: (Левая, Левая) и (Правая, Правая), оба дают (3, 3).","Есть и смешанное: если партнёр выбирает левую с вероятностью q, левая даёт 4q − 1, правая — 3 − 4q; равенство при q = 1/2. Ожидаемый выигрыш 1 — втрое меньше, чем в чистом равновесии.","В терминах RL: одно состояние, действия {левая, правая}, награда +3 или −1, политика π(a). Для каждого агента другой — часть среды, которая меняется при обучении. Какое из равновесий выберут независимые агенты, решает случай."]},
+
+{id:8,n:"Орёл и решка: смешанное равновесие",short:"Орёл-решка",d:"Смешанные стратегии",kind:"fields",
+ q:"Игроки одновременно показывают «Орла» или «Решку». Игрок 1 получает +1, если выборы совпали, и −1, если различаются; игрок 2 получает противоположный выигрыш. Найдите вероятности «Орла» в смешанном равновесии и ожидаемый выигрыш игрока 1.",
+ rows:["Орёл","Решка"],cols:["Орёл","Решка"],m:[[[1,-1],[-1,1]],[[-1,1],[1,-1]]],
+ answers:[["p","Вероятность «Орла» игрока 1, p"],["q","Вероятность «Орла» игрока 2, q"],["u","Ожидаемый выигрыш игрока 1"]],
+ check:v=>near(v.p,.5)&&near(v.q,.5)&&near(v.u,0),
+ calc:v=>`Равновесие: p* = q* = 0,5; ожидаемый выигрыш игрока 1 равен 0 — это цена игры.`,
+ hint:"Вероятность p игрока 1 находится из безразличия игрока 2, а не самого игрока 1. Почему смешивание рационально в игре с нулевой суммой?",
+ sol:["Чистых равновесий нет: в каждой клетке один из игроков хочет сменить действие.","p — из безразличия игрока 2: E(Орёл) = −p + (1 − p), E(Решка) = p − (1 − p). Равенство даёт p = 1/2.","q — из безразличия игрока 1: q − (1 − q) = −q + (1 − q), откуда q = 1/2.","Ожидаемый выигрыш игрока 1 равен 0 — цена игры. Любой перекос соперник использует: при p = 0,6 игрок 2 всегда показывает решку, и игрок 1 получает в среднем −0,2."]},
+
+{id:9,n:"Вход на рынок: обратная индукция",short:"Вход",d:"Динамическая игра",kind:"tree",
+ q:"Сначала конкурент выбирает «Войти» или «Не входить». При невходе конкурент получает 0, действующая фирма — 4. При входе фирма выбирает «Приспособиться» (выигрыши 2 и 2) или «Бороться» (−1 и 0). Определите исход обратной индукцией. Числа можно менять — дерево и проверка пересчитаются.",
+ fields:[["e","Конкурент: вход, фирма приспосабливается",2],["a","Фирма: приспособление",2],["ef","Конкурент: вход, фирма борется",-1],["f","Фирма: борьба",0],["o","Конкурент: невход",0],["io","Фирма: конкурент не вошёл",4]],
+ opts:["Войти; фирма приспосабливается","Не входить; фирма боролась бы","Войти; фирма борется","Не входить; фирма приспособилась бы"],
+ ansFn:v=>{const acc=v.a>=v.f; const enterPay=acc?v.e:v.ef; const enter=enterPay>v.o; if(enter) return acc?0:2; return acc?3:1;},
+ valid:v=>['e','a','ef','f','o','io'].every(k=>isFinite(v[k]))&&v.a!==v.f&&(v.a>v.f?v.e:v.ef)!==v.o,
+ calc:v=>{const acc=v.a>=v.f; const ep=acc?v.e:v.ef; return `После входа фирма сравнивает приспособление (${fmt(v.a)}) и борьбу (${fmt(v.f)}) и выбирает ${acc?'приспособление':'борьбу'}. Конкурент сравнивает вход (${fmt(ep)}) с невходом (${fmt(v.o)}) и ${ep>v.o?'входит':'не входит'}.`},
+ hint:"Начните с последнего хода. Различите угрозу, выгодную заранее, и действие, оптимальное в подыгре.",
+ sol:["Последний ход — фирма после входа: приспособиться (2) или бороться (0). Выбирает приспособление.","Конкурент предвидит это: вход даёт ему 2, невход — 0. Конкурент входит.","Совершенное подыгровое равновесие: (Войти; Приспособиться), выигрыши (2, 2).","Профиль (Не входить; Бороться) — тоже равновесие Нэша, но держится на неправдоподобной угрозе: после входа бороться фирме невыгодно."]},
+
+{id:10,n:"Повторяющаяся дилемма",short:"Повторение",d:"Дисконтирование будущего",kind:"fields",
+ q:"Дилемма заключённого повторяется бесконечно. Взаимное сотрудничество даёт R = 3 за период, взаимное предательство — P = 1, одностороннее предательство против сотрудничающего — T = 5. Оба играют grim trigger: сотрудничают, пока никто не предал, а после первого предательства предают всегда. Найдите минимальный δ, при котором сотрудничество устойчиво.",
+ fields:[["R","Награда за сотрудничество R",3],["T","Искушение предать T",5],["P","Взаимное предательство P",1],["delta","Ваш коэффициент дисконтирования δ",0.6]],
+ answers:[["threshold","Рассчитанный порог δ*"]],
+ valid:v=>v.T>v.R&&v.R>v.P&&v.delta>=0&&v.delta<1,
+ check:v=>near(v.threshold,(v.T-v.R)/(v.T-v.P)),
+ calc:v=>{const th=(v.T-v.R)/(v.T-v.P), c=v.R/(1-v.delta), d=v.T+v.delta*v.P/(1-v.delta); return `Порог δ* = (T − R)/(T − P) = (${fmt(v.T)} − ${fmt(v.R)})/(${fmt(v.T)} − ${fmt(v.P)}) = ${fmt(th)}. При δ = ${fmt(v.delta)}: сотрудничество даёт R/(1 − δ) = ${fmt(c)}, предательство — T + δP/(1 − δ) = ${fmt(d)}. Условие ${v.delta>=th-1e-9?'выполняется — сотрудничество устойчиво':'не выполняется — предать выгоднее'}.`},
+ hint:"Сравните сумму R + δR + δ²R + … с суммой T + δP + δ²P + … Что означает δ, близкое к нулю или к единице?",
+ sol:["Сотрудничество: R + δR + δ²R + … = R/(1 − δ).","Предательство: T сейчас, затем P каждый период: T + δP/(1 − δ).","Условие R/(1 − δ) ≥ T + δP/(1 − δ) равносильно R ≥ (1 − δ)T + δP, то есть δ ≥ (T − R)/(T − P).","При R = 3, T = 5, P = 1 порог δ* = 2/4 = 0,5. При δ = 0,6 сотрудничество устойчиво: 7,5 > 6,5."]},
+
+{id:11,n:"Вход при неполной информации",short:"Неполная инф.",d:"Байесовская игра",kind:"fields",
+ q:"Конкурент не знает тип действующей фирмы. С вероятностью p фирма «жёсткая» и борется: вход приносит конкуренту −2. С вероятностью 1 − p фирма «мягкая» и приспосабливается: вход приносит +4. Невход даёт 0. Рассчитайте ожидаемый выигрыш от входа и порог безразличия p*.",
+ fields:[["p","Вероятность жёсткого типа p (0–1)",0.4],["t","Вход против жёсткого типа",-2],["s","Вход против мягкого типа",4],["o","Невход",0]],
+ answers:[["expected","Ваш расчёт E(вход)"],["threshold","Ваш расчёт порога p*"]],
+ valid:v=>v.p>=0&&v.p<=1&&v.s>v.o&&v.t<v.o,
+ check:v=>near(v.expected,v.p*v.t+(1-v.p)*v.s)&&near(v.threshold,(v.s-v.o)/(v.s-v.t)),
+ calc:v=>{const E=v.p*v.t+(1-v.p)*v.s, th=(v.s-v.o)/(v.s-v.t); return `E(вход) = p·(${fmt(v.t)}) + (1 − p)·${fmt(v.s)} = ${fmt(E)}. Порог p* = (s − o)/(s − t) = ${fmt(th)}. ${E>v.o?'Вход выгоднее невхода.':E<v.o?'Невход выгоднее входа.':'Конкурент безразличен.'}`},
+ hint:"Найдите порог p*, затем решите задачу для p = 0,4 и p = 0,8.",
+ sol:["E(вход) = p·(−2) + (1 − p)·4 = 4 − 6p.","Вход выгоден, если 4 − 6p > 0, то есть p < 2/3. В общем виде p* = (s − o)/(s − t) = 4/6 ≈ 0,667.","При p = 0,4: E = 1,6 > 0 — входить. При p = 0,8: E = −0,8 < 0 — не входить.","Это сокращённая форма байесовской игры: ответы каждого типа фирмы (жёсткая борется, мягкая приспосабливается) уже учтены в выигрышах конкурента."]},
+
+{id:12,n:"Дуополия Курно",short:"Курно",d:"Олигополия и оптимизация",kind:"fields",
+ q:"Две фирмы одновременно выбирают объёмы выпуска. Обратный спрос P = a − b(q₁ + q₂), где a = 120, b = 2. Предельные издержки каждой фирмы c = 20, постоянных издержек нет. Найдите равновесный выпуск каждой фирмы, рыночную цену и прибыль.",
+ fields:[["a","Перехват спроса a",120],["b","Наклон спроса b",2],["c","Предельные издержки c",20]],
+ answers:[["qanswer","Выпуск каждой фирмы q*"],["panswer","Цена P*"],["pianswer","Прибыль каждой фирмы π*"]],
+ valid:v=>v.b>0&&v.a>v.c&&v.c>=0,
+ check:v=>{const q=(v.a-v.c)/(3*v.b),P=v.a-v.b*2*q,pi=(P-v.c)*q;return near(v.qanswer,q,.02)&&near(v.panswer,P,.02)&&near(v.pianswer,pi,.2)},
+ calc:v=>{const q=(v.a-v.c)/(3*v.b),Q=2*q,P=v.a-v.b*Q,pi=(P-v.c)*q;return `q₁* = q₂* = (a − c)/(3b) = ${fmt(q)}. Общий выпуск Q = ${fmt(Q)}. Цена P = a − bQ = ${fmt(P)}. Прибыль каждой π = (P − c)·q = ${fmt(pi)}.`},
+ hint:"Выведите функцию реакции из условия ∂π₁/∂q₁ = 0 и найдите точку пересечения. Сравните с монополией и совершенной конкуренцией.",
+ sol:["Прибыль фирмы 1: π₁ = (a − b(q₁ + q₂) − c)·q₁. Условие первого порядка: a − c − 2bq₁ − bq₂ = 0.","Функция реакции: q₁ = (a − c − bq₂)/(2b) = 25 − q₂/2; у фирмы 2 симметрично.","В симметричном равновесии q* = (a − c)/(3b) = 100/6 ≈ 16,67; Q* ≈ 33,33; P* = a − bQ* ≈ 53,33.","Прибыль каждой π* = (P* − c)·q* ≈ 555,56. Для сравнения: монополия — Q = 25, P = 70; совершенная конкуренция — Q = 50, P = 20."]}
+];
+
+const guides=[
+"Дилемма заключённого показывает конфликт индивидуальной рациональности и коллективного благополучия. Обсудите, какие институты меняют стимулы: договоры, штрафы, субсидии, репутация (задачи 1, 4, 6).",
+"Равновесие Нэша не обязательно максимизирует сумму выигрышей. Сравните равновесия с Парето-эффективными исходами в задачах 1, 2, 3 и 12.",
+"Повторение создаёт возможность репутации и наказания за отклонение. Результат зависит от δ, горизонта игры и наблюдаемости действий (задачи 6, 10).",
+"В смешанном равновесии игрок выбирает вероятности так, чтобы соперник был безразличен между своими действиями. Две интерпретации: непредсказуемость и доли в популяции (задачи 3, 8).",
+"В байесовской игре решение зависит от вероятностей типов и ожидаемых выигрышей; убеждения других о вашем типе становятся ресурсом (задачи 9, 11).",
+"В RL агенты исследуют действия, получают награды и обновляют политики; обучение других агентов делает среду нестационарной (задача 7)."
+];
+
+/* ---------- состояние ---------- */
+let current=0; const done=new Set();
+function load(){ try{ const s=JSON.parse(localStorage.getItem('gtlab-done')||'[]'); s.forEach(x=>done.add(x)); const c=Number(localStorage.getItem('gtlab-current')); if(c>=0&&c<12) current=c; }catch(e){} }
+function save(){ try{ localStorage.setItem('gtlab-done',JSON.stringify([...done])); localStorage.setItem('gtlab-current',String(current)); }catch(e){} }
+
+/* ---------- навигация ---------- */
+function renderNav(){
+  $('nav').innerHTML=tasks.map((t,i)=>`<button class="chip ${i===current?'active':''} ${done.has(t.id)?'done':''}" data-i="${i}" title="${t.n}" aria-label="Задача ${t.id}: ${t.n}${done.has(t.id)?' (решена)':''}" ${i===current?'aria-current="true"':''}><b>${t.id}</b><span>${t.short}</span></button>`).join('');
+  $('nav').querySelectorAll('.chip').forEach(b=>b.onclick=()=>go(+b.dataset.i));
+}
+function progress(){ $('progressText').textContent=`${done.size} из 12`; $('bar').style.width=(done.size/12*100)+'%'; }
+function go(i){ current=(i+12)%12; save(); render(); }
+
+/* ---------- матрица ---------- */
+function brSets(m){
+  const br1=[[false,false],[false,false]], br2=[[false,false],[false,false]];
+  for(let j=0;j<2;j++){const mx=Math.max(m[0][j][0],m[1][j][0]); for(let i=0;i<2;i++) if(m[i][j][0]===mx) br1[i][j]=true;}
+  for(let i=0;i<2;i++){const mx=Math.max(m[i][0][1],m[i][1][1]); for(let j=0;j<2;j++) if(m[i][j][1]===mx) br2[i][j]=true;}
+  return {br1,br2};
+}
+function matrixHTML(t){
+  const {br1,br2}=brSets(t.m), p1=t.p1||'Игрок 1', p2=t.p2||'Игрок 2';
+  return `<div class="legend"><span><i style="background:var(--p1)"></i>${p1} выбирает строку — левое число</span><span><i style="background:var(--p2)"></i>${p2} выбирает столбец — правое число</span></div>
+  <div class="matrix-wrap"><table class="bm" id="bm"><thead><tr><th class="corner"><span class="a">${p1} ↓</span> / <span class="b">${p2} →</span></th>${t.cols.map(c=>`<th class="c2">${c}</th>`).join('')}</tr></thead>
+  <tbody>${t.rows.map((r,i)=>`<tr><th>${r}</th>${t.cols.map((c,j)=>{const x=t.m[i][j]; return `<td class="cell ${br1[i][j]&&br2[i][j]?'ne':''}" tabindex="0" data-i="${i}" data-j="${j}" aria-label="${r} и ${c}: ${fmt(x[0])} и ${fmt(x[1])}"><span class="pay"><span class="v1 ${br1[i][j]?'br':''}">${fmt(x[0])}</span><span class="div"></span><span class="v2 ${br2[i][j]?'br':''}">${fmt(x[1])}</span></span></td>`}).join('')}</tr>`).join('')}</tbody></table></div>
+  <div class="matrix-tools"><button class="btn small" id="brBtn" aria-pressed="false">Показать лучшие ответы</button><span class="note" style="margin:0">Щёлкните по клетке, чтобы проверить отклонения.</span></div>
+  <div class="analysis" id="analysis"></div>`;
+}
+function analyse(t,i,j){
+  const p1=t.p1||'Игрок 1', p2=t.p2||'Игрок 2', x=t.m[i][j], i2=1-i, j2=1-j;
+  const d1=t.m[i2][j][0], d2=t.m[i][j2][1];
+  const s1=d1>x[0]?`выгодно (${fmt(d1)} вместо ${fmt(x[0])})`:d1===x[0]?`ничего не меняет (${fmt(d1)} = ${fmt(x[0])})`:`невыгодно (${fmt(d1)} вместо ${fmt(x[0])})`;
+  const s2=d2>x[1]?`выгодно (${fmt(d2)} вместо ${fmt(x[1])})`:d2===x[1]?`ничего не меняет (${fmt(d2)} = ${fmt(x[1])})`:`невыгодно (${fmt(d2)} вместо ${fmt(x[1])})`;
+  const ne=d1<=x[0]&&d2<=x[1];
+  return `<p><b>(${t.rows[i]}, ${t.cols[j]})</b>: выигрыши <span class="v1">${fmt(x[0])}</span> и <span class="v2">${fmt(x[1])}</span>.</p>
+  <p><span class="v1">${p1}</span>: переход на «${t.rows[i2]}» ${s1}.</p>
+  <p><span class="v2">${p2}</span>: переход на «${t.cols[j2]}» ${s2}.</p>
+  <p><b>${ne?'Никто не выигрывает от одностороннего отклонения — это равновесие Нэша.':'У кого-то есть стимул сменить действие — это не равновесие.'}</b></p>`;
+}
+
+/* ---------- графики и исследование ---------- */
+function auctionExplore(){
+  return `<details class="explore"><summary>Калькулятор полезности ставок</summary><div class="explore-body">
+  <div class="slider-row"><label for="rival">Ставка соперника</label><input type="range" id="rival" min="0" max="20" step="0.5" value="7"><output id="rivalOut">7</output></div>
+  <table class="util"><thead><tr><th>Ваша ставка</th><th>Исход</th><th style="text-align:right">Полезность (ценность 10)</th></tr></thead><tbody id="utilBody"></tbody></table>
+  <p class="note">Зелёным отмечены ставки с наибольшей полезностью. Передвиньте ползунок на 12: завышенная ставка выигрывает себе в убыток.</p></div></details>`;
+}
+function updateAuction(){
+  const b2=Number($('rival').value); $('rivalOut').textContent=fmt(b2);
+  const rows=[5,10,15].map(b=>{const win=b>b2, tie=b===b2; const u=win?10-b2:0; return {b,win,tie,u};});
+  const best=Math.max(...rows.map(r=>r.u));
+  $('utilBody').innerHTML=rows.map(r=>`<tr class="${r.u===best?'best':''}"><td>${r.b}${r.b===10?' (правдивая)':''}</td><td>${r.tie?'ничья — исключена условием':r.win?`победа, платите ${fmt(b2)}`:'проигрыш'}</td><td class="num ${r.u<0?'neg':''}">${r.tie?'—':fmt(r.u)}</td></tr>`).join('');
+}
+function penniesExplore(){
+  return `<details class="explore"><summary>Исследовать: как p игрока 1 влияет на игрока 2</summary><div class="explore-body">
+  <div class="slider-row"><label for="pSl">p — вероятность «Орла» игрока 1</label><input type="range" id="pSl" min="0" max="1" step="0.05" value="0.8"><output id="pOut">0,8</output></div>
+  <table class="util"><tbody id="penBody"></tbody></table>
+  <p class="note">Пока игроку 2 не всё равно, он выбирает одно действие и наказывает игрока 1. Найдите p, при котором оба действия игрока 2 дают одинаково.</p></div></details>`;
+}
+function updatePennies(){
+  const p=Number($('pSl').value); $('pOut').textContent=fmt(p,2);
+  const eO=-p+(1-p), eR=p-(1-p); const best=eO>eR+1e-9?'Орёл':eR>eO+1e-9?'Решка':'любое';
+  const u1=best==='Орёл'?p*1+(1-p)*(-1):best==='Решка'?p*(-1)+(1-p)*1:0;
+  $('penBody').innerHTML=`<tr><td>E выигрыша игрока 2 от «Орла»</td><td class="num">${fmt(eO,2)}</td></tr><tr><td>E выигрыша игрока 2 от «Решки»</td><td class="num">${fmt(eR,2)}</td></tr><tr class="${best==='любое'?'best':''}"><td>Лучший ответ игрока 2</td><td class="num">${best==='любое'?'безразличен':best}</td></tr><tr><td>Ожидаемый выигрыш игрока 1 при этом ответе</td><td class="num ${u1<-1e-9?'neg':''}">${fmt(u1,2)}</td></tr>`;
+}
+function treeSVG(v,showSPE){
+  const acc=v.a>=v.f, ep=acc?v.e:v.ef, enter=ep>v.o;
+  const c1='#2747C4', c2='#A0306E', ink='#17202C', mute='#9AA5B5', gold='#D99A00';
+  const w=(on)=>showSPE?(on?5:2):2.5, col=(on)=>showSPE?(on?gold:mute):ink;
+  const pay=(x,y,a,b)=>`<text x="${x}" y="${y}" text-anchor="middle" font-size="19" font-weight="700"><tspan fill="${c1}">${fmt(a)}</tspan><tspan fill="#8893A3">  ;  </tspan><tspan fill="${c2}">${fmt(b)}</tspan></text>`;
+  return `<svg class="plot" viewBox="0 0 640 330" role="img" aria-label="Дерево игры входа на рынок">
+  <line x1="320" y1="50" x2="140" y2="160" stroke="${col(!enter)}" stroke-width="${w(!enter)}"/>
+  <line x1="320" y1="50" x2="470" y2="150" stroke="${col(enter)}" stroke-width="${w(enter)}"/>
+  <line x1="470" y1="150" x2="370" y2="260" stroke="${col(acc)}" stroke-width="${w(acc)}"/>
+  <line x1="470" y1="150" x2="570" y2="260" stroke="${col(!acc)}" stroke-width="${w(!acc)}"/>
+  <circle cx="320" cy="50" r="13" fill="${c1}"/><text x="320" y="25" text-anchor="middle" font-size="15" font-weight="600" fill="${c1}">Конкурент</text>
+  <circle cx="470" cy="150" r="13" fill="${c2}"/><text x="500" y="140" text-anchor="start" font-size="15" font-weight="600" fill="${c2}">Фирма</text>
+  <text x="205" y="98" text-anchor="middle" font-size="14" fill="${ink}">Не входить</text>
+  <text x="420" y="90" text-anchor="middle" font-size="14" fill="${ink}">Войти</text>
+  <text x="392" y="208" text-anchor="end" font-size="14" fill="${ink}">Приспособиться</text>
+  <text x="548" y="208" text-anchor="start" font-size="14" fill="${ink}">Бороться</text>
+  ${pay(140,190,v.o,v.io)}${pay(370,290,v.e,v.a)}${pay(570,290,v.ef,v.f)}
+  <text x="20" y="320" font-size="12" fill="#5A6576">Выигрыши: <tspan fill="${c1}">конкурент</tspan> ; <tspan fill="${c2}">фирма</tspan>${showSPE?'. Золотым — ходы совершенного подыгрового равновесия.':''}</text>
+  </svg>`;
+}
+function bayesSVG(v){
+  const W=600,H=280,L=56,R=36,T=20,B=44, pw=W-L-R, ph=H-T-B;
+  const ymin=Math.min(v.t,v.o,0)-0.5, ymax=Math.max(v.s,v.o,0)+0.5;
+  const X=p=>L+p*pw, Y=y=>T+(ymax-y)/(ymax-ymin)*ph;
+  const th=(v.s-v.o)/(v.s-v.t), E=v.p*v.t+(1-v.p)*v.s;
+  let ticks=''; for(let k=0;k<=5;k++){const p=k/5; ticks+=`<line x1="${X(p)}" y1="${T}" x2="${X(p)}" y2="${T+ph}" stroke="#E6EAF0"/><text x="${X(p)}" y="${T+ph+18}" text-anchor="middle" font-size="12" fill="#5A6576">${fmt(p,1)}</text>`;}
+  return `<svg class="plot" viewBox="0 0 ${W} ${H}" role="img" aria-label="Ожидаемый выигрыш от входа в зависимости от p">${ticks}
+  <line x1="${L}" y1="${Y(v.o)}" x2="${L+pw}" y2="${Y(v.o)}" stroke="#8893A3" stroke-dasharray="5 5" stroke-width="2"/>
+  <text x="${L+pw}" y="${Y(v.o)-6}" text-anchor="end" font-size="12" fill="#5A6576">невход = ${fmt(v.o)}</text>
+  <line x1="${X(0)}" y1="${Y(v.s)}" x2="${X(1)}" y2="${Y(v.t)}" stroke="#2747C4" stroke-width="3"/>
+  <text x="${X(0)+6}" y="${Y(v.s)-8}" font-size="12" fill="#2747C4">E(вход) = p·t + (1 − p)·s</text>
+  <text x="${L-8}" y="${Y(v.s)+4}" text-anchor="end" font-size="12" fill="#2747C4">${fmt(v.s)}</text><text x="${L+pw+4}" y="${Y(v.t)+4}" font-size="12" fill="#2747C4">${fmt(v.t)}</text>
+  ${th>=0&&th<=1?`<line x1="${X(th)}" y1="${T}" x2="${X(th)}" y2="${T+ph}" stroke="#D99A00" stroke-width="2"/><text x="${X(th)+6}" y="${T+14}" font-size="12" font-weight="700" fill="#9A6A00">p* = ${fmt(th)}</text>`:''}
+  ${v.p>=0&&v.p<=1?`<circle cx="${X(v.p)}" cy="${Y(E)}" r="7" fill="#fff" stroke="#17202C" stroke-width="2.5"/><text x="${X(v.p)}" y="${Y(E)+(E>=v.o?24:-12)}" text-anchor="middle" font-size="12" font-weight="700">p = ${fmt(v.p)}</text>`:''}
+  <text x="${L+pw/2}" y="${H-4}" text-anchor="middle" font-size="12" fill="#5A6576">вероятность жёсткого типа p</text>
+  </svg>`;
+}
+function cournotSVG(v){
+  const W=520,H=440,L=52,R=20,T=20,B=46, s=Math.min(W-L-R,H-T-B);
+  const A=v.a-v.c, max=A/v.b, X=q=>L+q/max*s, Y=q=>T+s-q/max*s, q=A/(3*v.b), qm=A/(4*v.b);
+  let ticks=''; for(let k=0;k<=4;k++){const z=max*k/4; ticks+=`<line x1="${X(z)}" y1="${T}" x2="${X(z)}" y2="${T+s}" stroke="#E6EAF0"/><line x1="${L}" y1="${Y(z)}" x2="${L+s}" y2="${Y(z)}" stroke="#E6EAF0"/><text x="${X(z)}" y="${T+s+18}" text-anchor="middle" font-size="12" fill="#5A6576">${fmt(z,1)}</text><text x="${L-8}" y="${Y(z)+4}" text-anchor="end" font-size="12" fill="#5A6576">${fmt(z,1)}</text>`;}
+  return `<svg class="plot" viewBox="0 0 ${W} ${H}" style="max-width:520px" role="img" aria-label="Функции реакции в модели Курно">${ticks}
+  <line x1="${X(A/(2*v.b))}" y1="${Y(0)}" x2="${X(0)}" y2="${Y(max)}" stroke="#2747C4" stroke-width="3"/>
+  <line x1="${X(0)}" y1="${Y(A/(2*v.b))}" x2="${X(max)}" y2="${Y(0)}" stroke="#A0306E" stroke-width="3"/>
+  <line x1="${X(0)}" y1="${Y(A/(2*v.b))}" x2="${X(A/(2*v.b))}" y2="${Y(0)}" stroke="#8893A3" stroke-dasharray="5 5" stroke-width="1.5"/>
+  <circle cx="${X(qm)}" cy="${Y(qm)}" r="5" fill="#8893A3"/><text x="${X(qm)-8}" y="${Y(qm)-8}" text-anchor="end" font-size="12" fill="#5A6576">картель</text>
+  <circle cx="${X(q)}" cy="${Y(q)}" r="8" fill="#D99A00" stroke="#fff" stroke-width="2"/>
+  <text x="${X(q)+12}" y="${Y(q)-10}" font-size="13" font-weight="700">равновесие (${fmt(q,2)}; ${fmt(q,2)})</text>
+  <text x="${X(max*0.1)+12}" y="${Y(max*0.85)}" font-size="12" fill="#2747C4">q₁ = R₁(q₂)</text>
+  <text x="${X(0)+8}" y="${Y(A/(2*v.b))-8}" font-size="12" fill="#A0306E">q₂ = R₂(q₁)</text>
+  <text x="${L+s/2}" y="${H-6}" text-anchor="middle" font-size="12" fill="#5A6576">выпуск фирмы 1, q₁</text>
+  <text x="14" y="${T+s/2}" text-anchor="middle" font-size="12" fill="#5A6576" transform="rotate(-90 14 ${T+s/2})">выпуск фирмы 2, q₂</text>
+  </svg><p class="note">Пунктир — сочетания выпусков с монопольным суммарным выпуском; серая точка — картель по Q/2 на фирму. Она лежит вне функций реакции, поэтому картель неустойчив.</p>`;
+}
+
+/* ---------- отрисовка задачи ---------- */
+function fieldHTML(f,isAns){ const [k,label,def]=f; return `<div class="fld ${isAns?'ans':''}"><label for="f_${k}">${label}</label><input type="text" inputmode="decimal" autocomplete="off" id="f_${k}" ${isAns?'placeholder="ваш ответ"':`value="${fmt(def)}"`}></div>`; }
+function getV(t){ const v={}; [...(t.fields||[]),...(t.answers||[])].forEach(f=>v[f[0]]=num($('f_'+f[0]).value)); return v; }
+function gridClass(n){ return n%3===0?'grid3':'grid2'; }
+
+function render(){
+  const t=tasks[current]; renderNav(); save();
+  let s=`<div class="task-head"><div class="task-num">${t.id}</div><div><div class="rubric">${t.d}</div><h2>${t.n}</h2></div></div><p class="cond">${t.q}</p>`;
+  if(t.m && t.kind!=='fields') s+=`<h3>Матрица выигрышей</h3>${matrixHTML(t)}`;
+  if(t.m && t.kind==='fields') s+=`<h3>Матрица выигрышей</h3>${matrixHTML(t)}`;
+  if(t.fields) s+=`<h3>Исходные данные</h3><div class="${gridClass(t.fields.length)}">${t.fields.map(f=>fieldHTML(f,false)).join('')}</div>`;
+  if(t.kind==='tree') s+=`<h3>Дерево игры</h3><div id="tree"></div><div class="matrix-tools"><button class="btn small" id="speBtn" aria-pressed="false">Отметить обратную индукцию</button></div>`;
+  if(t.answers) s+=`<h3>Ваш результат</h3><div class="${gridClass(t.answers.length)}">${t.answers.map(f=>fieldHTML(f,true)).join('')}</div>`;
+  if(t.opts) s+=`<h3>Выберите ответ</h3><div class="opts">${t.opts.map((o,i)=>`<label class="opt"><input type="radio" name="ans" value="${i}"><span>${o}</span></label>`).join('')}</div>`;
+  if(t.kind==='auction') s+=auctionExplore();
+  if(t.id===8) s+=penniesExplore();
+  if(t.id===11) s+=`<details class="explore"><summary>График ожидаемого выигрыша</summary><div class="explore-body" id="bayesPlot"></div></details>`;
+  if(t.id===12) s+=`<details class="explore"><summary>График функций реакции</summary><div class="explore-body" id="cournotPlot"></div></details>`;
+  s+=`<div class="actions"><button class="btn primary" id="check">Проверить решение</button><button class="btn" id="hintBtn" aria-expanded="false">Подсказка</button><button class="btn" id="solBtn" aria-expanded="false">Пошаговый разбор</button></div>
+  <div class="panel hint" id="hint">${t.hint}</div>
+  <div class="panel" id="feedback" aria-live="polite"></div>
+  <div class="panel sol" id="sol"><b class="t">Пошаговый разбор</b><ol>${t.sol.map(x=>`<li>${x}</li>`).join('')}</ol></div>`;
+  $('task').innerHTML=s;
+  bind(t);
+}
+
+function bind(t){
+  const bm=$('bm');
+  if(bm){
+    const sel=c=>{ bm.querySelectorAll('.cell').forEach(x=>x.classList.remove('sel')); c.classList.add('sel'); const a=$('analysis'); a.innerHTML=analyse(t,+c.dataset.i,+c.dataset.j); a.classList.add('on'); };
+    bm.querySelectorAll('.cell').forEach(c=>{ c.onclick=()=>sel(c); c.onkeydown=e=>{ if(e.key==='Enter'||e.key===' '){e.preventDefault();sel(c);} }; });
+    $('brBtn').onclick=()=>{ const on=bm.classList.toggle('show-br'); $('brBtn').setAttribute('aria-pressed',on); $('brBtn').textContent=on?'Скрыть лучшие ответы':'Показать лучшие ответы'; };
+  }
+  if(t.kind==='auction'){ $('rival').oninput=updateAuction; updateAuction(); }
+  if(t.id===8){ $('pSl').oninput=updatePennies; updatePennies(); }
+  const live=()=>{
+    const v=getV(t);
+    if(t.kind==='tree'){ $('tree').innerHTML=treeSVG(v,$('speBtn').getAttribute('aria-pressed')==='true'); }
+    if(t.id===11 && t.valid(v)) $('bayesPlot').innerHTML=bayesSVG(v); else if(t.id===11) $('bayesPlot').innerHTML='<p class="note">Проверьте исходные данные: 0 ≤ p ≤ 1, t < o < s.</p>';
+    if(t.id===12 && t.valid(v)) $('cournotPlot').innerHTML=cournotSVG(v); else if(t.id===12) $('cournotPlot').innerHTML='<p class="note">Проверьте исходные данные: b > 0, a > c ≥ 0.</p>';
+  };
+  (t.fields||[]).forEach(f=>$('f_'+f[0]).addEventListener('input',live));
+  if(t.kind==='tree') $('speBtn').onclick=()=>{ const b=$('speBtn'); const on=b.getAttribute('aria-pressed')!=='true'; b.setAttribute('aria-pressed',on); b.textContent=on?'Скрыть обратную индукцию':'Отметить обратную индукцию'; live(); };
+  live();
+
+  $('hintBtn').onclick=()=>toggle('hint','hintBtn');
+  $('solBtn').onclick=()=>toggle('sol','solBtn');
+  $('check').onclick=()=>check(t);
+}
+function toggle(id,btn){ const on=$(id).classList.toggle('on'); $(btn).setAttribute('aria-expanded',on); }
+function feedback(ok,html){ const f=$('feedback'); f.className='panel on '+(ok?'good':'try'); f.innerHTML=html; }
+
+function check(t){
+  const v=getV(t);
+  const missing=[...(t.fields||[]),...(t.answers||[])].filter(f=>!isFinite(v[f[0]]));
+  if(missing.length){ feedback(false,`<b class="t">Заполните все поля</b><p>Не хватает значения: «${missing[0][1]}». Дробные числа можно вводить с запятой.</p>`); return; }
+  if(t.valid && !t.valid(v)){ feedback(false,`<b class="t">Проверьте исходные данные</b><p>${t.id===9?'При этих числах кто-то из игроков безразличен между действиями, и исход не определён однозначно. Сделайте выигрыши различными.':t.id===10?'Нужно T > R > P и 0 ≤ δ < 1.':t.id===11?'Нужно 0 ≤ p ≤ 1 и t < o < s.':'Нужно b > 0 и a > c ≥ 0.'}</p>`); return; }
+  let ok=true;
+  if(t.opts){
+    const x=document.querySelector('input[name=ans]:checked');
+    if(!x){ feedback(false,'<b class="t">Выберите вариант ответа</b><p>Отметьте один из вариантов выше и нажмите «Проверить решение» ещё раз.</p>'); return; }
+    const right=t.ansFn?t.ansFn(v):t.ans; ok=+x.value===right;
+  }
+  if(t.check) ok=ok&&t.check(v);
+  const extra=t.calc?`<p>${t.calc(v)}</p>`:'';
+  if(ok){
+    feedback(true,`<b class="t">Верно!</b>${extra||`<p>${t.sol[t.sol.length-1]}</p>`}`);
+    if(!done.has(t.id)){ done.add(t.id); progress(); renderNav(); save(); }
+  } else {
+    feedback(false,`<b class="t">Пока не сходится</b><p>${t.answers?'Сверьте введённые значения с формулой: проверьте знаки и то, чьё безразличие задаёт каждую вероятность.':'Вернитесь к лучшим ответам: может ли кто-то из игроков выиграть, сменив действие в одиночку?'} Откройте «Подсказку» или щёлкните по клеткам матрицы, затем попробуйте снова.</p>`);
+  }
+}
+
+/* ---------- нижние разделы ---------- */
+function guide(){ $('guide').textContent=guides[$('discussion').selectedIndex]; }
+$('discussion').onchange=guide;
+$('copyBtn').onclick=async()=>{
+  const txt='Теория игр — заметки\nТема: '+$('discussion').value+'\nОриентир: '+$('guide').textContent+'\nЗаметки:\n'+$('notes').value;
+  try{ await navigator.clipboard.writeText(txt); $('copyStatus').textContent='Заметки скопированы.'; }
+  catch(e){ $('notes').select(); $('copyStatus').textContent='Браузер не дал скопировать автоматически. Текст выделен — нажмите Ctrl+C.'; }
+};
+$('reset').onclick=()=>{ done.clear(); progress(); save(); render(); };
+document.addEventListener('keydown',e=>{
+  const tag=(e.target.tagName||'').toLowerCase();
+  if(['input','textarea','select'].includes(tag)) return;
+  if(e.key==='ArrowRight') go(current+1);
+  if(e.key==='ArrowLeft') go(current-1);
+});
+
+load(); progress(); guide(); render();
+</script>
+</body>
+</html>
